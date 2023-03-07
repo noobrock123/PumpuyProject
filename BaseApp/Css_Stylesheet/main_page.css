@@ -1,0 +1,38 @@
+.c-table {
+    border-collapse: collapse;
+    width: 80vw;
+    overflow: scroll;
+  }
+  
+.c-table__head {
+  padding: 16px;
+  background-color: #4B7CB6;
+  position: sticky;
+  top: 0;
+  left: 0;
+}
+
+.c-table__data {
+  text-align: center;
+  border: solid 1px #4B7CB6;
+  white-space: nowrap;
+}
+
+section {
+  width: 80vw;
+  height: 300px;
+  overflow: auto;
+}
+
+h1{
+  text-align : center
+}
+
+.btn {
+  border: none;
+  color: white;
+  padding: 12px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  padding-right: 10px;
+}
