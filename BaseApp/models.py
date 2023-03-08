@@ -32,7 +32,7 @@ class Hitbox(models.Model):
     #size (list)
 
 class Car(models.Model):
-    car_type = models.CharField()
+    car_type = models.CharField(max_length=15)
     avg_speed = models.FloatField()
     #go_to (list, hitbox)
 
