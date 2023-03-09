@@ -20,6 +20,6 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home', include('BaseApp.urls'), name='home'),
+    path('home/', include('BaseApp.urls'), name='home'),
     path('', views.redirect_to_home)
 ]
