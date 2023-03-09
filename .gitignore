@@ -33,5 +33,5 @@ profile_pic/
 **/migrations/**
 !**/migrations
 !**/migrations/__init__.py
-.vscode/
-.venv/
+.vscode
+.venv
