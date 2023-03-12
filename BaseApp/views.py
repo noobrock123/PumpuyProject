@@ -1,21 +1,37 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from django.core.exceptions import PermissionDenied
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
 # Create your views here.
 def index(request):
-    return render(request, 'main.html') 
+    return render(request, 'main.html')
 
-def login(request):
-    return render(request, 'login.html')
+def login_view(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('BaseApp:home'))
 
-def loging_in(request):
-    if (request.method == 'GET'):
-        raise PermissionDenied 
+    if request.method == "POST":
+        print(request.POST)
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return HttpResponseRedirect(reverse('BaseApp:home'))
+        return HttpResponseRedirect(reverse('BaseApp:login'))
     else:
-        return redirect(reverse('home'))
+        return render(request, 'login.html')
+    
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('BaseApp:home'))
 
-
-def test(request):
-    return HttpResponse('BaseApp:home')
+def intersection(request, intersection_id):
+    if request.user.is_authenticated:
+        return render(request, 'intersection.html', {
+            'intersection_id' : intersection_id,
+        })
+    else:
+        return render(request, 'login.html')

@@ -6,7 +6,7 @@ app_name = "BaseApp"
 
 urlpatterns = [
     path('', views.index, name="home"),
-    path('login', views.login, name='login'),
-    path('loging_user', views.loging_in, name='loging_in'),
-    path('test', views.test, name='test')
+    path('login', views.login_view, name='login'),
+    path('logout/', views.logout_view, name='logout'),
+    path('intersection/<int:intersection_id>/', views.intersection, name='intersection'),
 ]
