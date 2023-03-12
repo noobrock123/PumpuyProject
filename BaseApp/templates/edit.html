@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'><link rel="stylesheet" href="{% static 'intersection.css' %}">
+
+</head>
+<body>
+    <div class="intersection">
+        <h1>Edit this intersection</h1>
+    </div>
+
+    <div class="Step">
+        <h1>Step 1</h1>
+        <div class = "add">
+            <form action="/action_page.php">
+                <input type="file" id="myFile" name="filename">
+              </form>
+        </div>
+
+        <h1>Step 2</h1>
+        <div class="flex-container">
+            <div class="box">
+                <video width="40%" src="#">Video</video>
+            </div>
+            <div class="box">Loop
+                <p><form>
+                    <label for="x1">X</label>
+                    <input type="text" id="x1">
+                    <label for="y1">Y</label>
+                    <input type="text" id="y1">
+                  </form></p>
+            </div>
+        </div>
+
+        <h1>Step 3</h1>
+
+        <label class="container">Fast Upload
+            <input type="radio" checked="checked" name="radio">
+            <span class="checkmark"></span>
+          </label>
+
+          <label class="container">Slow Upload
+            <input type="radio" name="radio">
+            <span class="checkmark"></span>
+          </label>
+
+        <form action="#">
+            <div class = "Permission">
+                <label for="Permission">Permission:</label>
+                <select id="Permission">
+                    <option value="volvo">Public</option>
+                    <option value="saab">Private</option>
+                    <option value="fiat">Organisation</option>
+                    <option value="audi">Unlist</option>
+                </select>
+            </form>
+                <div class = "button">
+                    <button>Upload</button>
+                </div>
+            </div>
+
+    </div>
+</body>
+</html>

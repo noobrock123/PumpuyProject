@@ -35,3 +35,6 @@ def intersection(request, intersection_id):
         })
     else:
         return render(request, 'login.html')
+
+def edit(request, intersection_id):
+    return render(request, 'edit.html')
