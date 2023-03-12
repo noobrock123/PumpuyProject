@@ -26,8 +26,8 @@ __pycache__
 db.sqlite3
 media
 staticfiles/
-book/
 profile_pic/
+BaseApp/videos
 
 # Only for Development only
 **/migrations/**
