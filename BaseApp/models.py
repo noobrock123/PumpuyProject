@@ -43,6 +43,7 @@ class Intersection(models.Model):
     longtitude = models.FloatField()
     intersec_type = models.IntegerField()
     status = models.IntegerField()
+    owner = models.OneToOneField(Organization, on_delete=models.CASCADE, null=True)
     last_update = models.DateTimeField()
     drone_priority = models.IntegerField()
     videos = models.ManyToManyField(Video, null=True)

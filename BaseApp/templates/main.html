@@ -36,14 +36,18 @@
             <th class="c-table__head">Last Modified</th>
         </tr>
 
+        {% for intersec in intersections %}
         <tr class="c-table__row">
-            <td id = "name" class="c-table__data"><a href="intersection/1/">A</a></th>
-            <td class="c-table__data">B</td>
-            <td class="c-table__data">C</td>
-            <td class="c-table__data">D</td>
-            <td class="c-table__data">E</td>
+            <td id = "name" class="c-table__data"><a href="intersection/{{intersec.name}}/">{{ intersec.name }}</a></th>
+            <td class="c-table__data">{{ intersec.location }}</td>
+            <td class="c-table__data">{{ intersec.status }}</td>
+            <td class="c-table__data">{{ intersec.owner.name }}</td>
+            <td class="c-table__data">{{ intersec.last_update }}</td>
             <td class="c-table__data">F</td>
         </tr>
+        {% empty %}
+        no
+        {% endfor %}
 
         <tr class="c-table__row">
             <td id = "name" class="c-table__data"><a href="intersection/2/">G</a></th>
