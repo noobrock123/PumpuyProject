@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <link rel="Stylesheet" href = "{% static 'profile.css' %}">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
+    <!-- Font Awesome CSS -->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css'>
+
+</head>
+
+<body>
+    <div class="student-profile py-4" style="padding-right: 25vh;">
+      <div class="container" style="padding-top: 10vh;">
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="card shadow-sm">
+              <div class="card-header bg-transparent text-center">
+                <img src="https://img1.ak.crunchyroll.com/i/spire3/d23bea1cbe84833135f94695d900f0651651339079_main.png" alt="student dp">
+                <h3>Test User</h3>
+              </div>
+              <div class="card-body">
+                <p class="mb-0"><strong class="pr-1">Student ID:</strong>00000001</p>
+                <p class="mb-0"><strong class="pr-1">Email</strong>test@ggmail.com</p>
+                <p class="mb-0"><strong class="pr-1">Organization</strong>MIB</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <div class="card shadow-sm grid" style="height:100% ; width:150%">
+                <div class = "Intersection_Table">
+    
+                    <table class="c-table">
+                        <tr class="c-table__row">
+                            <th class="c-table__head">Name</th>
+                            <th class="c-table__head">Address</th>
+                            <th class="c-table__head">Status</th>
+                            <th class="c-table__head">Owner</th>
+                            <th class="c-table__head">Date Upload</th>
+                            <th class="c-table__head">Last Modified</th>
+                        </tr>
+                
+                        {% for intersec in intersections %}
+                        <tr class="c-table__row">
+                            <td id = "name" class="c-table__data"><a href="intersection/{{intersec.name}}/">{{ intersec.name }}</a></th>
+                            <td class="c-table__data">{{ intersec.location }}</td>
+                            <td class="c-table__data">{{ intersec.status }}</td>
+                            <td class="c-table__data">{{ intersec.owner.name }}</td>
+                            <td class="c-table__data">{{ intersec.last_update }}</td>
+                            <td class="c-table__data">F</td>
+                        </tr>
+                        {% empty %}
+                        no
+                        {% endfor %}
+                
+                        <tr class="c-table__row">
+                            <td id = "name" class="c-table__data"><a href="intersection/2/">G</a></th>
+                            <td class="c-table__data">B</td>
+                            <td class="c-table__data">C</td>
+                            <td class="c-table__data">D</td>
+                            <td class="c-table__data">E</td>
+                            <td class="c-table__data">F</td>
+                        </tr>
+                
+                        </table>
+                    </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+</body>
+</html>
