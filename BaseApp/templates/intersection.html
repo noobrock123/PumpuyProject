@@ -7,28 +7,63 @@
 
 </head>
 <body>
-    <div class="intersection">
-        <h1>{{ intersection.name }}</h1>
-        <video width="60%" src="..\Css_Stylesheet\get-money.mp4"></video>
-        <button><a href="edit">Edit</a></button>
+    <div class="header">
+        <a href="back">กลับ</a>
+
+        <h1> Pumpuy Skyline </h1>
+
+        {% if request.user.is_authenticated %}
+            <a href="logout">logout</a>
+        {% else %}
+            <a href="login">login</a>
+        {% endif %}
     </div>
 
-    <div class="description">
-        <h1>Description</h1>
-        <div class="box">
-            <p>{{ intersection.location }}</p>
-        </div>
-    </div>
-    <div class="button">
+    
+
+    <div class="intersection">
         <nav class="left">
-            <button>Upload</button>
-            <button>Download</button>
-            <p>100 mb</p>
+            <h2>{{ intersection.name }}</h2>
+            <button><a href="follow">ติดตาม</a></button>
         </nav>
         <nav class="right">
-            <button>Save</button>
-            <button>Cancle</button>
+            <button><a href="edit">แก้ไข</a></button>
         </nav>
     </div>
+    
+    <!-- <img width="60%"  src="..\Css_Stylesheet\let-me.jpg"> -->
+    <img src="https://i.ytimg.com/vi/5yCf_S737f8/maxres2.jpg?sqp=-oaymwEoCIAKENAF8quKqQMcGADwAQH4AbYIgAKAD4oCDAgAEAEYPiBlKDcwDw==&rs=AOn4CLCZIy-q0dNRJhPse1JdWysg--4Sug">
+    
+    <h2>Description</h2>
+
+    <div class="box">
+        <p>{{ intersection.location }}</p>
+    </div>
+
+    <div class = "searchbar">
+        <input type="text" placeholder="Search Bar right here">
+    </div>
+    
+    <div class = "Intersection_Table">
+    
+        <table class="c-table">
+            <tr class="c-table__row">
+                <th class="c-table__head">Video</th>
+                <th class="c-table__head">Status</th>
+                <th class="c-table__head">Uploader</th>
+                <th class="c-table__head">Date</th>
+            </tr>
+    
+
+    
+            <tr class="c-table__row">
+                <td id = "name" class="c-table__data"><a href="intersection/2/">G</a></th>
+                <td class="c-table__data">B</td>
+                <td class="c-table__data">C</td>
+                <td class="c-table__data">D</td>
+            </tr>
+    
+            </table>
+        </div>
 </body>
 </html>
