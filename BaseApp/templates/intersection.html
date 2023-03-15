@@ -3,12 +3,14 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'><link rel="stylesheet" href="{% static 'intersection.css' %}">
-
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'>
+  <link rel="stylesheet" href="{% static 'intersection.css' %}">
 </head>
 <body>
     <div class="header">
-        <a href="back">กลับ</a>
+        <nav>
+            <button><a href="..">< กลับ</a></button>
+        </nav>
 
         <h1> Pumpuy Skyline </h1>
 
@@ -19,11 +21,9 @@
         {% endif %}
     </div>
 
-    
-
     <div class="intersection">
         <nav class="left">
-            <h2>{{ intersection.name }}</h2>
+            <h2>อเมริกา{{ intersection.name }}</h2>
             <button><a href="follow">ติดตาม</a></button>
         </nav>
         <nav class="right">
@@ -31,17 +31,18 @@
         </nav>
     </div>
     
-    <!-- <img width="60%"  src="..\Css_Stylesheet\let-me.jpg"> -->
-    <img src="https://i.ytimg.com/vi/5yCf_S737f8/maxres2.jpg?sqp=-oaymwEoCIAKENAF8quKqQMcGADwAQH4AbYIgAKAD4oCDAgAEAEYPiBlKDcwDw==&rs=AOn4CLCZIy-q0dNRJhPse1JdWysg--4Sug">
+    <img width="60%"  src="..\Css_Stylesheet\let-me.jpg">
+    <!-- <img src="https://i.ytimg.com/vi/5yCf_S737f8/maxres2.jpg?sqp=-oaymwEoCIAKENAF8quKqQMcGADwAQH4AbYIgAKAD4oCDAgAEAEYPiBlKDcwDw==&rs=AOn4CLCZIy-q0dNRJhPse1JdWysg--4Sug"> -->
     
     <h2>Description</h2>
 
-    <div class="box">
-        <p>{{ intersection.location }}</p>
+    <div class="detail">
+        <p> สถานที่ตั้ง: {{ intersection.location }}</p>
     </div>
 
     <div class = "searchbar">
         <input type="text" placeholder="Search Bar right here">
+        <nav class="button"><button><a href="upload">ลงคลิป</a></button></nav>
     </div>
     
     <div class = "Intersection_Table">
@@ -54,16 +55,34 @@
                 <th class="c-table__head">Date</th>
             </tr>
     
-
+            {% for video in intersections %}
+                <tr class="c-table__row">
+                    <td id = "name" class="c-table__data">
+                        <a href="">{{ video.video }}</a>
+                    </td>
+                    <td class="c-table__data">{{ video.status }}</td>
+                    <td class="c-table__data">{{ video.uploader }}</td>
+                    <td class="c-table__data">{{ video.date }}</td>
+                    <td id="delete"><a href="delete">ลบ</a></td>
+                </tr>
+            {% endfor %}
     
             <tr class="c-table__row">
-                <td id = "name" class="c-table__data"><a href="intersection/2/">G</a></th>
+                <td id = "name" class="c-table__data"><a href="">G</a></td>
                 <td class="c-table__data">B</td>
                 <td class="c-table__data">C</td>
                 <td class="c-table__data">D</td>
+                <td id="delete"><a href="delete">ลบ</a></td>
             </tr>
-    
+            <tr class="c-table__row">
+                <td id = "name" class="c-table__data"><a href="">G</a></td>
+                <td class="c-table__data">B</td>
+                <td class="c-table__data">C</td>
+                <td class="c-table__data">D</td>
+                <td id="delete"><a href="delete">ลบ</a></td>
+            </tr>
+            
             </table>
-        </div>
+    </div>
 </body>
 </html>
