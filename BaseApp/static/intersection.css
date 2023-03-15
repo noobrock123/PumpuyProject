@@ -19,6 +19,9 @@ h1{
 	font-size: 50px ;
 	text-decoration: solid  ;
 	color:#7B68EE ;
+	/* color: #7C69F6;
+    font-weight: bold;
+	margin: 20px; */
 }
 
 h2 {
@@ -46,6 +49,7 @@ button {
 	background-color: #9627db;
 	font-size: 12px;
 	font-weight: bold;
+	/* padding: 10px 30px; */
 	padding: 12px 45px;
 	letter-spacing: 1px;
 	text-transform: uppercase;
@@ -64,10 +68,10 @@ button a:link{
 }
 
 img {
-	width:60%;
-	display: block;
+	width:50%;
+	/* display: block;
 	margin-right: auto ;
-	margin-left: auto;
+	margin-left: auto; */
 }
 
 .header {
@@ -95,7 +99,7 @@ img {
 	color:#5357a6 ;
     font-weight: bold;
 	margin: 10px 15px 20px 20px;
-	font-size: 32px ;
+	font-size: 31px ;
 	display:inline-block;
 }
 
@@ -108,6 +112,7 @@ img {
 	border-radius: 20px;
 	border: 1px solid #e92d2d;
 	background-color: transparent;
+	padding: 10px 30px;
 }
 
 .intersection .left button a:link {
@@ -120,8 +125,8 @@ img {
 
 .detail {
 	margin-left: 25px;
-	padding: 10px 20px 5px;
-	width: 60%;
+	padding: 8px 20px 5px;
+	width: 70%;
 	background: #f0f1f7;
 	border-radius: 15px;
 	box-shadow: -15px -15px 15px rgba(255, 255, 255, 0.2),
