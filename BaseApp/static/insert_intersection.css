@@ -12,6 +12,12 @@ body {
 	height: 100vh;
     margin: 20px;
 }
+
+button a:link {
+	color: #ffffff;
+	text-decoration: none;
+}
+
 .logo h1 {
 	color: #7C69F6;
     font-weight: bold;
@@ -23,10 +29,16 @@ body {
     justify-content: space-between;
 }
 
+/* .button .right a:link {
+	color: #e92d2d;
+} */
+
 .topbar .backpage button {
     border-radius: 20px;
 	border: 1px solid #801ad9;
 	background-color: #9627db;
+	/* border: 1px solid #e92d2d;
+	background-color: transparent; */
 	color: #FFFFFF;
 	font-size: 12px;
 	font-weight: bold;
@@ -48,6 +60,7 @@ body {
 .logo {
     display: grid;
     justify-content: center;
+	margin-bottom: 25px;
 }
 
 .name {
