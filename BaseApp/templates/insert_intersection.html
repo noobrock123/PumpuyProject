@@ -1,18 +1,20 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'><link rel="stylesheet" href="../Css_Stylesheet/insert_section.css">
-
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'>
+  <link rel="stylesheet" href="{% static 'insert_intersection.css' %}">
 </head>
 <body>
     <div class="topbar">
-        <div class="backpage">
-            <button>backpage</button>
-        </div>
+        <div class="backpage"></div>
         <div class="profile">
-            <p>Username</p>
-            <img src="" alt="">
+            {% if request.user.is_authenticated %}
+                <a href="logout">logout</a>
+            {% else %}
+                <a href="login">login</a>
+            {% endif %}
         </div>
     </div>
     <div class="logo">
@@ -35,7 +37,7 @@
         <input type="text" placeholder="Longtitute" />
     </div>
     <div class="insertimg">
-        <button>ลงรูป</button>
+        <button><a href="image">ลงรูป</a></button>
     </div>
     <div class="letter">
         <p class="ss">คำเตือน: </p>
@@ -43,10 +45,10 @@
     </div>
     <div class="button">
         <nav class="left">
-            <button>เพิ่มเเยก</button>
+            <button><a href="add_intersection">เพิ่มเเยก</a></button>
         </nav>
         <nav class="right">
-            <button>ยกเลิก</button>
+            <button><a href="..">ยกเลิก</a></button>
         </nav>
     </div>
 </body>
