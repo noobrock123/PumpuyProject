@@ -12,14 +12,14 @@
             <button><a href="..">< กลับ</a></button>
         </nav>
 
-        <h1> Pumpuy Skyline </h1>
-
         {% if request.user.is_authenticated %}
             <a href="logout">logout</a>
         {% else %}
             <a href="login">login</a>
         {% endif %}
     </div>
+      
+    <h1> Pumpuy Skyline </h1>
 
     <div class="intersection">
         <nav class="left">
