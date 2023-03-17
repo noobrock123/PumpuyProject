@@ -22,6 +22,9 @@ h1{
 	/* color: #7C69F6;
     font-weight: bold;
 	margin: 20px; */
+	text-align: center;
+	margin-top: 0px;
+	margin-bottom: 40px;
 }
 
 h2 {
@@ -111,12 +114,12 @@ img {
 .intersection .left button {
 	border-radius: 20px;
 	border: 1px solid #e92d2d;
-	background-color: transparent;
+	background-color: #e92d2d;
 	padding: 10px 30px;
 }
 
 .intersection .left button a:link {
-	color: #e92d2d;
+	color: #f6f5f7;
 }
 
 .intersection .right {
