@@ -7,6 +7,9 @@ from BaseApp.models import Intersection
 
 # Create your views here.
 def index(request):
+    return HttpResponseRedirect(reverse('BaseApp:home'))
+
+def home_view(request):
     intersection = Intersection.objects.all().order_by('last_update')
     return render(request, 'main.html', {'intersections': intersection})
 
@@ -39,8 +42,11 @@ def intersection(request, name: str):
     else:
         return render(request, 'login.html')
 
-def edit(request, intersection_id):
+def edit(request, name):
     return render(request, 'edit.html')
 
 def profile_view(request):
     return render(request, 'profile.html')
+
+def insert(request, name):
+    return render(request, 'insert_intersection.html')
