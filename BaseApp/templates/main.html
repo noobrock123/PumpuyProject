@@ -3,16 +3,71 @@
 <html>
 <head>
     <link rel="Stylesheet" href = "{% static 'main_page.css' %}">
+    <script>
+        function sortTable(n) {
+    var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+    table = document.getElementById("table");
+    switching = true;
+    //Set the sorting direction to ascending:
+    dir = "asc"; 
+    /*Make a loop that will continue until
+    no switching has been done:*/
+    while (switching) {
+      //start by saying: no switching is done:
+      switching = false;
+      rows = table.rows;
+      /*Loop through all table rows (except the
+      first, which contains table headers):*/
+      for (i = 1; i < (rows.length - 1); i++) {
+        //start by saying there should be no switching:
+        shouldSwitch = false;
+        /*Get the two elements you want to compare,
+        one from current row and one from the next:*/
+        x = rows[i].getElementsByTagName("TD")[n];
+        y = rows[i + 1].getElementsByTagName("TD")[n];
+        /*check if the two rows should switch place,
+        based on the direction, asc or desc:*/
+        if (dir == "asc") {
+          if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+            //if so, mark as a switch and break the loop:
+            shouldSwitch= true;
+            break;
+          }
+        } else if (dir == "desc") {
+          if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+            //if so, mark as a switch and break the loop:
+            shouldSwitch = true;
+            break;
+          }
+        }
+      }
+      if (shouldSwitch) {
+        /*If a switch has been marked, make the switch
+        and mark that a switch has been done:*/
+        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+        switching = true;
+        //Each time a switch is done, increase this count by 1:
+        switchcount ++;      
+      } else {
+        /*If no switching has been done AND the direction is "asc",
+        set the direction to "desc" and run the while loop again.*/
+        if (switchcount == 0 && dir == "asc") {
+          dir = "desc";
+          switching = true;
+        }
+      }
+    }
+  }
+    </script>
 
     <!-- <div class="topnav">
             <a class="active" href="#home">Home</a>
             </li><a href="#about">About</a>
             <a href="#contact">Contact</a>
     </div> -->
-
 </head>
-
 <body>
+
     <h1> Pumpuy Skyline </h1>
     {% if request.user.is_authenticated %}
         <a href="logout">logout</a>
@@ -26,17 +81,17 @@
 
     <div class = "Intersection_Table">
     
-    <table class="c-table">
+    <table class="c-table" id = "table">
         <tr class="c-table__row">
-            <th class="c-table__head">Name</th>
+            <th class="c-table__head" onclick="sortTable(0)">Name</th>
             <th class="c-table__head">Address</th>
             <th class="c-table__head">Status</th>
-            <th class="c-table__head">Owner</th>
+            <th class="c-table__head" onclick="sortTable(0)">Owner</th>
             <th class="c-table__head">Date Upload</th>
             <th class="c-table__head">Last Modified</th>
         </tr>
 
-        {% for intersec in intersections %}
+        <!-- {% comment %} {% for intersec in intersections %}
         <tr class="c-table__row">
             <td id = "name" class="c-table__data"><a href="intersection/{{intersec.name}}/">{{ intersec.name }}</a></th>
             <td class="c-table__data">{{ intersec.location }}</td>
@@ -44,13 +99,13 @@
             <td class="c-table__data">{{ intersec.owner.name }}</td>
             <td class="c-table__data">{{ intersec.last_update }}</td>
             <td class="c-table__data">F</td>
-        </tr>
+        </tr> 
         {% empty %}
         no
-        {% endfor %}
+        {% endfor %} {% endcomment %} -->
 
         <tr class="c-table__row">
-            <td id = "name" class="c-table__data"><a href="intersection/2/">G</a></th>
+            <td id = "name" class="c-table__data"><a href="intersection/1/">G</a></th>
             <td class="c-table__data">B</td>
             <td class="c-table__data">C</td>
             <td class="c-table__data">D</td>
@@ -58,7 +113,18 @@
             <td class="c-table__data">F</td>
         </tr>
 
+        <tr class="c-table__row">
+            <td id = "name" class="c-table__data"><a href="intersection/2/">A<A></A></a></th>
+            <td class="c-table__data">C</td>
+            <td class="c-table__data">C</td>
+            <td class="c-table__data">Z</td>
+            <td class="c-table__data">E</td>
+            <td class="c-table__data">F</td>
+        </tr>
+
+
         </table>
     </div>
+
 </body>
 </html>
