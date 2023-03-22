@@ -1,8 +1,12 @@
 <!DOCTYPE html>
+{% extends 'layout.html' %}
+
+{% block content %}
+
 {% load static %}
 <html>
 <head>
-    <link rel="Stylesheet" href = "{% static 'main_page.css' %}">
+    <link rel="Stylesheet" href = "{% static 'main_page.css' %}" type = "text/css">
     <script>
         function sortTable(n) {
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
@@ -66,7 +70,7 @@
             <a href="#contact">Contact</a>
     </div> -->
 </head>
-<body>
+
 
     <h1> Pumpuy Skyline </h1>
     {% if request.user.is_authenticated %}
@@ -126,5 +130,5 @@
         </table>
     </div>
 
-</body>
+{% endblock %}
 </html>

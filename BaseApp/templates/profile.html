@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+{% extends 'layout.html' %}
+
+{% block content %}
+
 {% load static %}
 <html>
 <head>
@@ -12,7 +16,6 @@
 
 </head>
 
-<body>
     <div class="student-profile py-4" style="padding-right: 25vh;">
       <div class="container" style="padding-top: 10vh;">
         <div class="row">
@@ -74,5 +77,5 @@
     </div>
 
 
-</body>
+{% endblock %}
 </html>
