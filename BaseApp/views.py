@@ -46,7 +46,7 @@ def intersection(request, name: str):
 def edit(request, name):
     return render(request, 'edit.html')
 
-def profile_view(request):
+def profile_view(request, id):
     return render(request, 'profile.html')
 
 def insert(request, name):
