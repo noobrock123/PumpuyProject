@@ -95,18 +95,18 @@
             <th class="c-table__head">Last Modified</th>
         </tr>
 
-        <!-- {% comment %} {% for intersec in intersections %}
+        {% for intersec in intersections %}
         <tr class="c-table__row">
             <td id = "name" class="c-table__data"><a href="intersection/{{intersec.name}}/">{{ intersec.name }}</a></th>
             <td class="c-table__data">{{ intersec.location }}</td>
             <td class="c-table__data">{{ intersec.status }}</td>
-            <td class="c-table__data">{{ intersec.owner.name }}</td>
+            <td class="c-table__data"><a href="profile/{{ intersec.owner.name }}">{{intersec.owner.name}}</a></td>
             <td class="c-table__data">{{ intersec.last_update }}</td>
             <td class="c-table__data">F</td>
         </tr> 
         {% empty %}
         no
-        {% endfor %} {% endcomment %} -->
+        {% endfor %}
 
         <tr class="c-table__row">
             <td id = "name" class="c-table__data"><a href="intersection/1/">G</a></th>
