@@ -23,7 +23,8 @@ class video_manager:
         return
     
     def download(request):
-
+        if request.method != 'POST':
+            raise PermissionDenied
         return
     
     def check_status():
