@@ -27,7 +27,7 @@ class Organization(models.Model):
 
 class Video(models.Model):
     video_name = models.CharField(max_length=150, default='video')
-    video_file = models.FileField(storage=fs)
+    video_file = models.FileField(storage=fs, blank=True)
     length = models.IntegerField() #Seconds
     uploader = models.OneToOneField(User, on_delete=models.SET_NULL, null=True)
     date_record = models.DateTimeField()
@@ -36,6 +36,7 @@ class Video(models.Model):
     def __str__(self) -> str:
         return self.video_name
 
+fsIntersecPic = FileSystemStorage(location="BaseApp/intersecPic")
 class Intersection(models.Model):
     name = models.CharField(max_length=100, primary_key=True)
     location = models.CharField(max_length=512)
@@ -46,6 +47,7 @@ class Intersection(models.Model):
     owner = models.OneToOneField(Organization, on_delete=models.CASCADE, null=True)
     last_update = models.DateTimeField()
     drone_priority = models.IntegerField()
+    picture = models.FileField(storage=fs, blank=True)
     videos = models.ManyToManyField(Video, null=True)
     #roads
 
