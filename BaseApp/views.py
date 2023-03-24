@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse, HttpResponseRedirect
 from BaseApp.models import Intersection
+from .modules import video_manager
 
 # Create your views here.
 def index(request):
@@ -49,4 +50,11 @@ def profile_view(request):
     return render(request, 'profile.html')
 
 def insert(request, name):
+    if request.method == 'POST':
+        data = request.POST
+        #Intersection.objects.create()
+        pass
     return render(request, 'insert_intersection.html')
+
+def upload_video(request):
+    pass
