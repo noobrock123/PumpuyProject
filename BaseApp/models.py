@@ -29,7 +29,7 @@ class Video(models.Model):
     video_name = models.CharField(max_length=150, default='video')
     video_file = models.FileField(storage=fs, blank=True)
     length = models.IntegerField() #Seconds
-    uploader = models.OneToOneField(User, on_delete=models.SET_NULL, null=True)
+    uploader = models.OneToOneField(User, on_delete=models.SET_NULL, null=True) # Why is it one to one isn't its suppose to be one uploader can upload multiple video?
     date_record = models.DateTimeField()
     auth_level = models.IntegerField()
 
@@ -48,7 +48,7 @@ class Intersection(models.Model):
     last_update = models.DateTimeField()
     drone_priority = models.IntegerField()
     picture = models.FileField(storage=fs, blank=True)
-    videos = models.ManyToManyField(Video, null=True)
+    videos = models.ManyToManyField(Video)
     #roads
 
     def get_video(file_name):
@@ -61,7 +61,7 @@ class Intersection(models.Model):
         return self.name
 
 class Road(models.Model):
-    intersection = models.ForeignKey(Intersection, on_delete=models.CASCADE)
+    intersection = models.ForeignKey(Intersection, on_delete=models.CASCADE, null=True)
     road_id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=100)
     go_to_most = models.IntegerField()
@@ -75,7 +75,7 @@ class Hitbox(models.Model):
     x = models.IntegerField()
     y = models.IntegerField()
     #size (list)
-    road = models.ForeignKey(Road, on_delete=models.CASCADE)
+    road = models.ForeignKey(Road, on_delete=models.CASCADE, null=True)
     def __str__(self) -> str:
         return self.hitbox_id + ": " + self.road.road_id
 
@@ -94,4 +94,3 @@ class Summmary(models.Model):
 
     def get_video_result():
         return
-

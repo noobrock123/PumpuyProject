@@ -25,8 +25,17 @@
         <a href="login">login</a>
     {% endif %}
 
-    <div class = "searchbar">
-        <input type="text" placeholder="Search Bar right here">
+    <div class = "searchbar">        
+        <form action="{% url 'BaseApp:searchIntersection' %}" method="post">    
+            {% csrf_token %}        
+            <select name="options" id="options">
+                <option value="name">Name</option>
+                <option value="address">Address</option>
+                <option value="status">Status</option>
+                <option value="owner">Owner</option>
+            </select>
+            <input name="query" type="text" placeholder="Search Bar right here">
+        </form>
     </div>
 
     <div class = "Intersection_Table">
@@ -35,15 +44,15 @@
         <tr class="c-table__row">
             <th class="c-table__head" onclick="sortTable(0)">Name</th>
             <th class="c-table__head">Address</th>
-            <th class="c-table__head">Status</th>
-            <th class="c-table__head" onclick="sortTable(0)">Owner</th>
+            <th class="c-table__head">Status</th>            
+            <th class="c-table__head" onclick="sortTable(0)">Owner</th> <!-- when click multiple time its make you highlight the text if you can fix that its will be great //Allumilie -->
             <th class="c-table__head">Date Upload</th>
             <th class="c-table__head">Last Modified</th>
         </tr>
 
         {% for intersec in intersections %}
         <tr class="c-table__row">
-            <td id = "name" class="c-table__data"><a href="intersection/{{intersec.name}}/">{{ intersec.name }}</a></th>
+            <td id = "name" class="c-table__data"><a href="intersection/{{intersec.name}}">{{ intersec.name }}</a></th>
             <td class="c-table__data">{{ intersec.location }}</td>
             <td class="c-table__data">{{ intersec.status }}</td>
             <td class="c-table__data"><a href="profile/{{ intersec.owner.name }}">{{intersec.owner.name}}</a></td>
@@ -51,11 +60,12 @@
             <td class="c-table__data">F</td>
         </tr> 
         {% empty %}
-        no
+        <!-- Next time pls comment stuff like these so i can understand just "no" is confuse the fuck out of me //Allumilie -->
+        <center>No item in intersections</center> 
         {% endfor %}
 
-        <tr class="c-table__row">
-            <td id = "name" class="c-table__data"><a href="intersection/1/">G</a></th>
+        <!-- <tr class="c-table__row">
+            <td id = "name" class="c-table__data"><a href="intersection/1">G</a></th>
             <td class="c-table__data">B</td>
             <td class="c-table__data">C</td>
             <td class="c-table__data">D</td>
@@ -64,14 +74,13 @@
         </tr>
 
         <tr class="c-table__row">
-            <td id = "name" class="c-table__data"><a href="intersection/2/">A<A></A></a></th>
+            <td id = "name" class="c-table__data"><a href="intersection/2">A<A></A></a></th>
             <td class="c-table__data">C</td>
             <td class="c-table__data">C</td>
             <td class="c-table__data">Z</td>
             <td class="c-table__data">E</td>
             <td class="c-table__data">F</td>
-        </tr>
-
+        </tr> -->
 
         </table>
     </div>

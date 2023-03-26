@@ -9,11 +9,11 @@
 <body>
     <div class="header">
         <nav>
-            <button><a href="..">< กลับ</a></button>
+            <button><a href="../..">< กลับ</a></button>
         </nav>
 
         {% if request.user.is_authenticated %}
-            <a href="logout">logout</a>
+            <a href="/logout">logout</a>
         {% else %}
             <a href="login">login</a>
         {% endif %}
@@ -24,14 +24,18 @@
     <div class="intersection">
         <nav class="left">
             <h2>{{ intersection.name }}</h2>
-            <button><a href="follow">ติดตาม</a></button>
+            <!-- 
+                need to click on botton to work so i change a bit but its make css doesn't work so pls fix
+                also why is follow here but there's no follow in user models pls add //Allumilie
+            -->
+            <a href="{{intersection.name}}/follow"><button>ติดตาม</button></a> 
         </nav>
         <nav class="right">
-            <button><a href="edit">แก้ไข</a></button>
+            <a href="{{intersection.name}}/edit"><button>แก้ไข</button></a>
         </nav>
     </div>
     
-    <img width="60%"  src="..\Css_Stylesheet\let-me.jpg">
+    <img width="60%"  src="../Css_Stylesheet/let-me.jpg">
     <!-- <img src="https://i.ytimg.com/vi/5yCf_S737f8/maxres2.jpg?sqp=-oaymwEoCIAKENAF8quKqQMcGADwAQH4AbYIgAKAD4oCDAgAEAEYPiBlKDcwDw==&rs=AOn4CLCZIy-q0dNRJhPse1JdWysg--4Sug"> -->
     
     <h2>Description</h2>
@@ -41,8 +45,17 @@
     </div>
 
     <div class = "searchbar">
-        <input type="text" placeholder="Search Bar right here">
-        <nav class="button"><button><a href="upload">ลงคลิป</a></button></nav>
+        <form action="{% url 'BaseApp:searchVideo' intersection.name %}" method="post">    
+            {% csrf_token %}        
+            <select name="options" id="options">
+                <option value="video_name">Video</option>
+                <!-- There is no status in models.Video //Allumilie-->
+                <!-- <option value="status">Status</option> -->
+                <option value="uploader">Uploader</option>
+            </select>
+            <input name="query" type="text" placeholder="Search Bar right here">
+        </form>
+        <nav class="button"><a href="{{intersection.name}}/upload"><button>ลงคลิป</button></a></nav>
     </div>
     
     <div class = "Intersection_Table">
@@ -55,19 +68,22 @@
                 <th class="c-table__head">Date</th>
             </tr>
     
-            {% for video in intersections %}
+            {% for video in videos %}
                 <tr class="c-table__row">
                     <td id = "name" class="c-table__data">
-                        <a href="">{{ video.video }}</a>
+                        <a href="">{{ video.video_name }}</a>
                     </td>
+                    <!-- There's no status in models.Video //Allumilie-->
                     <td class="c-table__data">{{ video.status }}</td>
                     <td class="c-table__data">{{ video.uploader }}</td>
-                    <td class="c-table__data">{{ video.date }}</td>
+                    <td class="c-table__data">{{ video.date_record }}</td>
                     <td id="delete"><a href="delete">ลบ</a></td>
                 </tr>
+            {% empty %}
+                <center>No video</center>
             {% endfor %}
     
-            <tr class="c-table__row">
+            <!-- <tr class="c-table__row">
                 <td id = "name" class="c-table__data"><a href="">G</a></td>
                 <td class="c-table__data">B</td>
                 <td class="c-table__data">C</td>
@@ -80,7 +96,7 @@
                 <td class="c-table__data">C</td>
                 <td class="c-table__data">D</td>
                 <td id="delete"><a href="delete">ลบ</a></td>
-            </tr>
+            </tr> -->
             
             </table>
     </div>

@@ -22,7 +22,9 @@
             </div>
             <ul class="menu-items">
                 <li><a href="/home">Home</a></li>
-                <li><a href="/profile">Profile</a></li>
+                {% if request.user.is_authenticated %}
+                    <li><a href="/profile/{{username}}">Profile</a></li>                
+                {% endif %}                
             </ul>
             <h1 class="logo">Pumpuy Project</h1>
         </div>

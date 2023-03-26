@@ -48,7 +48,7 @@
                 
                         {% for intersec in intersections %}
                         <tr class="c-table__row">
-                            <td id = "name" class="c-table__data"><a href="intersection/{{intersec.name}}/">{{ intersec.name }}</a></th>
+                            <td id = "name" class="c-table__data"><a href="/intersection/{{intersec.name}}">{{ intersec.name }}</a></th>
                             <td class="c-table__data">{{ intersec.location }}</td>
                             <td class="c-table__data">{{ intersec.status }}</td>
                             <td class="c-table__data">{{ intersec.owner.name }}</td>
@@ -56,17 +56,18 @@
                             <td class="c-table__data">F</td>
                         </tr>
                         {% empty %}
-                        no
+                        <!-- Next time pls comment stuff like these so i can understand just "no" is confuse the fuck out of me //Allumilie -->
+                        <center>No item in intersections</center>
                         {% endfor %}
                 
-                        <tr class="c-table__row">
+                        <!-- <tr class="c-table__row">
                             <td id = "name" class="c-table__data"><a href="intersection/2/">G</a></th>
                             <td class="c-table__data">B</td>
                             <td class="c-table__data">C</td>
                             <td class="c-table__data">D</td>
                             <td class="c-table__data">E</td>
                             <td class="c-table__data">F</td>
-                        </tr>
+                        </tr> -->
                 
                         </table>
                     </div>

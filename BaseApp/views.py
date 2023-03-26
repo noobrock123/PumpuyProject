@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse, HttpResponseRedirect
-from BaseApp.models import Intersection
+from BaseApp.models import Intersection, Organization, Video
 from .modules import video_manager
 
 # Create your views here.
@@ -12,7 +12,11 @@ def index(request):
 
 def home_view(request):
     intersection = Intersection.objects.all().order_by('last_update')
-    return render(request, 'main.html', {'intersections': intersection})
+    return render(request, 'main.html', 
+        {
+        'intersections': intersection,
+        'username': request.user.username,
+        })
 
 def login_view(request):
     if request.user.is_authenticated:
@@ -36,9 +40,14 @@ def logout_view(request):
 
 def intersection(request, name: str):
     if request.user.is_authenticated:
+        # try:
         intersection = Intersection.objects.get(name=name)
+        videos = intersection.videos.all()  # get all video in this intersection //Allumilie
+        # except Intersection.DoesNotExist:
+        #     return HttpResponseRedirect(reverse('BaseApp:home'))
         return render(request, 'intersection.html', {
             'intersection' : intersection,
+            'videos': videos,
         })
     else:
         return render(request, 'login.html')
@@ -47,8 +56,15 @@ def edit(request, name):
     return render(request, 'edit.html')
 
 def profile_view(request, id):
-    return render(request, 'profile.html')
-
+    if request.user.is_authenticated:
+        organization = Organization.objects.get(personal=request.user.id)   # get organization //Allumilie
+        intersection = Intersection.objects.filter(owner=organization.id).order_by('last_update')   # filter only intersections that in this organization //Allumilie
+        return render(request, 'profile.html', {
+            'intersections' : intersection,
+        })
+    else:
+        return render(request, 'login.html')
+    
 def insert(request, name):
     if request.method == 'POST':
         data = request.POST
@@ -56,5 +72,50 @@ def insert(request, name):
         pass
     return render(request, 'insert_intersection.html')
 
-def upload_video(request):
-    pass
+def upload_video(request, name):
+    if request.user.is_authenticated:
+        return HttpResponse('This page is work in progess') # just a placeholder for frontend to make page for it and if you make the page just change HttpResonse to render //Allumlie
+    else:
+        return render(request, 'login.html')
+    
+def search_intersection(request):
+    query = request.POST.get("query")    
+    option = request.POST.get("options")
+    try:
+        if option == 'owner':
+            filter = option + '__name' + '__icontains'  # owner is forienge key so its need to do special filter
+        else:
+            filter = option + '__icontains'
+    except (TypeError):     # catch error when user search directly in url //Allumilie
+        filter = 'name__icontains'
+
+    try:
+        intersection = Intersection.objects.filter(**{filter : query})
+    except (ValueError):    # catch error when user search directly in url // Allumilie
+        intersection = Intersection.objects.filter(**{filter : ''})
+    return render(request, 'main.html',{
+        'intersections': intersection,
+        'username': request.user.username,
+    })
+
+def search_video(request, name):
+    if request.user.is_authenticated:
+        query = request.POST.get("query")
+        option = request.POST.get("options")
+        try:
+            filter = option + '__icontains'
+        except (TypeError): # catch error when user search directly in url // Allumilie
+            filter = 'video_name__icontains'
+        
+        intersection = Intersection.objects.get(name=name)  # Get video in that intersection //Allumilie
+        try:
+            videos = intersection.videos.filter(**{filter : query})
+        except (ValueError):    # catch error when user search directly in url //Allumilie
+            videos = intersection.videos.filter(**{filter : ''})
+        print(intersection.videos)
+        return render(request, 'intersection.html',{
+            'videos': videos,
+            'intersection': intersection,
+        })
+    else:
+        return render(request, 'login.html')
