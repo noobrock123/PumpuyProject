@@ -38,7 +38,7 @@ class Video(models.Model):
     def __str__(self) -> str:
         return self.video_name
 
-fsIntersecPic = FileSystemStorage(location="BaseApp/intersecPic")
+fsIntersecPic = FileSystemStorage(location="BaseApp/static/images")
 class Intersection(models.Model):
     name = models.CharField(max_length=100, primary_key=True)
     location = models.CharField(max_length=512)
