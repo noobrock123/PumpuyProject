@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.models import User
+import datetime
 
 fs = FileSystemStorage(location='BaseApp/videos')
 
@@ -30,7 +31,7 @@ class Video(models.Model):
     video_file = models.FileField(storage=fs, blank=True)
     length = models.IntegerField() #Seconds
     uploader = models.ForeignKey(to=User,null=True, blank=True, default=None, on_delete=models.CASCADE)
-    date_record = models.DateTimeField()
+    date_record = models.DateTimeField(default=datetime.datetime.now())
     auth_level = models.IntegerField()
 
     def __str__(self) -> str:
@@ -45,9 +46,9 @@ class Intersection(models.Model):
     intersec_type = models.IntegerField()
     status = models.IntegerField()
     owner = models.ForeignKey(Organization, on_delete=models.CASCADE, null=True, blank=True)
-    last_update = models.DateTimeField()
-    drone_priority = models.IntegerField()
-    picture = models.FileField(storage=fs, blank=True)
+    last_update = models.DateTimeField(default=datetime.datetime.now())
+    drone_priority = models.IntegerField(default=4)
+    picture = models.FileField(storage=fsIntersecPic, blank=True)
     videos = models.ManyToManyField(Video)
     #roads
 
