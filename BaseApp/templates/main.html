@@ -25,6 +25,7 @@
         <a href="login">login</a>
     {% endif %}
 
+
     <div class = "searchbar">        
         <form action="{% url 'BaseApp:searchIntersection' %}" method="post">    
             {% csrf_token %}        
@@ -38,6 +39,9 @@
         </form>
     </div>
 
+    {% if auth_level < 3 %}
+        <a href="insert_intersection" style="text-align:center;">เพิ่มเเยก</a>
+    {% endif %}
     <div class = "Intersection_Table">
     
     <table class="c-table" id = "table">
