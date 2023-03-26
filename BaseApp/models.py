@@ -44,7 +44,7 @@ class Intersection(models.Model):
     longtitude = models.FloatField()
     intersec_type = models.IntegerField()
     status = models.IntegerField()
-    owner = models.OneToOneField(Organization, on_delete=models.CASCADE, null=True)
+    owner = models.ForeignKey(Organization, on_delete=models.CASCADE, null=True, blank=True)
     last_update = models.DateTimeField()
     drone_priority = models.IntegerField()
     picture = models.FileField(storage=fs, blank=True)
