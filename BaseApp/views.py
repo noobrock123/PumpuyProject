@@ -47,6 +47,7 @@ def intersection(request, name: str):
         videos = intersection.videos.all()  # get all video in this intersection //Allumilie
         # except Intersection.DoesNotExist:
         #     return HttpResponseRedirect(reverse('BaseApp:home'))
+        print(intersection.picture)
         return render(request, 'intersection.html', {
             'auth_level': get_auth_level(request.user),
             'intersection' : intersection,
@@ -68,7 +69,7 @@ def profile_view(request, id):
     else:
         return render(request, 'login.html')
     
-def insert_intersection(request):
+def add_intersection(request):
     if request.method == 'POST':
         data = request.POST
         try:
@@ -83,7 +84,7 @@ def insert_intersection(request):
             intersec_type=4,
             status=0,
             owner=organization,
-            picture=data['picture'],
+            picture=request.FILES.get('picture'),
         )
     return render(request, 'insert_intersection.html')
 

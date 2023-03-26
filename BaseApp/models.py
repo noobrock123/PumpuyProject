@@ -49,7 +49,7 @@ class Intersection(models.Model):
     owner = models.ForeignKey(Organization, on_delete=models.CASCADE, null=True, blank=True)
     last_update = models.DateTimeField(default=datetime.datetime.now())
     drone_priority = models.IntegerField(default=4)
-    picture = models.FileField(storage=fsIntersecPic, blank=True)
+    picture = models.ImageField(storage=fsIntersecPic, blank=True)
     videos = models.ManyToManyField(Video)
     #roads
 

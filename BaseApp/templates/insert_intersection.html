@@ -21,38 +21,30 @@
         <h1>Pumpuy Skyline</h1>
     </div>
 
+    <form action="add_intersection" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
     <div class="name">
-        <form action="insert_intersection.html" method="post">
             <p>ชื่อเเยก (required): </p>
             <input type="text" name="name" placeholder="ชื่อเเยก" required />
-    </form>
     </div>
 
     <div class="live">
-        <form action="insert_intersection.html" method="post">
             <p>ที่อยู่ (required): </p>
             <textarea class="bigbox" name="address" rows="5" cols="20" placeholder="required" required ></textarea>
-        </form>
     </div>
 
     <div class="latitute">
-        <form action="insert_intersection.html" method="post">
             <p>Latitute (required): 
             <input type="text" name="latitude" placeholder="Latitute" required />
-        </form>
     </div>
 
     <div class="longtitute">
-        <form action="insert_intersection.html" method="post">
             <p>Longtitute (required): </p> 
             <input type="text" name="longtitude" placeholder="Longtitute" required />
-        </form>
     </div>
 
     <div class="insertimg">
-        <form action="insert_intersection.html" method="post">
-            <button><a href="image">ลงรูป</a></button>
-        </form>
+            <input type="file" name="picture"/>
     </div>
 
     <div class="letter">
@@ -62,11 +54,12 @@
 
     <div class="button">
         <nav class="left">
-            <button><a href="/add_intersection">เพิ่มเเยก</a></button>
+            <button type="submit">พิ่มเเยก</button>
         </nav>
         <nav class="right">
             <button><a href="..">ยกเลิก</a></button>
         </nav>
     </div>
+    </form>
 </body>
 </html>
