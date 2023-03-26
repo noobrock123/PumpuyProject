@@ -29,7 +29,7 @@ class Video(models.Model):
     video_name = models.CharField(max_length=150, default='video')
     video_file = models.FileField(storage=fs, blank=True)
     length = models.IntegerField() #Seconds
-    uploader = models.OneToOneField(User, on_delete=models.SET_NULL, null=True) # Why is it one to one isn't its suppose to be one uploader can upload multiple video?
+    uploader = models.ForeignKey(to=User,null=True, blank=True, default=None, on_delete=models.CASCADE)
     date_record = models.DateTimeField()
     auth_level = models.IntegerField()
 
