@@ -30,9 +30,11 @@
             -->
             <a href="{{intersection.name}}/follow"><button>ติดตาม</button></a> 
         </nav>
-        <nav class="right">
-            <a href="{{intersection.name}}/edit"><button>แก้ไข</button></a>
-        </nav>
+        {% if auth_level < 3%}
+            <nav class="right">
+                <a href="{{intersection.name}}/edit"><button>แก้ไข</button></a>
+            </nav>
+        {% endif %}
     </div>
     
     <img width="60%"  src="../Css_Stylesheet/let-me.jpg">
@@ -55,7 +57,9 @@
             </select>
             <input name="query" type="text" placeholder="Search Bar right here">
         </form>
-        <nav class="button"><a href="{{intersection.name}}/upload"><button>ลงคลิป</button></a></nav>
+        {% if auth_level < 4 %}
+            <nav class="button"><a href="{{intersection.name}}/upload"><button>ลงคลิป</button></a></nav>
+        {% endif %}
     </div>
     
     <div class = "Intersection_Table">
@@ -77,7 +81,9 @@
                     <td class="c-table__data">{{ video.status }}</td>
                     <td class="c-table__data">{{ video.uploader }}</td>
                     <td class="c-table__data">{{ video.date_record }}</td>
-                    <td id="delete"><a href="delete">ลบ</a></td>
+                    {% if auth_level < 4%}
+                        <td id="delete"><a href="delete">ลบ</a></td>
+                    {% endif %}
                 </tr>
             {% empty %}
                 <center>No video</center>

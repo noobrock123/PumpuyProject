@@ -3,7 +3,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse, HttpResponseRedirect
-from BaseApp.models import Intersection, Organization, Video
+from django.utils.functional import SimpleLazyObject
+from BaseApp.models import Intersection, Organization, Video, Authority
 from .modules import video_manager
 
 # Create your views here.
@@ -16,6 +17,7 @@ def home_view(request):
         {
         'intersections': intersection,
         'username': request.user.username,
+        'auth_level': get_auth_level(request.user),
         })
 
 def login_view(request):
@@ -46,6 +48,7 @@ def intersection(request, name: str):
         # except Intersection.DoesNotExist:
         #     return HttpResponseRedirect(reverse('BaseApp:home'))
         return render(request, 'intersection.html', {
+            'auth_level': get_auth_level(request.user),
             'intersection' : intersection,
             'videos': videos,
         })
@@ -65,11 +68,23 @@ def profile_view(request, id):
     else:
         return render(request, 'login.html')
     
-def insert(request, name):
+def insert_intersection(request):
     if request.method == 'POST':
         data = request.POST
-        #Intersection.objects.create()
-        pass
+        try:
+            organization = Organization.objects.get(personal=request.user)
+        except:
+            raise ValueError
+        Intersection.objects.create(
+            name=data['name'],
+            location=data['address'],
+            latitude=data['latitude'],
+            longtitude=data['longtitude'],
+            intersec_type=4,
+            status=0,
+            owner=organization,
+            picture=data['picture'],
+        )
     return render(request, 'insert_intersection.html')
 
 def upload_video(request, name):
@@ -119,3 +134,13 @@ def search_video(request, name):
         })
     else:
         return render(request, 'login.html')
+
+
+#Below this line, the code MUST not be used in urls.py
+def get_auth_level(user: SimpleLazyObject) -> int: 
+    try:
+        auth_level: int = Authority.objects.get(user=user).auth_level
+    except:
+        auth_level = 7
+    finally:
+        return auth_level
