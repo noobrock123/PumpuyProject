@@ -11,19 +11,19 @@ auth_select = (
     (3, 'ผู้ดูแลการอัพโหลด')
 )
 # Create your models here.
-class Authority(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    auth_level = models.IntegerField(choices=auth_select, default=3)
-
-    def __str__(self) -> str:
-        return self.user.username
-
 class Organization(models.Model):
     name = models.CharField(max_length=128, null=False)
-    personal = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
         return self.name
+
+class Authority(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    auth_level = models.IntegerField(choices=auth_select, default=3)
+    organization = models.ForeignKey(Organization, on_delete=models.SET_NULL, null=True)
+
+    def __str__(self) -> str:
+        return self.user.username
 
 
 class Video(models.Model):

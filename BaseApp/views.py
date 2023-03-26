@@ -72,10 +72,6 @@ def profile_view(request, id):
 def add_intersection(request):
     if request.method == 'POST':
         data = request.POST
-        try:
-            organization = Organization.objects.get(personal=request.user)
-        except:
-            raise ValueError
         Intersection.objects.create(
             name=data['name'],
             location=data['address'],
@@ -83,9 +79,10 @@ def add_intersection(request):
             longtitude=data['longtitude'],
             intersec_type=4,
             status=0,
-            owner=organization,
+            owner=Authority.objects.get(user=request.user).organization,
             picture=request.FILES.get('picture'),
         )
+        return redirect('/home')
     return render(request, 'insert_intersection.html')
 
 def upload_video(request, name):
