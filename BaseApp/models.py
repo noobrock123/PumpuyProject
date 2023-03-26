@@ -31,6 +31,7 @@ class Video(models.Model):
     video_file = models.FileField(storage=fs, blank=True)
     length = models.IntegerField() #Seconds
     uploader = models.ForeignKey(to=User,null=True, blank=True, default=None, on_delete=models.CASCADE)
+    status = models.IntegerField(max_length=3, default=2)
     date_record = models.DateTimeField(default=datetime.datetime.now())
     auth_level = models.IntegerField()
 
@@ -95,3 +96,8 @@ class Summmary(models.Model):
 
     def get_video_result():
         return
+    
+class Follow(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    intersection = models.ForeignKey(Intersection, on_delete=models.CASCADE)
+    has_updated = models.BooleanField(default=False)
