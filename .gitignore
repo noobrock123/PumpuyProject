@@ -1,6 +1,6 @@
 **/__pycache__/**
 **/**/__pycache__/**
-BaseApp/**
+BaseApp/intersecPic
 .coverage
 db.sqlite3
 
