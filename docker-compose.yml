@@ -1,0 +1,28 @@
+version: "3.8"
+services:
+
+  redis:
+    image: redis:alpine
+    container_name: redis
+
+  app:
+    build: .
+    volumes:
+      - .:/PumpuySkyline
+    ports:
+      - 8000:8000
+    image: pumpuy_skyline:django
+    container_name: PumpuySkyline
+    command: python manage.py runserver 0.0.0.0:8000
+
+  celery:
+    restart: always
+    build:
+      context: .
+    command: celery -A PumpuyProject worker -l INFO
+    volumes:
+      - .:/PumpuySkyline
+    container_name: celery
+    depends_on:
+      - redis
+      - app
