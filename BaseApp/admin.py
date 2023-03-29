@@ -11,14 +11,12 @@ class OrganizationAdminConfig(admin.ModelAdmin):
 class IntersectionAdminConfig(admin.ModelAdmin):
     model = models.Intersection
 
-class RoadAdminConfig(admin.ModelAdmin):
-    model = models.Road
-
 class VideoAdminConfig(admin.ModelAdmin):
     model = models.Video
 
 admin.site.register(models.Organization)
 admin.site.register(models.Authority)
 admin.site.register(models.Intersection)
-admin.site.register(models.Road)
 admin.site.register(models.Video)
+admin.site.register(models.Hitbox)
+admin.site.register(models.Summmary)
