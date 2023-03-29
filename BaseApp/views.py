@@ -44,7 +44,7 @@ def intersection(request, name: str):
     if request.user.is_authenticated:
         # try:
         intersection = Intersection.objects.get(name=name)
-        videos = intersection.videos.all()  # get all video in this intersection //Allumilie
+        videos = Video.objects.filter(intersection=intersection)
         # except Intersection.DoesNotExist:
         #     return HttpResponseRedirect(reverse('BaseApp:home'))
         print(intersection.picture)
@@ -87,7 +87,8 @@ def add_intersection(request):
 
 def upload_video(request, name):
     if request.user.is_authenticated:
-        return HttpResponse('This page is work in progess') # just a placeholder for frontend to make page for it and if you make the page just change HttpResonse to render //Allumlie
+        return render(request, 'edit.html')
+        #return HttpResponse('This page is work in progess') # just a placeholder for frontend to make page for it and if you make the page just change HttpResonse to render //Allumlie
     else:
         return render(request, 'login.html')
     

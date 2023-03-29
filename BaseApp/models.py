@@ -59,7 +59,7 @@ class Video(models.Model):
     status = models.IntegerField(max_length=3, default=2)
     date_record = models.DateTimeField(default=datetime.datetime.now())
     auth_level = models.IntegerField()
-    videos = models.ForeignKey(Intersection, on_delete=models.CASCADE, null=True,blank=True)
+    intersection = models.ForeignKey(Intersection, on_delete=models.CASCADE, null=True,blank=True)
 
     def __str__(self) -> str:
         return self.video_name
