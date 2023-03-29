@@ -61,8 +61,8 @@ def edit(request, name):
 
 def profile_view(request, id):
     if request.user.is_authenticated:
-        organization = Organization.objects.get(personal=request.user.id)   # get organization //Allumilie
-        intersection = Intersection.objects.filter(owner=organization.id).order_by('last_update')   # filter only intersections that in this organization //Allumilie
+        organization = Authority.objects.get(user=request.user).organization   # get organization //Allumilie & noobrock123 (Mar 30. 2023)
+        intersection = Intersection.objects.filter(owner=organization).order_by('last_update')   # filter only intersections that in this organization //Allumilie & noobrock123 (Mar 30, 2023)
         return render(request, 'profile.html', {
             'intersections' : intersection,
         })
