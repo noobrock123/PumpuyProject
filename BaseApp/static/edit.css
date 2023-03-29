@@ -85,6 +85,8 @@ button:focus {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    margin-bottom: 10px;
+    top: -30px;
 }
 
 /* Hide the browser's default radio button */
@@ -155,3 +157,7 @@ display: block;
     font-size: 30px;
   }
 
+  input[type='radio']{
+    width: 25px;
+    height: 25px;
+}
