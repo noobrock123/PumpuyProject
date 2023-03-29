@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 {% load static %}
 <html lang="en" >
 <head>
@@ -9,7 +10,7 @@
 <body>
     <div class="header">
         <nav>
-            <button><a href="../..">< กลับ</a></button>
+            <button type="submit" value="Previous Page" onClick="javascript:history.go(-1);"> < Back</button>
         </nav>
 
         {% if request.user.is_authenticated %}
@@ -108,4 +109,4 @@
             </table>
     </div>
 </body>
-</html>
+</html> 

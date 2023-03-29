@@ -1,7 +1,9 @@
 .c-table {
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 90%;
     border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
   }
   
 .c-table__head {
@@ -67,6 +69,30 @@ body {
   margin-left: 25%;
 }
 
+.arrow {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  margin-left: 10px;
+}
+
+
+.up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+th{
+  -webkit-user-select: none;
+  -ms-user-select: none; 
+  user-select: none; 
+}
 /* 
 Navigation Bar for later 
  @media screen and (max-width: 600px) {

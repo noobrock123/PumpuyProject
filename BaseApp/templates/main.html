@@ -18,19 +18,14 @@
 </head>
 
 
-    <h1> Pumpuy Skyline </h1>
-    {% if request.user.is_authenticated %}
-        <a href="logout">logout</a>
-    {% else %}
-        <a href="login">login</a>
-    {% endif %}
-
+    <h1> DASHBOARD </h1>
 
     <div class = "searchbar">        
         <form action="{% url 'BaseApp:searchIntersection' %}" method="post">    
             {% csrf_token %}        
             <select name="options" id="options">
-                <option value="name">Name</option>
+                <option value="name">Name
+                </option>
                 <option value="address">Address</option>
                 <option value="status">Status</option>
                 <option value="owner">Owner</option>
@@ -46,10 +41,11 @@
     
     <table class="c-table" id = "table">
         <tr class="c-table__row">
-            <th class="c-table__head" onclick="sortTable(0)">Name</th>
+            <th class="c-table__head" onclick="sortTable(0)">Name<i onclick="myFunction(this)" class="arrow up"></i></th>
             <th class="c-table__head">Address</th>
             <th class="c-table__head">Status</th>            
-            <th class="c-table__head" onclick="sortTable(0)">Owner</th> <!-- when click multiple time its make you highlight the text if you can fix that its will be great //Allumilie -->
+            <th class="c-table__head" onclick="sortTable(0)">Owner<i onclick="myFunction(this)" class="arrow up"></i></th> 
+            <!-- when click multiple time its make you highlight the text if you can fix that its will be great //Allumilie ++++ I already fix it na @KayKon-->
             <th class="c-table__head">Date Upload</th>
             <th class="c-table__head">Last Modified</th>
         </tr>
@@ -65,7 +61,7 @@
         </tr> 
         {% empty %}
         <!-- Next time pls comment stuff like these so i can understand just "no" is confuse the fuck out of me //Allumilie -->
-        <center>No item in intersections</center> 
+        <!-- <center>No item in intersections</center>  -->
         {% endfor %}
 
         <!-- <tr class="c-table__row">

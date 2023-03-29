@@ -52,3 +52,7 @@ function sortTable(n) {
       }
     }
   }
+
+  function myFunction(x) {
+    x.classList.toggle("arrow down");
+  }

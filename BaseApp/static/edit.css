@@ -136,12 +136,14 @@ display: block;
     height: 8px;
     border-radius: 50%;
     background: white;
+    
 }
 
 .flex-container {
     display: flex;
     flex-wrap: nowrap;
-    background-color: DodgerBlue;
+    background-color:#7C69F6;
+    border-width: 1px;
   }
   
   .flex-container .box {
@@ -152,3 +154,4 @@ display: block;
     line-height: 75px;
     font-size: 30px;
   }
+
