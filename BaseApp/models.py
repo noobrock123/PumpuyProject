@@ -25,9 +25,10 @@ class Authority(models.Model):
     def __str__(self) -> str:
         return self.user.username
 
-##def get_video_path(instance, file):
-    #return f"videos/{instance.}"
-
+def get_video_path(instance, file):
+    return f"videos/{instance.intersection.name}/{file}"
+def get_intersection_picture_path(instance, file):
+    return f"BaseApp/intersectionData/{instance.name}/{file}"
 
 class Intersection(models.Model):
     name = models.CharField(max_length=100, primary_key=True)
@@ -40,8 +41,11 @@ class Intersection(models.Model):
     personel = models.ManyToManyField(to=User)
     last_update = models.DateTimeField(default=datetime.datetime.now())
     drone_priority = models.IntegerField(default=4)
-    picture = models.ImageField(upload_to='BaseApp/intersecPic', blank=True)
+    def get_name(self):
+        return self.name
+    picture = models.ImageField(upload_to=get_intersection_picture_path, blank=True)
     #roads
+
 
     def get_video(file_name):
         return
@@ -53,26 +57,28 @@ class Intersection(models.Model):
         return self.name
 
 class Video(models.Model):
+    id = models.AutoField(primary_key=True, default=0)
     video_name = models.CharField(max_length=150, default='video')
-    #video_file = models.FileField(upload_to=, blank=True)
     length = models.IntegerField() #Seconds
     uploader = models.ForeignKey(to=User,null=True, blank=True, default=None, on_delete=models.CASCADE)
     status = models.IntegerField(max_length=3, default=2)
     date_record = models.DateTimeField(default=datetime.datetime.now())
     auth_level = models.IntegerField()
     intersection = models.ForeignKey(Intersection, on_delete=models.CASCADE, null=True,blank=True)
+    video_file = models.FileField(upload_to=get_video_path, blank=True, null=True)
 
     def __str__(self) -> str:
         return self.video_name
 
 class Summmary(models.Model):
-    video = models.OneToOneField(Video, on_delete=models.CASCADE, null=True)
+    video = models.OneToOneField(Video, on_delete=models.CASCADE, null=True, blank=True)
     n_vehicle = models.IntegerField()
 
     def get_video_result():
         return
 
 class Hitbox(models.Model):
+    hitbox_id  =models.AutoField(primary_key=True, default=0)
     hitbox_name = models.CharField(max_length=64, default="loop")
     x = models.IntegerField(default=0)
     y = models.IntegerField(default=0)
