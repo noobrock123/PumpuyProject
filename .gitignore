@@ -29,6 +29,7 @@ media
 staticfiles/
 profile_pic/
 BaseApp/videos
+BaseApp/intersectionData/**
 
 # Only for Development only
 **/migrations/**
