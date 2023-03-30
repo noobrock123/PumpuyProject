@@ -5,8 +5,8 @@ import BaseApp.models as models
 class OrganizationAdminConfig(admin.ModelAdmin):
     model = models.Organization
 
-#class AuthorityAdminConfig(admin.ModelAdmin):
-#    model = models.Authority
+class AuthorityAdminConfig(admin.ModelAdmin):
+    model = models.Authority
 
 class IntersectionAdminConfig(admin.ModelAdmin):
     model = models.Intersection
