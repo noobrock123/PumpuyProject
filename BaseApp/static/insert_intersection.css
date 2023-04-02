@@ -9,128 +9,86 @@ body {
 	align-items: center;
     flex-direction: column;
 	font-family: 'Montserrat', sans-serif;
-	height: 100vh;
-    margin: 20px;
+	margin-top: 5%;
+	margin-left: 20%;
+	margin-right: 20%;
 }
 
-button a:link {
-	color: #ffffff;
-	text-decoration: none;
-}
-
-.logo h1 {
-	color: #7C69F6;
-    font-weight: bold;
-	margin: 20px;
-}
-
-.topbar {
-    display: flex;
-    justify-content: space-between;
-}
-
-/* .button .right a:link {
-	color: #e92d2d;
-} */
-
-.topbar .backpage button {
-    border-radius: 20px;
-	border: 1px solid #801ad9;
-	background-color: #9627db;
-	/* border: 1px solid #e92d2d;
-	background-color: transparent; */
-	color: #FFFFFF;
-	font-size: 12px;
-	font-weight: bold;
-	padding: 12px 45px;
-	letter-spacing: 1px;
-	text-transform: uppercase;
-    margin-left: 15px;
-	transition: transform 80ms ease-in;
-}
-
-.topbar .backpage button:active {
-	transform: scale(0.95);
-}
-
-.topbar .backpage button:focus {
-	outline: none;
-}
-
-.logo {
-    display: grid;
-    justify-content: center;
-	margin-bottom: 25px;
+form {
+	border: 100px;
 }
 
 .name {
     display: flex;
+	margin-bottom: 10px;
+	font-size: large;
+    font-weight: 100;
 }
 
 .name input {
-    background-color: #eee;
+    background-color: #d6d6d6;
 	border: none;
 	padding: 12px 15px;
 	margin: 8px 12px;
 	width: 30%;
+    font-weight: 100;
+	border-radius: 5px;
 }
 
-.live .bigbox {
-    background-color: #eee;
+.live p{
+	font-size: large;
+    font-weight: 100;
+}
+
+.live textarea {
+    background-color: #d6d6d6;
 	border: none;
     padding: 12px 15px;
 	margin: 8px 12px;
 	width: 50%;
+    font-weight: 100;
+	border-radius: 5px;
 }
 
 .latitute input {
-    background-color: #eee;
+    background-color: #d6d6d6;
 	border: none;
     padding: 12px 15px;
 	margin: 8px 12px;
 	width: 50%;
+    font-weight: 100;
+	border-radius: 5px;
 }
 
 .latitute {
     display: flex;
+	margin-bottom: 10px;
+	font-size: large;
+    font-weight: 100;
 }
 
 .longtitute input {
-    background-color: #eee;
+    background-color: #d6d6d6;
 	border: none;
     padding: 12px 15px;
 	margin: 8px 12px;
-	width: 11%;
+	width: 20%;
+    font-weight: 100;
+	border-radius: 5px;
 }
 
 .longtitute {
     display: flex;
-}
-
-.insertimg button {
-    border-radius: 20px;
-	border: 1px solid #801ad9;
-	background-color: #9627db;
-	color: #FFFFFF;
-	font-size: 12px;
-	font-weight: bold;
-	padding: 12px 45px;
-	letter-spacing: 1px;
-	text-transform: uppercase;
-    margin-left: 15px;
-	transition: transform 80ms ease-in;
-}
-
-.insertimg button:active {
-	transform: scale(0.95);
-}
-
-.insertimg button:focus {
-	outline: none;
+	margin-bottom: 19px;
+	font-size: large;
+    font-weight: 100;
 }
 
 .letter {
     display: flex;
+	margin-bottom: 10px;
+	font-size: large;
+    font-weight: 100;
 }
 
 .letter .ss {
@@ -142,9 +100,34 @@ button a:link {
 .letter .tt {
     margin-top: 20px;
     margin-left: 20px;
+	font-size: large;
+    font-weight: 100;
 }
 
+.insertimg .upload {
+	font-size: 16px;
+	background: #eee;
+	border-radius: 20px;
+	width: 305px;
+	outline: none;
+	margin-bottom: 10px;
+}
 
+.insertimg .upload:focus {
+	outline: none;
+}
+
+::-webkit-file-upload-button {
+	color: white;
+	border: 1px solid #ffac12;
+	background-color: #edc111;
+	padding: 20px;
+	border: none;
+	outline: none;
+}
+::-webkit-file-upload-button:active {
+	transform: scale(0.95);
+}
 
 .button {
     display: flex;
@@ -163,6 +146,8 @@ button a:link {
 	text-transform: uppercase;
     margin-left: 15px;
 	transition: transform 80ms ease-in;
+	font-size: large;
+    font-weight: 100;
 }
 
 .button .left button:active {
@@ -175,8 +160,8 @@ button a:link {
 
 .button .right button{
     border-radius: 20px;
-	border: 1px solid #801ad9;
-	background-color: #9627db;
+	border: 1px solid #d91a37;
+	background-color: #db272a;
 	color: #FFFFFF;
 	font-size: 12px;
 	font-weight: bold;
@@ -185,6 +170,8 @@ button a:link {
 	text-transform: uppercase;
     margin-left: 15px;
 	transition: transform 80ms ease-in;
+	font-size: large;
+    font-weight: 100;
 }
 
 .button .right button:active {
