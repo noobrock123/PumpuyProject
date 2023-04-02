@@ -26,9 +26,9 @@ class Authority(models.Model):
         return self.user.username
 
 def get_video_path(instance, file):
-    return f"videos/{instance.intersection.name}/{file}"
+    return f"{instance.intersection.name}/videos/{file}"
 def get_intersection_picture_path(instance, file):
-    return f"BaseApp/intersectionData/{instance.name}/{file}"
+    return f"{instance.name}/{file}"
 
 class Intersection(models.Model):
     name = models.CharField(max_length=100, primary_key=True)

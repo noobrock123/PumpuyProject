@@ -12,12 +12,11 @@
         <h1>Edit this intersection</h1>
     </div>
 
+    <form action="" method="post" enctype="multipart/form-data">
     <div class="Step">
         <h1>Step 1</h1>
         <div class = "add">
-            <form action="/action_page.php">
-                <input type="file" id="myFile" name="filename">
-              </form>
+        <input type="file" id="myFile" name="video">
         </div>
 
         <h1>Step 2</h1>
@@ -26,13 +25,13 @@
                 <video width="40%" src="#">Video</video>
             </div>
             <div class="box">Loop
-                <p><form>
+                <p>
                     <label for="x1">X</label>
                     <input type="text" id="x1">
                     <label for="y1">Y</label>
                     <input type="text" id="y1">
                     <button type="submit"></button>
-                  </form></p>
+                </p>
             </div>
         </div>
 
@@ -45,7 +44,7 @@
             <label for="slow" class="container">Slow Upload</label>
             <br><br>
 
-        <form action="#">
+            {% csrf_token %}
             <div class = "Permission">
                 <label for="Permission">Permission:</label>
                 <select id="Permission">
@@ -54,12 +53,12 @@
                     <option value="fiat">Organisation</option>
                     <option value="audi">Unlist</option>
                 </select>
-            </form>
                 <div class = "button">
-                    <button>Upload</button>
+                    <button type="submit">Upload</button>
                 </div>
             </div>
-
     </div>
+    </form>
 </body>
 </html>
+scheduler()

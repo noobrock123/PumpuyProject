@@ -5,6 +5,7 @@ from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse, HttpResponseRedirect
 from django.utils.functional import SimpleLazyObject
 from BaseApp.models import Intersection, Organization, Video, Authority
+from django.core.files.storage import FileSystemStorage
 from .modules import video_manager
 
 # Create your views here.
@@ -89,6 +90,17 @@ def add_intersection(request):
 
 def upload_video(request, name):
     if request.user.is_authenticated:
+        if request.method == 'POST':
+            data = request.POST
+
+            fs = FileSystemStorage()
+            name = name
+            video = request.FILES.get('video')
+            filename = fs.save(name +  "/videos/" + video.name, video)
+            manager = video_manager.video_manager()
+
+            manager.upload(request, name, filename)
+            return redirect('BaseApp:home')
         return render(request, 'edit.html')
         #return HttpResponse('This page is work in progess') # just a placeholder for frontend to make page for it and if you make the page just change HttpResonse to render //Allumlie
     else:
