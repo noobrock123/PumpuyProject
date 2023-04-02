@@ -6,21 +6,21 @@ from . import scheduler
 
 class video_manager:
     
-    def upload(request):
+    def upload(self, request, name, video_file):
         if request.method != 'POST':
             raise PermissionDenied
         
-        post_data = request.POST
-        schedule = scheduler.scheduler()
-        result = scheduler.create_job()
+        data = request.POST
+        path = f"intersectionData/{name}/videos/{video_file}"
+        schedule = scheduler.Celery()
+        result = schedule.create_job.delay(path, video_file)
         if result:
             print("err")
-        Video.objects.create(
-            video_name = post_data.get('file_name'),
-            video_file = request.FILE.get('file'),
-            uploader = request.user
-        )
-        return
+        #Video.objects.create(
+        #    video_name = post_data.get('file_name'),
+        #    video_file = request.FILE.get('file'),
+        #    uploader = request.user
+        #)
     
     def download(request):
         if request.method != 'POST':

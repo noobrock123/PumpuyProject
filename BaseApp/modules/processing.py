@@ -1,15 +1,17 @@
 import igpu
-
+from .process_chooser import process_chooser
 class processing:
 
-    def process(file = None):
+    def process(self, path, file = None):
         if file == None:
             raise EmptyFileError
         try:
             gpu = igpu.get_device(0)
         except:
-            print("Not supported")
-        print(gpu.name)
+            gpu = "cpu"
+
+        p = process_chooser()
+        p.yolo_v7(path, file)
         return True
     
 class EmptyFileError(Exception):
