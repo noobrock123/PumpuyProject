@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+{% load static %}
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
@@ -8,6 +8,7 @@
 
 <body>
     <form action="add_intersection" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
     <div class="name">
         <p>ชื่อเเยก :</p>
         <input type="text" name="name" placeholder="ชื่อเเยก" required />
