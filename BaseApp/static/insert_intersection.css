@@ -117,7 +117,8 @@ form {
 	outline: none;
 }
 
-::-webkit-file-upload-button {
+/* ::-webkit-file-upload-button { */
+input::file-selector-button {
 	color: white;
 	border: 1px solid #ffac12;
 	background-color: #edc111;
@@ -125,7 +126,8 @@ form {
 	border: none;
 	outline: none;
 }
-::-webkit-file-upload-button:active {
+/* ::-webkit-file-upload-button:active { */
+input::file-upload-button:active {
 	transform: scale(0.95);
 }
 
