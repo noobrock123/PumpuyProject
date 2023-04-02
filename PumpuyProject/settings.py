@@ -117,8 +117,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-MEDIA_ROOT = ''
-MEDIA_URL = ''
+MEDIA_ROOT = 'BaseApp/intersectionData/'
+MEDIA_URL = 'BaseApp/intersectionData/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -129,5 +129,7 @@ CSRF_TRUSTED_ORIGINS = [
     'http://127.0.0.1:8000'
 ]
 
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
 CELERY_BROKER_URL = 'redis://redis:6379'
 CELERY_RESULT_BACKEND = 'redis://redis:6379'
