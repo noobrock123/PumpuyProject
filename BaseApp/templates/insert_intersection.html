@@ -1,51 +1,35 @@
 <!DOCTYPE html>
 
-{% load static %}
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'>
-  <link rel="stylesheet" href="{% static 'insert_intersection.css' %}">
+  <link rel="stylesheet" href="insert_intersection.css">
 </head>
-<body>
-    <div class="topbar">
-        <div class="backpage"></div>
-        <div class="profile">
-            {% if request.user.is_authenticated %}
-                <a href="logout">logout</a>
-            {% else %}
-                <a href="login">login</a>
-            {% endif %}
-        </div>
-    </div>
-    <div class="logo">
-        <h1>Pumpuy Skyline</h1>
-    </div>
 
+<body>
     <form action="add_intersection" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
     <div class="name">
-            <p>ชื่อเเยก (required): </p>
-            <input type="text" name="name" placeholder="ชื่อเเยก" required />
+        <p>ชื่อเเยก :</p>
+        <input type="text" name="name" placeholder="ชื่อเเยก" required />
     </div>
 
     <div class="live">
-            <p>ที่อยู่ (required): </p>
-            <textarea class="bigbox" name="address" rows="5" cols="20" placeholder="required" required ></textarea>
+        <p>ที่อยู่ : </p>
+        <textarea class="bigbox" name="address" rows="5" cols="20" placeholder="ที่อยู่" required ></textarea>
     </div>
 
     <div class="latitute">
-            <p>Latitute (required): 
-            <input type="text" name="latitude" placeholder="Latitute" required />
+        <p>Latitute : 
+        <input type="text" name="latitude" placeholder="Latitute" required />
     </div>
 
     <div class="longtitute">
-            <p>Longtitute (required): </p> 
-            <input type="text" name="longtitude" placeholder="Longtitute" required />
+        <p>Longtitute : </p> 
+        <input type="text" name="longtitude" placeholder="Longtitute" required />
     </div>
 
     <div class="insertimg">
-            <input type="file" name="picture"/>
+        <input type="file" class="upload" name="picture">
     </div>
 
     <div class="letter">
@@ -55,10 +39,10 @@
 
     <div class="button">
         <nav class="left">
-            <button type="submit">พิ่มเเยก</button>
+            <button type="submit">เพิ่มเเยก</button>
         </nav>
         <nav class="right">
-            <button><a href="..">ยกเลิก</a></button>
+            <button type="submit">ยกเลิก</button>
         </nav>
     </div>
     </form>
