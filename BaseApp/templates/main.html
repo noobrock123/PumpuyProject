@@ -41,10 +41,10 @@
     
     <table class="c-table" id = "table">
         <tr class="c-table__row">
-            <th class="c-table__head" onclick="sortTable(0)">Name<i onclick="myFunction(this)" class="arrow up"></i></th>
+            <th class="c-table__head" onclick="sortTable(0), myFunction('name')">Name<i id="name" class="arrow up"></i></th>
             <th class="c-table__head">Address</th>
             <th class="c-table__head">Status</th>            
-            <th class="c-table__head" onclick="sortTable(0)">Owner<i onclick="myFunction(this)" class="arrow up"></i></th> 
+            <th class="c-table__head" onclick="sortTable(0), myFunction('owner')">Owner<i id="owner" class="arrow up"></i></th> 
             <!-- when click multiple time its make you highlight the text if you can fix that its will be great //Allumilie ++++ I already fix it na @KayKon-->
             <th class="c-table__head">Date Upload</th>
             <th class="c-table__head">Last Modified</th>
@@ -72,7 +72,6 @@
             <td class="c-table__data">E</td>
             <td class="c-table__data">F</td>
         </tr>
-
         <tr class="c-table__row">
             <td id = "name" class="c-table__data"><a href="intersection/2">A<A></A></a></th>
             <td class="c-table__data">C</td>
