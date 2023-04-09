@@ -98,13 +98,12 @@ def upload_video(request, name):
             video = request.FILES.get('video')
             filename = fs.save(name +  "/videos/" + video.name, video)
             manager = video_manager.video_manager()
-
-            manager.upload(request, name, filename)
+            manager.upload(request, name, filename, video.name)
             return redirect('BaseApp:home')
         return render(request, 'edit.html')
         #return HttpResponse('This page is work in progess') # just a placeholder for frontend to make page for it and if you make the page just change HttpResonse to render //Allumlie
     else:
-        return render(request, 'login.html')
+        return render(request, 'login.html', )
     
 def search_intersection(request):
     query = request.POST.get("query")    
