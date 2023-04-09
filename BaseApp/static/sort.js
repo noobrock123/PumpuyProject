@@ -53,6 +53,18 @@ function sortTable(n) {
     }
   }
 
-  function myFunction(x) {
-    x.classList.toggle("arrow down");
+  function myFunction(id) {
+    // x.classList.toggle("arrow down");
+    let value = document.getElementById(id).style.transform;
+  
+    if(value == "rotate(-135deg)") {
+      document.getElementById(id).style.transform = "rotate(45deg)";
+    } else { 
+      if(value == "rotate(45deg)") {
+        document.getElementById(id).style.transform = "rotate(-135deg)";
+      } else {
+        document.getElementById(id).style.transform = "rotate(45deg)";
+      }
+    }
+    // document.getElementById(id).style.transform = "rotate(180deg)";
   }
