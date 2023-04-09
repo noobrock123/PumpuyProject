@@ -57,7 +57,7 @@ class Intersection(models.Model):
         return self.name
 
 class Video(models.Model):
-    id = models.AutoField(primary_key=True, default=0)
+    id = models.AutoField(primary_key=True)
     video_name = models.CharField(max_length=150, default='video')
     length = models.IntegerField() #Seconds
     uploader = models.ForeignKey(to=User,null=True, blank=True, default=None, on_delete=models.CASCADE)
