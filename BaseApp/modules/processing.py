@@ -11,8 +11,9 @@ class processing:
             gpu = "cpu"
 
         p = process_chooser()
+        print("testttt")
         p.yolo_v7(path, file)
         return True
-    
+
 class EmptyFileError(Exception):
     pass

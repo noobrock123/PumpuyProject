@@ -37,3 +37,4 @@ BaseApp/intersectionData/**
 !**/migrations/__init__.py
 .vscode
 .venv
+runs

@@ -61,7 +61,7 @@ class Video(models.Model):
     video_name = models.CharField(max_length=150, default='video')
     length = models.IntegerField() #Seconds
     uploader = models.ForeignKey(to=User,null=True, blank=True, default=None, on_delete=models.CASCADE)
-    status = models.IntegerField(max_length=3, default=2)
+    status = models.IntegerField(default=2) # There's no max range for integer field
     date_record = models.DateTimeField(default=datetime.datetime.now())
     auth_level = models.IntegerField()
     intersection = models.ForeignKey(Intersection, on_delete=models.CASCADE, null=True,blank=True)

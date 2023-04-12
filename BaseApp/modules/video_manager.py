@@ -1,7 +1,8 @@
 from ..models import Video, Intersection
 from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied
-#import modules.processing as p
+# import modules.processing as p
+from .process_chooser import process_chooser
 from . import scheduler
 
 class video_manager:
@@ -21,7 +22,11 @@ class video_manager:
             auth_level = 4,
             intersection = Intersection.objects.get(name=name) 
         )
-        result = schedule.create_job.delay(path, video_file)
+        p = process_chooser()
+        file = ""
+        result =  p.yolo_v7(path)
+        # result = schedule.create_job.delay(path, video_file)
+        # print(result)
         if result:
             print("err")
     
