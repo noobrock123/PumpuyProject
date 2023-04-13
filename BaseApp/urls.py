@@ -19,6 +19,7 @@ urlpatterns = [
 #    path('intersection/<str:name>/insert', views.insert, name='insert'),
     path('intersection/<str:name>/upload', views.upload_video, name='upload'),
     path('intersection/<str:name>/search', views.search_video, name='searchVideo'),
+    path('intersection/<str:name>/delete', views.delete_video, name="deleteVideo"),
 ]
 
 

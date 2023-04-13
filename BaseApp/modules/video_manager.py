@@ -20,7 +20,8 @@ class video_manager:
             length = 300,
             uploader = request.user,
             auth_level = 4,
-            intersection = Intersection.objects.get(name=name) 
+            intersection = Intersection.objects.get(name=name),
+            video_file = video_file, # Add ref of the video file to Video obj so we can update and delete ltr // Allumilie
         )
         p = process_chooser()
         file = ""

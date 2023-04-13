@@ -67,7 +67,12 @@
                     <td class="c-table__data"><p>{{ video.uploader }}</p></td>
                     <td class="c-table__data"><p>{{ video.date_record }}</p></td>
                     {% if auth_level < 4%}
-                        <td id="delete"><a href="delete">ลบ</a></td>
+                        <td id="delete">
+                            <form action="{% url 'BaseApp:deleteVideo' intersection.name %}" method="post" class="dropdown">
+                                {% csrf_token %}
+                                <button type="submit" name="query" value="{{video.id}}">ลบ</button>
+                            <form>
+                        </td>
                     {% endif %}
                 </tr>
                 {% empty %}

@@ -7,6 +7,9 @@ from django.utils.functional import SimpleLazyObject
 from BaseApp.models import Intersection, Organization, Video, Authority
 from django.core.files.storage import FileSystemStorage
 from .modules import video_manager
+from . import views
+
+import os
 
 # Create your views here.
 def index(request):
@@ -48,7 +51,7 @@ def intersection(request, name: str):
         videos = Video.objects.filter(intersection=intersection)
         # except Intersection.DoesNotExist:
         #     return HttpResponseRedirect(reverse('BaseApp:home'))
-        print(intersection.picture)
+        # print(intersection.picture)
         return render(request, 'intersection.html', {
             'auth_level': get_auth_level(request.user),
             'intersection' : intersection,
@@ -146,7 +149,26 @@ def search_video(request, name):
         })
     else:
         return render(request, 'login.html')
+    
+def delete_video(request, name):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            query = request.POST.get("query")
 
+            video = Video.objects.get(id=query)
+            path = video.video_file.path
+            os.chdir('..')
+
+            if os.path.exists(path):
+                print('delete video successfully')
+                os.remove(path)
+                video.delete()
+            else:
+                print('err: video not found')
+            
+        return redirect("BaseApp:intersection", name=name)
+    else:
+        return render(request, 'login.html')
 
 #Below this line, the code MUST not be used in urls.py
 def get_auth_level(user: SimpleLazyObject) -> int: 
