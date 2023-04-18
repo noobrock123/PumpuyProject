@@ -4,38 +4,30 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'><link rel="stylesheet" href="{% static 'edit.css' %}">
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'><link rel="stylesheet" href="edit.css">
 
 </head>
 <body>
     <div class="intersection">
-        <h1>Edit this intersection</h1>
+        <h1>กำหนด Loop</h1>
     </div>
 
-    <form action="" method="post" enctype="multipart/form-data">
-    <div class="Step">
-        <h1>Step 1</h1>
-        <div class = "add">
-        <input type="file" id="myFile" name="video">
-        </div>
-
-        <h1>Step 2</h1>
         <div class="flex-container">
             <div class="box">
-                <video width="40%" src="#">Video</video>
+                <video controls autoplay muted loop>
+                    <source src="video.mp4">
+                </video>
             </div>
             <div class="box">Loop
-                <p>
+                <p><form>
                     <label for="x1">X</label>
                     <input type="text" id="x1">
                     <label for="y1">Y</label>
                     <input type="text" id="y1">
-                    <button type="submit"></button>
-                </p>
+                    <button type="submit">confirm</button>
+                </form></p>
             </div>
-        </div>
-
-        <h1>Step 3</h1>
+      </div>
 
             <input type="radio" id="rad" name="radio" value="Fast Upload">
             <label for="fast" class="container">Fast Upload</label><br>
@@ -44,21 +36,21 @@
             <label for="slow" class="container">Slow Upload</label>
             <br><br>
 
-            {% csrf_token %}
+        <form action="#">
             <div class = "Permission">
                 <label for="Permission">Permission:</label>
-                <select id="Permission">
+                <select id="Permission" class="dropdown-select">
                     <option value="volvo">Public</option>
                     <option value="saab">Private</option>
                     <option value="fiat">Organisation</option>
                     <option value="audi">Unlist</option>
                 </select>
-                <div class = "button">
-                    <button type="submit">Upload</button>
-                </div>
             </div>
+        </form>
+                <div class = "button">
+                    <button>Upload</button>
+                </div>
+
     </div>
-    </form>
 </body>
 </html>
-<!-- scheduler() -->
