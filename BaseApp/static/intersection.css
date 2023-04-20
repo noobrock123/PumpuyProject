@@ -166,6 +166,7 @@ img {
     border: 1px solid #c6c6c6;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
     background: #fff;
+	font-family: 'Montserrat', sans-serif;
 }
 
 .searchbar {
