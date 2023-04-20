@@ -1,7 +1,7 @@
 import os
 import subprocess
 
-class process_chooser():
+class process_chooser:
 
     def yolo_v7(path, video_file):
         print('------------------------------')
