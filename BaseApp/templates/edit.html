@@ -12,21 +12,32 @@
         <h1>กำหนด Loop</h1>
     </div>
 
-        <div class="flex-container">
-            <div class="box">
-                <video controls autoplay muted loop>
-                    <source src="video.mp4">
-                </video>
+    <form action="" method="post" enctype="multipart/form-data">
+        <div class="Step">
+            <h1>Step 1</h1>
+            <div class = "add">
+            <input type="file" id="myFile" name="video">
             </div>
-            <div class="box">Loop
-                <p><form>
-                    <label for="x1">X</label>
-                    <input type="text" id="x1">
-                    <label for="y1">Y</label>
-                    <input type="text" id="y1">
-                    <button type="submit">confirm</button>
-                </form></p>
-            </div>
+            
+                <h1>Step 2</h1>
+
+
+            <div class="flex-container">
+                <div class="box">
+                    
+                    <video controls autoplay muted loop>
+                        <source src="video.mp4">
+                    </video>
+                </div>
+                <div class="box">Loop
+                    <p><form>
+                        <label for="x1">X</label>
+                        <input type="text" id="x1">
+                        <label for="y1">Y</label>
+                        <input type="text" id="y1">
+                        <button type="submit">confirm</button>
+                    </form></p>
+                </div>
       </div>
 
             <input type="radio" id="rad" name="radio" value="Fast Upload">
