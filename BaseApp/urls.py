@@ -10,6 +10,7 @@ urlpatterns = [
     path('', views.index, name="index"),
     path('home', views.home_view, name="home"),
     path('login', views.login_view, name='login'),
+    path('signup', views.signup_view, name='signup'),
     path('profile/<str:id>', views.profile_view, name='profile'),
     path('logout/', views.logout_view, name='logout'),
     path('search', views.search_intersection, name='searchIntersection'),
@@ -19,6 +20,7 @@ urlpatterns = [
 #    path('intersection/<str:name>/insert', views.insert, name='insert'),
     path('intersection/<str:name>/upload', views.upload_video, name='upload'),
     path('intersection/<str:name>/search', views.search_video, name='searchVideo'),
+    path('intersection/<str:name>/delete', views.delete_video, name="deleteVideo"),
 ]
 
 
