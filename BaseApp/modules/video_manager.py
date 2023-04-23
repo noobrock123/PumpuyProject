@@ -1,26 +1,35 @@
-from ..models import Video
+from ..models import Video, Intersection
 from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied
-#import modules.processing as p
+# import modules.processing as p
+from .process_chooser import process_chooser
 from . import scheduler
 
 class video_manager:
     
-    def upload(request):
+    def upload(self, request, name, video_file, video_name):
         if request.method != 'POST':
             raise PermissionDenied
         
-        post_data = request.POST
-        schedule = scheduler.scheduler()
-        result = scheduler.create_job()
+        data = request.POST
+
+        path = f"intersectionData/{video_file}"
+        schedule = scheduler.Celery()
+        Video.objects.create(
+            video_name = video_name,
+            length = 300,
+            uploader = request.user,
+            auth_level = 4,
+            intersection = Intersection.objects.get(name=name),
+            video_file = video_file, # Add ref of the video file to Video obj so we can update and delete ltr // Allumilie
+        )
+        p = process_chooser()
+        file = ""
+        result =  p.yolo_v7(path)
+        # result = schedule.create_job.delay(path, video_file)
+        # print(result)
         if result:
             print("err")
-        Video.objects.create(
-            video_name = post_data.get('file_name'),
-            video_file = request.FILE.get('file'),
-            uploader = request.user
-        )
-        return
     
     def download(request):
         if request.method != 'POST':

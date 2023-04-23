@@ -26,9 +26,9 @@ class Authority(models.Model):
         return self.user.username
 
 def get_video_path(instance, file):
-    return f"videos/{instance.intersection.name}/{file}"
+    return f"{instance.intersection.name}/videos/{file}"
 def get_intersection_picture_path(instance, file):
-    return f"BaseApp/intersectionData/{instance.name}/{file}"
+    return f"{instance.name}/{file}"
 
 class Intersection(models.Model):
     name = models.CharField(max_length=100, primary_key=True)
@@ -57,11 +57,11 @@ class Intersection(models.Model):
         return self.name
 
 class Video(models.Model):
-    id = models.AutoField(primary_key=True, default=0)
+    id = models.AutoField(primary_key=True)
     video_name = models.CharField(max_length=150, default='video')
     length = models.IntegerField() #Seconds
     uploader = models.ForeignKey(to=User,null=True, blank=True, default=None, on_delete=models.CASCADE)
-    status = models.IntegerField(max_length=3, default=2)
+    status = models.IntegerField(default=2) # There's no max range for integer field
     date_record = models.DateTimeField(default=datetime.datetime.now())
     auth_level = models.IntegerField()
     intersection = models.ForeignKey(Intersection, on_delete=models.CASCADE, null=True,blank=True)
