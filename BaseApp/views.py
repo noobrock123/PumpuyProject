@@ -5,7 +5,11 @@ from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse, HttpResponseRedirect
 from django.utils.functional import SimpleLazyObject
 from BaseApp.models import Intersection, Organization, Video, Authority
+from django.core.files.storage import FileSystemStorage
 from .modules import video_manager
+from . import views
+
+import os
 
 # Create your views here.
 def index(request):
@@ -40,6 +44,9 @@ def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse('BaseApp:home'))
 
+def signup_view(request):
+    return render(request, 'register.html')
+
 def intersection(request, name: str):
     if request.user.is_authenticated:
         # try:
@@ -47,7 +54,7 @@ def intersection(request, name: str):
         videos = Video.objects.filter(intersection=intersection)
         # except Intersection.DoesNotExist:
         #     return HttpResponseRedirect(reverse('BaseApp:home'))
-        print(intersection.picture)
+        # print(intersection.picture)
         return render(request, 'intersection.html', {
             'auth_level': get_auth_level(request.user),
             'intersection' : intersection,
@@ -89,10 +96,20 @@ def add_intersection(request):
 
 def upload_video(request, name):
     if request.user.is_authenticated:
+        if request.method == 'POST':
+            data = request.POST
+
+            fs = FileSystemStorage()
+            name = name
+            video = request.FILES.get('video')
+            filename = fs.save(name +  "/videos/" + video.name, video)
+            manager = video_manager.video_manager()
+            manager.upload(request, name, filename, video.name)
+            return redirect('BaseApp:home')
         return render(request, 'edit.html')
         #return HttpResponse('This page is work in progess') # just a placeholder for frontend to make page for it and if you make the page just change HttpResonse to render //Allumlie
     else:
-        return render(request, 'login.html')
+        return render(request, 'login.html', )
     
 def search_intersection(request):
     query = request.POST.get("query")    
@@ -135,7 +152,26 @@ def search_video(request, name):
         })
     else:
         return render(request, 'login.html')
+    
+def delete_video(request, name):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            query = request.POST.get("query")
 
+            video = Video.objects.get(id=query)
+            path = video.video_file.path
+            os.chdir('..')
+
+            if os.path.exists(path):
+                print('delete video successfully')
+                os.remove(path)
+                video.delete()
+            else:
+                print('err: video not found')
+            
+        return redirect("BaseApp:intersection", name=name)
+    else:
+        return render(request, 'login.html')
 
 #Below this line, the code MUST not be used in urls.py
 def get_auth_level(user: SimpleLazyObject) -> int: 
