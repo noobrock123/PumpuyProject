@@ -30,13 +30,13 @@
                     </video>
                 </div>
                 <div class="box">Loop
-                    <p><form>
+                    <p>
                         <label for="x1">X</label>
                         <input type="text" id="x1">
                         <label for="y1">Y</label>
                         <input type="text" id="y1">
-                        <button type="submit">confirm</button>
-                    </form></p>
+                        <button>confirm</button>
+                    </p>
                 </div>
       </div>
 
@@ -47,7 +47,7 @@
             <label for="slow" class="container">Slow Upload</label>
             <br><br>
         {% csrf_token %}
-        <form action="#">
+        
             <div class = "Permission">
                 <label for="Permission">Permission:</label>
                 <select id="Permission" class="dropdown-select">
@@ -57,11 +57,12 @@
                     <option value="audi">Unlist</option>
                 </select>
             </div>
-        </form>
-                <div class = "button">
-                    <button>Upload</button>
-                </div>
 
+        <div class = "button">
+            <button type = "submit">Upload</button>
+        </div>    
+             
+    </form>
     </div>
 </body>
 </html>
