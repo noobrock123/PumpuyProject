@@ -70,6 +70,10 @@ class Video(models.Model):
     def __str__(self) -> str:
         return self.video_name
 
+    def delete(self, *args, **kwargs):
+        self.video_file.delete()
+        super().delete(*args, **kwargs)
+
 class Summmary(models.Model):
     video = models.OneToOneField(Video, on_delete=models.CASCADE, null=True, blank=True)
     n_vehicle = models.IntegerField()

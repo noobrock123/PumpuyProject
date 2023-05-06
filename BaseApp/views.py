@@ -44,6 +44,9 @@ def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse('BaseApp:home'))
 
+def signup_view(request):
+    return render(request, 'register.html')
+
 def intersection(request, name: str):
     if request.user.is_authenticated:
         # try:
@@ -96,6 +99,7 @@ def upload_video(request, name):
         if request.method == 'POST':
             data = request.POST
 
+            '''
             fs = FileSystemStorage()
             name = name
             video = request.FILES.get('video')
@@ -103,10 +107,22 @@ def upload_video(request, name):
             manager = video_manager.video_manager()
             manager.upload(request, name, filename, video.name)
             return redirect('BaseApp:home')
+            '''
         return render(request, 'edit.html')
         #return HttpResponse('This page is work in progess') # just a placeholder for frontend to make page for it and if you make the page just change HttpResonse to render //Allumlie
     else:
         return render(request, 'login.html', )
+    
+def process_video(request, name):
+    try:
+        video = request.get['video']
+    except:
+        return redirect('BaseApp:Home')
+    if request.method == 'POST':
+        manager = video_manager.video_manager()
+        manager.upload(request, name,)
+        
+    
     
 def search_intersection(request):
     query = request.POST.get("query")    
@@ -155,16 +171,13 @@ def delete_video(request, name):
         if request.method == 'POST':
             query = request.POST.get("query")
 
-            video = Video.objects.get(id=query)
-            path = video.video_file.path
-            os.chdir('..')
+            fs = FileSystemStorage
 
-            if os.path.exists(path):
-                print('delete video successfully')
-                os.remove(path)
-                video.delete()
-            else:
-                print('err: video not found')
+            video = Video.objects.get(id=query)
+            video.delete()
+            #os.chdir('..')
+
+            print('delete video successfully')
             
         return redirect("BaseApp:intersection", name=name)
     else:
