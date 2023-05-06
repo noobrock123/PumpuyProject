@@ -66,6 +66,9 @@ def intersection(request, name: str):
 def edit(request, name):
     return render(request, 'edit.html')
 
+def summary(request) :
+    return render(request, 'summary.html')
+
 def profile_view(request, id):
     if request.user.is_authenticated:
         organization = Authority.objects.get(user=request.user).organization   # get organization //Allumilie & noobrock123 (Mar 30. 2023)
@@ -99,7 +102,7 @@ def upload_video(request, name):
         if request.method == 'POST':
             data = request.POST
 
-            '''
+            
             fs = FileSystemStorage()
             name = name
             video = request.FILES.get('video')
@@ -107,7 +110,7 @@ def upload_video(request, name):
             manager = video_manager.video_manager()
             manager.upload(request, name, filename, video.name)
             return redirect('BaseApp:home')
-            '''
+            
         return render(request, 'edit.html')
         #return HttpResponse('This page is work in progess') # just a placeholder for frontend to make page for it and if you make the page just change HttpResonse to render //Allumlie
     else:
