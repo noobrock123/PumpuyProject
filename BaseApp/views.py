@@ -98,16 +98,19 @@ def add_intersection(request):
 def upload_video(request, name):
     if request.user.is_authenticated:
         if request.method == 'POST':
-            data = request.POST
             file = request.FILES.get("video_file")
-
+            file_name = file.name.split(".")[0]
             Video.objects.create(
+                video_name=file_name,
                 uploader=request.user,
                 length=1,
-                auth_level=3
+                auth_level=3,
+                intersection=Intersection.objects.get(name=name),
+                video_file=file
             )
 
             return redirect('BaseApp:home')
+                #return redirect('BaseApp:home')
         return render(request, 'edit.html')
         #return HttpResponse('This page is work in progess') # just a placeholder for frontend to make page for it and if you make the page just change HttpResonse to render //Allumlie
     else:
