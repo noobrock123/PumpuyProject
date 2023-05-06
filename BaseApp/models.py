@@ -53,6 +53,10 @@ class Intersection(models.Model):
     def get_status():
         return 
     
+    def delete(self, *args, **kwargs):
+        self.picture.delete()
+        super().delete(*args, **kwargs)
+
     def __str__(self) -> str:
         return self.name
 
