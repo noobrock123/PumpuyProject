@@ -66,6 +66,9 @@ def intersection(request, name: str):
 def edit(request, name):
     return render(request, 'edit.html')
 
+def summary(request) :
+    return render(request, 'summary.html')
+
 def profile_view(request, id):
     if request.user.is_authenticated:
         organization = Authority.objects.get(user=request.user).organization   # get organization //Allumilie & noobrock123 (Mar 30. 2023)

@@ -13,6 +13,7 @@ urlpatterns = [
     path('signup', views.signup_view, name='signup'),
     path('profile/<str:id>', views.profile_view, name='profile'),
     path('logout/', views.logout_view, name='logout'),
+    path('summary/', views.summary, name='summary'),
     path('search', views.search_intersection, name='searchIntersection'),
     path('add_intersection', views.add_intersection, name='insert_intersection'),
     path('intersection/<str:name>', views.intersection, name='intersection'),
