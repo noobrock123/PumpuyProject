@@ -13,10 +13,11 @@
     </div>
 
     <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
         <div class="Step">
             <h1>Step 1</h1>
             <div class = "add">
-            <input type="file" id="myFile" name="video">
+            <input type="file" id="myFile" name="video_file">
             </div>
             
                 <h1>Step 2</h1>
@@ -38,7 +39,7 @@
                         <button>confirm</button>
                     </p>
                 </div>
-      </div>
+            </div>
 
             <input type="radio" id="rad" name="radio" value="Fast Upload">
             <label for="fast" class="container">Fast Upload</label><br>
@@ -46,7 +47,6 @@
             <input type="radio" id="rad" name="radio" value="Fast Upload">
             <label for="slow" class="container">Slow Upload</label>
             <br><br>
-        {% csrf_token %}
         
             <div class = "Permission">
                 <label for="Permission">Permission:</label>
@@ -62,8 +62,8 @@
             <button type = "submit">Upload</button>
         </div>    
              
+        </div>
     </form>
-    </div>
 </body>
 </html>
 <!-- scheduler() -->
