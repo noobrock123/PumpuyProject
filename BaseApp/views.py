@@ -81,6 +81,7 @@ def profile_view(request, id):
 def add_intersection(request):
     if request.method == 'POST':
         data = request.POST
+        print(request.FILES.get('picture').name)
         Intersection.objects.create(
             name=data['name'],
             location=data['address'],
@@ -98,16 +99,15 @@ def upload_video(request, name):
     if request.user.is_authenticated:
         if request.method == 'POST':
             data = request.POST
+            file = request.FILES.get("video_file")
 
-            '''
-            fs = FileSystemStorage()
-            name = name
-            video = request.FILES.get('video')
-            filename = fs.save(name +  "/videos/" + video.name, video)
-            manager = video_manager.video_manager()
-            manager.upload(request, name, filename, video.name)
+            Video.objects.create(
+                uploader=request.user,
+                length=1,
+                auth_level=3
+            )
+
             return redirect('BaseApp:home')
-            '''
         return render(request, 'edit.html')
         #return HttpResponse('This page is work in progess') # just a placeholder for frontend to make page for it and if you make the page just change HttpResonse to render //Allumlie
     else:

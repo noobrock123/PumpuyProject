@@ -66,6 +66,7 @@ class Video(models.Model):
     auth_level = models.IntegerField()
     intersection = models.ForeignKey(Intersection, on_delete=models.CASCADE, null=True,blank=True)
     video_file = models.FileField(upload_to=get_video_path, blank=True, null=True)
+    is_processed = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return self.video_name

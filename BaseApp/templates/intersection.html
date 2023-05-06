@@ -43,7 +43,15 @@
             </select>
             <input name="query" type="text" placeholder="Search Bar right here">
         </form>
-            <nav class="button"><a href="{{intersection.name}}/upload"><button>ลงคลิป</button></a></nav>
+            <nav class="button">
+                <!-- a href="{{intersection.name}}/upload" -->
+                    <form action="{% url 'BaseApp:upload' intersection.name %}" method="post">
+                        {% csrf_token %}
+                        <input type="file" name="video_file"/>
+                        <button>ลงคลิป</button>
+                    </form>
+                <!--/a -->
+            </nav>
 
     </div>
     
