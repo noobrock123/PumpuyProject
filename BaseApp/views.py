@@ -112,9 +112,9 @@ def upload_video(request, name):
                 video_file=file
             )
 
-            return redirect('BaseApp:home')
+            return render(request, 'edit.html')
                 #return redirect('BaseApp:home')
-        return render(request, 'edit.html')
+        return render(request, 'upload.html')
         #return HttpResponse('This page is work in progess') # just a placeholder for frontend to make page for it and if you make the page just change HttpResonse to render //Allumlie
     else:
         return render(request, 'login.html', )

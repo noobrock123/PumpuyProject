@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<html>
+    <head>
+        <link rel="Stylesheet" href = "{% static 'main_page.css' %}" type = "text/css">
+        <script type="text/javascript" src="{% static 'sort.js' %}">
+        </script>    
+    </head>
+
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="Step">
+            <div class = "add">
+            <input type="file" id="myFile" name="video_file">
+        </div>
+
+        <div class = "button">
+            <button type = "submit">Upload</button>
+        </div>  
+            
+    </form>
+
+
+
+
+
+
+
+
+
+
+
+</html>
+
+{% endblock %}
