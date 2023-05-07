@@ -65,12 +65,18 @@ class Video(models.Model):
     video_name = models.CharField(max_length=150, default='video')
     length = models.IntegerField() #Seconds
     uploader = models.ForeignKey(to=User,null=True, blank=True, default=None, on_delete=models.CASCADE)
-    status = models.IntegerField(default=2) # There's no max range for integer field
+    '''
+    status
+    0: processed complete and downloadable
+    1: in process
+    2: not process (pending)
+    3: error
+    '''
+    status = models.IntegerField(default=2, max_length=3) 
     date_record = models.DateTimeField(default=datetime.datetime.now())
     auth_level = models.IntegerField()
     intersection = models.ForeignKey(Intersection, on_delete=models.CASCADE, null=True,blank=True)
     video_file = models.FileField(upload_to=get_video_path, blank=True, null=True)
-    is_processed = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return self.video_name
