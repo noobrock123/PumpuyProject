@@ -6,6 +6,9 @@
   <meta charset="UTF-8">
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'><link rel="stylesheet" href="{% static 'edit.css' %}">
 
+  <script type="text/javascript" src="{% static 'tab.js' %}">
+</script>    
+
 </head>
 <body>
     <div class="intersection">
@@ -31,13 +34,45 @@
                     </video>
                 </div>
                 <div class="box">Loop
-                    <p>
-                        <label for="x1">X</label>
-                        <input type="text" id="x1">
-                        <label for="y1">Y</label>
-                        <input type="text" id="y1">
-                        <button>confirm</button>
-                    </p>
+
+                    <div class="tab">
+                        <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Loop1</button>
+                        <button class="tablinks" onclick="openCity(event, 'Paris')">Loop2</button>
+                        <button class="tablinks" onclick="openCity(event, 'Tokyo')">Loop3</button>
+                      </div>
+
+                      <div id="loop1" class="tabcontent">
+                        <h3>Loop1</h3>
+                        <p>
+                            <label for="x1">X</label>
+                            <input type="text" id="x1">
+                            <label for="y1">Y</label>
+                            <input type="text" id="y1">
+                            <button>confirm</button>
+                        </p>
+                      </div>
+                      
+                        <div id="loop2" class="tabcontent">
+                          <h3>Loop2</h3>
+                          <p>
+                            <label for="x1">X</label>
+                            <input type="text" id="x1">
+                            <label for="y1">Y</label>
+                            <input type="text" id="y1">
+                            <button>confirm</button>
+                        </p>
+                      </div>
+                      
+                      <div id="loop3" class="tabcontent">
+                        <h3>Loop3</h3>
+                        <p>
+                            <label for="x1">X</label>
+                            <input type="text" id="x1">
+                            <label for="y1">Y</label>
+                            <input type="text" id="y1">
+                            <button>confirm</button>
+                        </p>
+                      </div>
                 </div>
             </div>
 
