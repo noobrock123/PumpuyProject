@@ -103,7 +103,8 @@ def upload_video(request, name):
         if request.method == 'POST':
             file = request.FILES.get("video_file")
             file_name = file.name.split(".")[0]
-            Video.objects.create(
+
+            video = Video.objects.create(
                 video_name=file_name,
                 uploader=request.user,
                 length=1,
@@ -111,22 +112,26 @@ def upload_video(request, name):
                 intersection=Intersection.objects.get(name=name),
                 video_file=file
             )
-
-            return render(request, 'edit.html')
-                #return redirect('BaseApp:home')
-        return render(request, 'upload.html')
+            request.session['video'] = video.id
+            return redirect("BaseApp:process", name = name)
         #return HttpResponse('This page is work in progess') # just a placeholder for frontend to make page for it and if you make the page just change HttpResonse to render //Allumlie
+        return render(request, "upload.html")
     else:
-        return render(request, 'login.html', )
+        return render(request, 'login.html')
     
 def process_video(request, name):
-    try:
-        video = request.get['video']
-    except:
-        return redirect('BaseApp:Home')
-    if request.method == 'POST':
+    if request.method == "POST":
+        if "video" in request.session:
+            video = Video.objects.get(id=request.session['video'])
+            del request.session['video']
         manager = video_manager.video_manager()
         manager.upload(request, name,)
+    if request.user.is_authenticated == False:
+        return redirect("BaseApp:login")
+    if "video" not in request.session:
+        return redirect("BaseApp:home")
+    video = Video.objects.get(id=request.session['video'])
+    return render(request, "edit.html", {"video": request.session['video'], "name": video.video_name})
         
     
     

@@ -15,6 +15,7 @@ class video_manager:
 
         path = f"intersectionData/{video_file}"
         schedule = scheduler.Celery()
+        '''
         Video.objects.create(
             video_name = video_name,
             length = 300,
@@ -23,6 +24,7 @@ class video_manager:
             intersection = Intersection.objects.get(name=name),
             video_file = video_file, # Add ref of the video file to Video obj so we can update and delete ltr // Allumilie
         )
+        '''
         p = process_chooser()
         file = ""
         result =  p.yolo_v7(path)

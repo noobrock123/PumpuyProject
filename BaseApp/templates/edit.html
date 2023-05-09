@@ -17,6 +17,8 @@
 
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
+        <input type="hidden" value={{ video }}>
+        <p> {{name}}</p>
         <div class="Step">
             <h1>Step 1</h1>
             <div class = "add">
