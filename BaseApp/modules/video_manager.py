@@ -7,13 +7,11 @@ from . import scheduler
 
 class video_manager:
     
-    def upload(self, request, name, video_file, video_name):
+    def upload(self, request, name, video_file: Video):
         if request.method != 'POST':
             raise PermissionDenied
         
         data = request.POST
-
-        path = f"intersectionData/{video_file}"
         schedule = scheduler.Celery()
         '''
         Video.objects.create(
@@ -27,7 +25,9 @@ class video_manager:
         '''
         p = process_chooser()
         file = ""
-        result =  p.yolo_v7(path)
+        video_file.status = 1
+        video_file.save()
+        result =  p.yolo_v7(video_file)
         # result = schedule.create_job.delay(path, video_file)
         # print(result)
         if result:

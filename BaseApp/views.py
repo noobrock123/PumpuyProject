@@ -129,7 +129,7 @@ def process_video(request, name):
             video = Video.objects.get(id=request.session['video'])
             del request.session['video']
         manager = video_manager.video_manager()
-        manager.upload(request, name,)
+        manager.upload(request, name, video)
     if request.user.is_authenticated == False:
         return redirect("BaseApp:login")
     if "video" not in request.session:
