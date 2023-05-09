@@ -35,52 +35,37 @@
                 </div>
                 <div class="box">Loop
 
-                    <div class="tab">
-                        <button class="tablinks" onclick="openCity(event, 'L1')" id="defaultOpen">Loop1</button>
-                        <button class="tablinks" onclick="openCity(event, 'L2')">Loop2</button>
-                        <button class="tablinks" onclick="openCity(event, 'L3')">Loop3</button>
-                    </div>
+                    <form id="regForm" action="">
+
+                        <!-- One "tab" for each step in the form: -->
+                        <div class="tab">Loop1:
+                            <p><input placeholder="X" oninput="this.className = ''" name="x1"></p>
+                            <p><input placeholder="Y" oninput="this.className = ''" name="y1"></p>
+                            <p><input placeholder="X" oninput="this.className = ''" name="x2"></p>
+                            <p><input placeholder="Y" oninput="this.className = ''" name="y2"></p>
+                        </div>
                         
-                    <div id="L1" class="tabcontent">
-                        <h3>Loop1</h3>
-                        <p>
-                            <label for="x1">X1</label>
-                            <input type="text" id="x1">
-                            <label for="y1">Y1</label>
-                            <input type="text" id="y1"><br>
-                            <label for="y1">Y2</label>
-                            <input type="text" id="y1">
-                            <label for="y1">Y2</label>
-                            <input type="text" id="y1">
-                        </p>
-                    </div>
+                        <div class="tab">Loop2:
+                            <p><input placeholder="X" oninput="this.className = ''" name="x1"></p>
+                            <p><input placeholder="Y" oninput="this.className = ''" name="y1"></p>
+                            <p><input placeholder="X" oninput="this.className = ''" name="x2"></p>
+                            <p><input placeholder="Y" oninput="this.className = ''" name="y2"></p>
+                        </div>
                         
-                    <div id="L2" class="tabcontent">
-                        <h3>Loop2</h3>
-                        <p>
-                            <label for="x1">X1</label>
-                            <input type="text" id="x1">
-                            <label for="y1">Y1</label>
-                            <input type="text" id="y1"><br>
-                            <label for="y1">Y2</label>
-                            <input type="text" id="y1">
-                            <label for="y1">Y2</label>
-                            <input type="text" id="y1">
-                        </p> 
-                    </div>
+                        <div class="tab">Loop3:
+                            <p><input placeholder="X" oninput="this.className = ''" name="x1"></p>
+                            <p><input placeholder="Y" oninput="this.className = ''" name="y1"></p>
+                            <p><input placeholder="X" oninput="this.className = ''" name="x2"></p>
+                            <p><input placeholder="Y" oninput="this.className = ''" name="y2"></p>
+                        </div>
                         
-                    <div id="L3" class="tabcontent">
-                        <h3>Loop3</h3>
-                        <p>
-                            <label for="x1">X1</label>
-                            <input type="text" id="x1">
-                            <label for="y1">Y1</label>
-                            <input type="text" id="y1"><br>
-                            <label for="y1">Y2</label>
-                            <input type="text" id="y1">
-                            <label for="y1">Y2</label>
-                            <input type="text" id="y1">
-                        </p>
+                        <div style="overflow:auto;">
+                            <div style="float:right;">
+                                <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                                <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                          </div>
+                        </div>
+                      </form>
                     </div>
             </div>
 
