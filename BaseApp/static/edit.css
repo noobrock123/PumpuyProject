@@ -90,13 +90,13 @@ button {
 }
 
 
-button:active {
+/* button:active {
     transform: scale(0.95);
 }
 
 button:focus {
     outline: none;
-}
+} */
 
 /* CheckBox */
 .container {
@@ -184,7 +184,7 @@ display: block;
     font-size: 30px;
   }
 
-  input[type='radio']{
+input[type='radio']{
     width: 25px;
     height: 25px;
 }
@@ -235,17 +235,19 @@ img {
     background: #fff;
 }
 
+/*This style is under maintainance
+
 /* Style the tab */
-.tab {
+/* .tab {
     float: left;
     border: 1px solid #ccc;
     background-color: #f1f1f1;
     width: 30%;
     height: 300px;
-  }
+  } */
   
   /* Style the buttons inside the tab */
-  .tab button {
+  /* .tab button {
     display: block;
     background-color: inherit;
     color: black;
@@ -257,9 +259,8 @@ img {
     cursor: pointer;
     transition: 0.3s;
     font-size: 17px;
-  }
+  } */
 
-  /*This is style of tab new assign Allumilie done by KayKon
   
   /* Change background color of buttons on hover */
   /* .tab button:hover {
@@ -281,10 +282,12 @@ img {
     height: 300px;
   } */
 
+
+/*This is style of tab new assign Allumilie done by KayKon */
+
 #regForm {
     background-color: #ffffff;
     margin: 100px auto;
-    font-family: Raleway;
     padding: 40px;
     width: 70%;
     min-width: 300px;
@@ -294,7 +297,7 @@ h1 {
     text-align: center;  
 }
 
-input {
+input[type=text] {
     padding: 10px;
     width: 100%;
     font-size: 17px;
@@ -308,9 +311,9 @@ input.invalid {
     }
 
 /* Hide all steps by default: */
-.tab {
+/* .looptab {
     display: none;
-}
+} */
 
 button {
     background-color: #04AA6D;
