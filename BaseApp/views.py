@@ -135,7 +135,7 @@ def process_video(request, name):
     if "video" not in request.session:
         return redirect("BaseApp:home")
     video = Video.objects.get(id=request.session['video'])
-    return render(request, "edit.html", {"video": request.session['video'], "name": video.video_name})
+    return render(request, "edit.html", {"video": request.session['video']})
         
     
     
