@@ -100,6 +100,8 @@ def add_intersection(request):
 
 def upload_video(request, name):
     if request.user.is_authenticated:
+        if get_auth_level(request.user) == 7:
+            return redirect("BaseApp:intersection", name=name)
         if request.method == 'POST':
             file = request.FILES.get("video_file")
             file_name = file.name.split(".")[0]
@@ -121,6 +123,8 @@ def upload_video(request, name):
     
 def process_video(request, name):
     if request.method == "POST":
+        if get_auth_level(request.user) == 7:
+            return redirect("BaseApp:intersection", name=name)
         if "video" in request.session:
             video = Video.objects.get(id=request.session['video'])
             del request.session['video']
