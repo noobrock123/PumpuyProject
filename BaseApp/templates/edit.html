@@ -6,58 +6,95 @@
   <meta charset="UTF-8">
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'><link rel="stylesheet" href="{% static 'edit.css' %}">
 
+  <script type="text/javascript" src="{% static 'looptab.js' %}">
+</script>    
+
 </head>
 <body>
     <div class="intersection">
-        <h1>Edit this intersection</h1>
+        <h1>กำหนด Loop</h1>
     </div>
 
     <form action="" method="post" enctype="multipart/form-data">
-    <div class="Step">
-        <h1>Step 1</h1>
-        <div class = "add">
-        <input type="file" id="myFile" name="video">
-        </div>
+        {% csrf_token %}
+<<<<<<< HEAD
+        <!-- <input type="hidden" value={{ video }}>
+        <p> {{name}}</p> -->
 
-        <h1>Step 2</h1>
-        <div class="flex-container">
-            <div class="box">
-                <video width="40%" src="#">Video</video>
+            <div class="flex-container">
+                <div class="box">
+                    <video controls autoplay muted loop>
+                        <source src="../../BaseApp/intersectionData/{{ video }}">
+=======
+        <input type="hidden" value={{ video }}>
+        <p> {{name}}</p>
+
+            <div class="flex-container">
+                <div class="box">
+                    
+                    <video controls autoplay muted loop>
+                        <source src="video.mp4">
+>>>>>>> 4e00ba5cacd51b6eea43f6a95df0f048260b4a33
+                    </video>
+                </div>
+                <div class="box">
+
+                    {% comment %} This is loop box {% endcomment %}
+
+                    <form id="regForm" action="">
+                        <!-- One "looptab" for each step in the form: -->
+                        <div class="looptab">Loop1:
+                            <p><input placeholder="X" oninput="this.className = ''" name="x1"></p>
+                            <p><input placeholder="Y" oninput="this.className = ''" name="y1"></p>
+                            <p><input placeholder="X" oninput="this.className = ''" name="x2"></p>
+                            <p><input placeholder="Y" oninput="this.className = ''" name="y2"></p>
+                        </div>
+                        
+                        <div class="looptab">Loop2:
+                            <p><input placeholder="X" oninput="this.className = ''" name="x1"></p>
+                            <p><input placeholder="Y" oninput="this.className = ''" name="y1"></p>
+                            <p><input placeholder="X" oninput="this.className = ''" name="x2"></p>
+                            <p><input placeholder="Y" oninput="this.className = ''" name="y2"></p>
+                        </div>
+                        
+                        <div class="looptab">Loop3:
+                            <p><input placeholder="X" oninput="this.className = ''" name="x1"></p>
+                            <p><input placeholder="Y" oninput="this.className = ''" name="y1"></p>
+                            <p><input placeholder="X" oninput="this.className = ''" name="x2"></p>
+                            <p><input placeholder="Y" oninput="this.className = ''" name="y2"></p>
+                        </div>
+                        
+                        <div style="overflow:auto;">
+                            <div style="float:right;">
+                                <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                                <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                            </div>
+                          
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="box">Loop
-                <p>
-                    <label for="x1">X</label>
-                    <input type="text" id="x1">
-                    <label for="y1">Y</label>
-                    <input type="text" id="y1">
-                    <button type="submit"></button>
-                </p>
-            </div>
-        </div>
 
-        <h1>Step 3</h1>
+            <input type="radio" id="rad" name="radio" value="Fast Upload">Fast Upload<br>
 
-            <input type="radio" id="rad" name="radio" value="Fast Upload">
-            <label for="fast" class="container">Fast Upload</label><br>
-
-            <input type="radio" id="rad" name="radio" value="Fast Upload">
-            <label for="slow" class="container">Slow Upload</label>
+            <input type="radio" id="rad" name="radio" value="Fast Upload">Slow Upload
             <br><br>
-
-            {% csrf_token %}
+        
             <div class = "Permission">
                 <label for="Permission">Permission:</label>
-                <select id="Permission">
+                <select id="Permission" class="dropdown-select">
                     <option value="volvo">Public</option>
                     <option value="saab">Private</option>
                     <option value="fiat">Organisation</option>
                     <option value="audi">Unlist</option>
                 </select>
-                <div class = "button">
-                    <button type="submit">Upload</button>
-                </div>
             </div>
-    </div>
+
+        <div class = "button">
+            <button type = "submit">Upload</button>
+        </div>    
+             
+        </div>
     </form>
 </body>
 </html>

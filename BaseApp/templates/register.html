@@ -7,7 +7,7 @@
 <head>
   <meta charset="UTF-8">
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'>
-  <link rel="stylesheet" href="{% static 'login.css'%}">
+  <link rel="stylesheet" href="{% static 'register.css'%}">
 
 </head>
 <body>
@@ -26,18 +26,19 @@
 			<input type="text" placeholder="Name" />
 			<input type="email" placeholder="Email" />
 			<input type="password" placeholder="Password" />
-			<button>Sign Up</button>
+			<button>Sign In</button>
 		</form>
 	</div>
 	<div class="form-container sign-in-container">
-		<form action="{% url 'BaseApp:login' %}" method="post">
+		<form action="{% url 'BaseApp:signup' %}" method="post">
 			{% csrf_token %}
-			<h1>Sign in</h1>
-			<span>or use your account</span>
-			<input type="text" name="username" placeholder="Email" required/>
-			<input type="password" name="password" placeholder="Password" required/>
-			<a href="#">Forgot your password?</a>
-			<button type="submit">Sign In</button>
+			<h1>Sign up</h1>
+			<span>Fill up the form properly</span>
+            <input type="text" name="username" placeholder="Username*" required/>
+			<input type="email" name="email" placeholder="Email*" required/>
+			<input type="password" name="password" placeholder="Password*" required/>
+            <input type="password" name="confirm-pass" placeholder="Confirm Password*" required/>
+			<button type="submit">Sign Up</button>
 		</form>
 	</div>
 	<div class="overlay-container">
@@ -53,7 +54,7 @@
 					<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
 					<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
 				</div>
-				<a href= "signup"><button class="ghost" id="signUp">Sign Up</button></a>
+				<a href="login"><button class="ghost" id="signIn">Sign In</button></a>
 			</div>
 		</div>
 	</div>
@@ -72,7 +73,7 @@
 <head>
   <meta charset="UTF-8">
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'>
-  <link rel="stylesheet" href="{% static 'login.css'%}">
+  <link rel="stylesheet" href="{% static 'register.css'%}">
 
 </head>
 <body>
@@ -91,18 +92,19 @@
 			<input type="text" placeholder="Name" />
 			<input type="email" placeholder="Email" />
 			<input type="password" placeholder="Password" />
-			<button>Sign Up</button>
+			<button>Sign In</button>
 		</form>
 	</div>
 	<div class="form-container sign-in-container">
-		<form action="{% url 'BaseApp:login' %}" method="post">
+		<form action="{% url 'BaseApp:signup' %}" method="post">
 			{% csrf_token %}
-			<h1>Sign in</h1>
-			<span>or use your account</span>
-			<input type="text" name="username" placeholder="Email" required/>
-			<input type="password" name="password" placeholder="Password" required/>
-			<a href="#">Forgot your password?</a>
-			<button type="submit">Sign In</button>
+			<h1>Sign up</h1>
+			<span>Fill up the form properly</span>
+            <input type="text" name="username" placeholder="Username*" required/>
+			<input type="email" name="email" placeholder="Email*" required/>
+			<input type="password" name="password" placeholder="Password*" required/>
+            <input type="password" name="confirm-pass" placeholder="Confirm Password*" required/>
+			<button type="submit">Sign Up</button>
 		</form>
 	</div>
 	<div class="overlay-container">
@@ -118,7 +120,7 @@
 					<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
 					<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
 				</div>
-				<a href= "signup"><button class="ghost" id="signUp">Sign Up</button></a>
+				<a href="login"><button class="ghost" id="signIn">Sign In</button></a>
 			</div>
 		</div>
 	</div>

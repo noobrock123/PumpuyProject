@@ -15,7 +15,7 @@ body {
 }
 
 .intersection h1 {
-    color: #7C69F6;
+    color: #000000;
     font-weight: bold;
     margin: 20px;
     }
@@ -27,6 +27,31 @@ p {
     line-height: 20px;
     letter-spacing: 0.5px;
     margin: 20px 0 30px;
+}
+
+.add .upload {
+	font-size: 16px;
+	background: #eee;
+	border-radius: 20px;
+	width: 305px;
+	outline: none;
+	margin-bottom: 10px;
+}
+
+.add .upload:focus {
+	outline: none;
+}
+
+::-webkit-file-upload-button {
+	color: white;
+	border: 1px solid #ffac12;
+	background-color: #edc111;
+	padding: 20px;
+	border: none;
+	outline: none;
+}
+::-webkit-file-upload-button:active {
+	transform: scale(0.95);
 }
 
 
@@ -59,19 +84,19 @@ button {
 }
 
 .button {
-    margin-top: 25px;
+    margin-top: 50px;
     display: flex;
     justify-content: space-between;
 }
 
 
-button:active {
+/* button:active {
     transform: scale(0.95);
 }
 
 button:focus {
     outline: none;
-}
+} */
 
 /* CheckBox */
 .container {
@@ -144,8 +169,10 @@ display: block;
 .flex-container {
     display: flex;
     flex-wrap: nowrap;
-    background-color:#7C69F6;
+    background-color:#7461f0;
     border-width: 1px;
+    border-radius: 20px;
+    margin-bottom: 50px;
   }
   
   .flex-container .box {
@@ -157,7 +184,172 @@ display: block;
     font-size: 30px;
   }
 
-  input[type='radio']{
+input[type='radio']{
     width: 25px;
     height: 25px;
+}
+
+/* input#1 {
+    border-color: #c3c3c3;
+    border-radius: 5px;
+}
+
+input#x1 {
+    border-color: #c3c3c3;
+    border-radius: 5px;
+    height: 30px;
+    font-size: 20px;
+    width: 150px;
+    color: #565656;
+}
+
+input#y1 {
+    border-color: #c3c3c3;
+    border-radius: 5px;
+    height: 30px;
+    font-size: 20px;
+    width: 150px;
+    color: #565656;
+} */
+
+video {
+    width: 70%;
+    margin-top: 3%;
+  }
+  
+img {
+    width: 100%;
+    height: auto;
+}
+
+.dropdown-select {
+    width: 20%;
+    height: 40px;
+    border-radius: 6px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: large;
+    font-weight: 100;
+    color: #525252;
+    border: 1px solid #c6c6c6;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    background: #fff;
+}
+
+/*This style is under maintainance
+
+/* Style the tab */
+/* .tab {
+    float: left;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    width: 30%;
+    height: 300px;
+  } */
+  
+  /* Style the buttons inside the tab */
+  /* .tab button {
+    display: block;
+    background-color: inherit;
+    color: black;
+    padding: 22px 16px;
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 17px;
+  } */
+
+  
+  /* Change background color of buttons on hover */
+  /* .tab button:hover {
+    background-color: #ddd;
+  } */
+  
+  /* Create an active/current "tab button" class */
+  /* .tab button.active {
+    background-color: #ccc;
+  } */
+  
+  /* Style the tab content */
+  /* .tabcontent {
+    float: left;
+    padding: 0px 12px;
+    border: 1px solid #ccc;
+    width: 70%;
+    border-left: none;
+    height: 300px;
+  } */
+
+
+/*This is style of tab new assign Allumilie done by KayKon */
+
+#regForm {
+    background-color: #ffffff;
+    margin: 100px auto;
+    padding: 40px;
+    width: 70%;
+    min-width: 300px;
+}
+
+h1 {
+    text-align: center;  
+}
+
+input[type=text] {
+    padding: 10px;
+    width: 100%;
+    font-size: 17px;
+    font-family: Raleway;
+    border: 1px solid #aaaaaa;
+}
+
+/* Mark input boxes that gets an error on validation: */
+input.invalid {
+    background-color: #ffdddd;
+    }
+
+/* Hide all steps by default: */
+/* .looptab {
+    display: none;
+} */
+
+button {
+    background-color: #04AA6D;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 10px;
+    font-family: Raleway;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+#prevBtn {
+    background-color: #bbbbbb;
+}
+
+/* Make circles that indicate the steps of the form: */
+.step {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbbbbb;
+    border: none;  
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+}
+
+.step.active {
+    opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
+    background-color: #04AA6D;
 }

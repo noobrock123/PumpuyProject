@@ -3,7 +3,6 @@ from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.models import User
 import datetime
 
-
 auth_select = (
     (0, 'sys_admin'),
     (1, 'ผู้ดูแลองค์กร'),
@@ -26,7 +25,9 @@ class Authority(models.Model):
         return self.user.username
 
 def get_video_path(instance, file):
-    return f"{instance.intersection.name}/videos/{file}"
+    intersec_name = instance.intersection.name
+    return f"{intersec_name}/videos/{instance.id}/{file}"
+
 def get_intersection_picture_path(instance, file):
     return f"{instance.name}/{file}"
 
@@ -53,6 +54,10 @@ class Intersection(models.Model):
     def get_status():
         return 
     
+    def delete(self, *args, **kwargs):
+        self.picture.delete()
+        super().delete(*args, **kwargs)
+
     def __str__(self) -> str:
         return self.name
 
@@ -61,7 +66,14 @@ class Video(models.Model):
     video_name = models.CharField(max_length=150, default='video')
     length = models.IntegerField() #Seconds
     uploader = models.ForeignKey(to=User,null=True, blank=True, default=None, on_delete=models.CASCADE)
-    status = models.IntegerField(default=2) # There's no max range for integer field
+    '''
+    status
+    0: processed complete and downloadable
+    1: in process
+    2: not process (pending)
+    3: error
+    '''
+    status = models.IntegerField(default=2, max_length=3) 
     date_record = models.DateTimeField(default=datetime.datetime.now())
     auth_level = models.IntegerField()
     intersection = models.ForeignKey(Intersection, on_delete=models.CASCADE, null=True,blank=True)
@@ -69,6 +81,13 @@ class Video(models.Model):
 
     def __str__(self) -> str:
         return self.video_name
+
+    def get_path(self):
+        return self.video_file.name
+
+    def delete(self, *args, **kwargs):
+        self.video_file.delete()
+        super().delete(*args, **kwargs)
 
 class Summmary(models.Model):
     video = models.OneToOneField(Video, on_delete=models.CASCADE, null=True, blank=True)
