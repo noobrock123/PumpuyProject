@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+
+<!-- ปุ่ม Home แก้ขัด ว่างๆฝาก frontend ด้วย -->
+{% extends 'layout.html' %}
+
+{% block content %}
+
 {% load static %}
 <html lang="en" >
 <head>
@@ -48,36 +54,39 @@
     </div>
     
     <div class = "Intersection_Table">
-    
-        <table class="c-table">
-            <tr class="c-table__row">
-                <th class="c-table__head">Video</th>
-                <th class="c-table__head">Status</th>
-                <th class="c-table__head">Uploader</th>
-                <th class="c-table__head">Date</th>
-            </tr>
-    
-            {% for video in videos %}
+
+        {% if videos %}
+            <table class="c-table">
                 <tr class="c-table__row">
-                    <td id = "name" class="c-table__data">
-                        <a href=""><p>{{ video.video_name }}</p></a>
-                    </td>
-                    <!-- There's no status in models.Video //Allumilie-->
-                    <td class="c-table__data" id="status{{ video.status }}"><p>{{ video.status }}</p></td>
-                    <td class="c-table__data"><p>{{ video.uploader }}</p></td>
-                    <td class="c-table__data"><p>{{ video.date_record }}</p></td>
-                    {% if auth_level < 4%}
-                        <td id="delete">
-                            <form action="{% url 'BaseApp:deleteVideo' intersection.name %}" method="post" class="dropdown">
-                                {% csrf_token %}
-                                <button type="submit" name="query" value="{{video.id}}">ลบ</button>
-                            <form>
-                        </td>
-                    {% endif %}
+                    <th class="c-table__head">Video</th>
+                    <th class="c-table__head">Status</th>
+                    <th class="c-table__head">Uploader</th>
+                    <th class="c-table__head">Date</th>
                 </tr>
-                {% empty %}
-                <center>No video</center>
-            {% endfor %}
+        
+                {% for video in videos %}
+                    <tr class="c-table__row">
+                        <td id = "name" class="c-table__data">
+                            <a href=""><p>{{ video.video_name }}</p></a>
+                        </td>
+                        <!-- There's no status in models.Video //Allumilie-->
+                        <td class="c-table__data" id="status{{ video.status }}"><p>{{ video.status }}</p></td>
+                        <td class="c-table__data"><p>{{ video.uploader }}</p></td>
+                        <td class="c-table__data"><p>{{ video.date_record }}</p></td>
+                        {% if auth_level < 4%}
+                            <td id="delete">
+                                <form action="{% url 'BaseApp:deleteVideo' intersection.name %}" method="post" class="dropdown">
+                                    {% csrf_token %}
+                                    <button type="submit" name="query" value="{{video.id}}">ลบ</button>
+                                <form>
+                            </td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <center><h2>No Video</h2></center>
+        {% endif %}
     
             <!-- <tr class="c-table__row">
                 <td id = "name" class="c-table__data"><a href="">G</a></td>
@@ -93,7 +102,7 @@
                 <td class="c-table__data">D</td>
                 <td id="delete"><a href="delete">ลบ</a></td>
             </tr> -->
-            </table>
     </div>
 </body>
+{% endblock %}
 </html> 

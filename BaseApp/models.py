@@ -3,7 +3,6 @@ from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.models import User
 import datetime
 
-
 auth_select = (
     (0, 'sys_admin'),
     (1, 'ผู้ดูแลองค์กร'),
@@ -26,7 +25,13 @@ class Authority(models.Model):
         return self.user.username
 
 def get_video_path(instance, file):
-    return f"{instance.intersection.name}/videos/{file}"
+    intersec_name = instance.intersection.name
+    return f"{intersec_name}/videos/{instance.id}/{file}"
+
+def get_loop_path(instance, file):
+    file_name = instance.video.video_file.name.split(".")[0]
+    return f"{instance.video.intersection.name}/{instance.video.id}{file_name}/{file}"
+
 def get_intersection_picture_path(instance, file):
     return f"{instance.name}/{file}"
 
@@ -81,6 +86,9 @@ class Video(models.Model):
     def __str__(self) -> str:
         return self.video_name
 
+    def get_path(self):
+        return self.video_file.name
+
     def delete(self, *args, **kwargs):
         self.video_file.delete()
         super().delete(*args, **kwargs)
@@ -95,11 +103,9 @@ class Summmary(models.Model):
 class Hitbox(models.Model):
     hitbox_id  =models.AutoField(primary_key=True, default=0)
     hitbox_name = models.CharField(max_length=64, default="loop")
-    x = models.IntegerField(default=0)
-    y = models.IntegerField(default=0)
-    #size (list)
-    summary = models.ForeignKey(Summmary, on_delete=models.CASCADE, null=True, blank=True)
-    #cars = models.FileField(upload_to=)
+    video = models.ForeignKey(Video, on_delete=models.CASCADE, null=True, blank=True)
+    loops_file = models.FileField(upload_to=get_loop_path, null=True, blank=True)
+    result_file = models.FileField(upload_to=get_loop_path, null=True, blank=True)
     def __str__(self) -> str:
         return ": " + str(self.hitbox_name)
 

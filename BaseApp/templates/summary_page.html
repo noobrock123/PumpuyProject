@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<html>
+    <head>
+        <link rel="Stylesheet" href = "{% static 'summary_page.css' %}" type = "text/css">
+        <script type="text/javascript" src="{% static 'sort.js' %}">
+        </script>    
+    </head>
+
+
+    <h1>rickroll.mp4</h1>
+    <button class="dl">Download</button>
+    <div class="box">
+        <video controls autoplay muted loop>
+            <source src="video.mp4">
+        </video>
+    </div>
+
+</html>
+{% endblock %}
