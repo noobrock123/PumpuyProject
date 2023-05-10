@@ -6,15 +6,13 @@
   <meta charset="UTF-8">
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'><link rel="stylesheet" href="{% static 'edit.css' %}">
 
-  <script type="text/javascript" src="{% static 'tab.js' %}">
-</script>    
-
+  
 </head>
 <body>
     <div class="intersection">
         <h1>กำหนด Loop</h1>
     </div>
-
+    
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <!-- <input type="hidden" value={{ video }}>
@@ -22,40 +20,43 @@
 
             <div class="flex-container">
                 <div class="box">
-                    <video controls autoplay muted loop>
-                        <source src="../../BaseApp/intersectionData/{{ video }}">
-                    </video>
+                    <video id="video" src="../../BaseApp/intersectionData/{{ video }}" autoplay controls></video>
+                    <canvas id="canvas"></canvas>
+                    <!-- <canvas id="cv1" style="border:1px solid #000000;"></canvas>
+                        <video id="vd1" controls autoplay muted loop muted hidden src="../../BaseApp/intersectionData/{{ video }}">
+                            <source src="../../BaseApp/intersectionData/{{ video }}">
+                        </video> -->
                 </div>
-                <div class="box">
-
-                    {% comment %} This is loop box {% endcomment %}
-
-                    <div id="regForm" action="">
+                    <div class="box">
                         
-                        <!-- One "looptab" for each step in the form: -->
-                        <div class="looptab" id="LoopField" name="Loop">
-                            <!-- <div class="loop_field" name="Loop[n]">
+                        {% comment %} This is loop box {% endcomment %}
+                        
+                        <div id="regForm" action="">
+                            
+                            <!-- One "looptab" for each step in the form: -->
+                            <div class="looptab" id="LoopField" name="Loop">
+                                <!-- <div class="loop_field" name="Loop[n]">
                                 <input type="text" name="coor" placeholder="coor">
                             </div> -->
-                        </div>
+                            </div>
                         
                         <div style="overflow:auto;">
                             <div style="float:right;">
                                 <!-- <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-                                <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button> -->
-                                <button type="button" id="remove" onclick="remove_loop()">remove loop</button>
-                                <button type="button" id="add" onclick="add_loop()">add loop</button>
+                                    <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button> -->
+                                    <button type="button" id="remove" onclick="remove_loop()">remove loop</button>
+                                    <button type="button" id="add" onclick="add_loop()">add loop</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
 
             <input type="radio" id="rad" name="radio" value="Fast Upload">Fast Upload<br>
-
+            
             <input type="radio" id="rad" name="radio" value="Fast Upload">Slow Upload
             <br><br>
-        
+            
             <div class = "Permission">
                 <label for="Permission">Permission:</label>
                 <select id="Permission" class="dropdown-select">
@@ -65,13 +66,14 @@
                     <option value="audi">Unlist</option>
                 </select>
             </div>
-
-        <div class = "button">
-            <button type = "submit">Upload</button>
+            
+            <div class = "button">
+                <button type = "submit">Upload</button>
         </div>    
-             
-        </div>
-    </form>
+        
+    </div>
+</form>
 </body>
+<script type="text/javascript" src="{% static 'tab.js' %}"></script>    
 </html>
-<!-- scheduler() -->
+

@@ -10,50 +10,73 @@ window.onload = function() {
 
 var loopField = document.getElementById("LoopField");
 
-function add_loop() {
+function add_loop() { 
   var loopField = document.getElementById("LoopField");
+  var num = document.getElementsByClassName('loop_field').length + 1;
+  var text = "";
 
-  var div = document.createElement("div");
-  var num = document.getElementsByClassName('loop_field').length + 1
-  div.setAttribute('class', "loop_field");
-  div.setAttribute("name", "Loop" + num );
-  div.textContent = "Loop " + num 
+  text = `<div class="loop_field" id="Loop${num}" name="Loop${num}">Loop${num}`
+  text += '</br>';
+  text += `<table>`;
 
-  let x1 = document.createElement("input");
-  x1.setAttribute('type', 'text');
-  x1.setAttribute('name', 'x1');
-  x1.setAttribute('placeholder', 'x1');
-  
-  let x2 = document.createElement("input");
-  x2.setAttribute('type', 'text');
-  x2.setAttribute('name', 'x2');
-  x2.setAttribute('placeholder', 'x2');
+  for (let init = 1; init < 5; init++) { 
+    text += `<tr>`;
+    text += `<td><input name="x${init}" id="x${init}" placeholder="x${init}"></input></td>`;
+    text += `<td><input name="y${init}" id="y${init}" placeholder="y${init}"></input></td>`;
+    text += `</tr>`;
+  }
 
-  let y1 = document.createElement("input");
-  y1.setAttribute('type', 'text');
-  y1.setAttribute('name', 'y1');
-  y1.setAttribute('placeholder', 'y1');
+  text += `</table>`;
+  text += `</div>`;
 
-  let y2 = document.createElement("input");
-  y2.setAttribute('type', 'text');
-  y2.setAttribute('name', 'y2');
-  y2.setAttribute('placeholder', 'y2');
-
-  div.appendChild(x1)
-  div.appendChild(x2)
-  div.appendChild(y1)
-  div.appendChild(y2)
-
-  loopField.appendChild(div)
+  loopField.insertAdjacentHTML("beforebegin", text);
 }
 
 function remove_loop() {
-  var loopField = document.getElementById("LoopField");
+  var loopField = document.getElementById('LoopField')
   var loopClass = document.getElementsByClassName('loop_field')
+  // console.log(loopClass.length)
   if(loopClass.length > 2) {
-    loopField.removeChild(loopClass[(loopClass.length) - 1]);
+    document.getElementById(`Loop${loopClass.length}`).remove();
   }
 }
+
+var video = document.getElementById('video');
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext('2d');
+
+// var loop1_x1 = document.getElementsByName("Loop1");
+// console.log(loop1_x1.getElementById('x1'))
+// loop1_x1.addEventListener("Keydown", function() {
+//   console.log(loop1_x1)
+// });
+
+// set canvas size = video size when known
+video.addEventListener('loadedmetadata', function() {
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+});
+
+video.addEventListener('play', function() {  
+  var $this = this; //cache
+  (function loop() {
+    if (!$this.paused && !$this.ended) {
+      ctx.lineWidth = 8;
+      ctx.strokeStyle = '#00FF00';
+      
+      ctx.drawImage($this, 0, 0);
+      ctx.beginPath(); // Start a new path
+      ctx.moveTo(900, 600); // x1, y1
+      ctx.lineTo(900, 300); // x2, y2
+      ctx.lineTo(400, 300); // x3, y3
+      ctx.lineTo(400, 600); // x4, y4
+      ctx.lineTo(900, 600); // x1, y1 to close the loop
+      ctx.stroke(); // Render the path  
+
+      setTimeout(loop, 1000 / 30); // drawing at 30fps
+    }
+  })();
+}, 0);
 
 // function showTab(n) {
 //   // This function will display the specified tab of the form
