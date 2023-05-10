@@ -1,0 +1,90 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<html>
+    <head>
+        <link rel="Stylesheet" href = "{% static 'summary_page.css' %}" type = "text/css">
+        <script type="text/javascript" src="{% static 'sort.js' %}">
+        </script>    
+    </head>
+
+
+    <h1>rickroll.mp4</h1>
+    <button class="dl">Download</button>
+    <div class="box">
+        <video controls autoplay muted loop>
+            <source src="video.mp4">
+        </video>
+    </div>
+    
+    <div class="loop">
+        <div class="left">
+            <h2>loop1</h2>
+            <table class="table">
+                <tr class="table__row">
+                    <td class="table__head">ทิศทาง</td>
+                    <td class="table__head">รถยนต์</td>
+                    <td class="table__head">มอเตอร์ไซค์</td>
+                    <td class="table__head">รถบรรทุก</td>
+                    <td class="table__head">จำนวน</td>
+                </tr>
+                <!-- {% for  in  %} -->
+                <tr class="table__row">
+                    <td class="table__data">{{}}</td>
+                    <td class="table__data">{{}}</td>
+                    <td class="table__data">{{}}</td>
+                    <td class="table__data">{{}}</td>
+                    <td class="table__data">{{}}</td>
+                </tr>
+                <!-- {% endfor %} -->
+            </table>
+
+            <h2>loop3</h2>
+            <table class="table">
+                <tr class="table__row">
+                    <td class="table__head">ทิศทาง</td>
+                    <td class="table__head">รถยนต์</td>
+                    <td class="table__head">มอเตอร์ไซค์</td>
+                    <td class="table__head">รถบรรทุก</td>
+                    <td class="table__head">จำนวน</td>
+                </tr>
+                <!-- {% for  in  %} -->
+                <tr class="table__row">
+                    <td class="table__data">{{}}</td>
+                    <td class="table__data">{{}}</td>
+                    <td class="table__data">{{}}</td>
+                    <td class="table__data">{{}}</td>
+                    <td class="table__data">{{}}</td>
+                </tr>
+                <!-- {% endfor %} -->
+            </table>
+        </div>
+
+        <div class="right">
+            <h2>loop2</h2>
+            <table class="table">
+                <tr class="table__row">
+                    <td class="table__head">ทิศทาง</td>
+                    <td class="table__head">รถยนต์</td>
+                    <td class="table__head">มอเตอร์ไซค์</td>
+                    <td class="table__head">รถบรรทุก</td>
+                    <td class="table__head">จำนวน</td>
+                </tr>
+                <!-- {% for  in  %} -->
+                <tr class="table__row">
+                    <td class="table__data">{{}}</td>
+                    <td class="table__data">{{}}</td>
+                    <td class="table__data">{{}}</td>
+                    <td class="table__data">{{}}</td>
+                    <td class="table__data">{{}}</td>
+                </tr>
+                <!-- {% endfor %} -->
+            </table>
+        </div>
+        
+    </div>
+</html>
+{% endblock %}
