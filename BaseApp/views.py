@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse, HttpResponseRedirect
 from django.utils.functional import SimpleLazyObject
-from BaseApp.models import Intersection, Organization, Video, Authority
+from BaseApp.models import Intersection, Organization, Video, Authority, Hitbox
 from django.core.files.storage import FileSystemStorage
 from .modules import video_manager
 from . import views
@@ -213,3 +213,22 @@ def get_auth_level(user: SimpleLazyObject) -> int:
         auth_level = 7
     finally:
         return auth_level
+
+def create_loops(data, intersection: Intersection, video: Video):
+    json_file = {"loops":[]}
+    for d in data:
+        json_file['loops'].append(
+            {
+                "name":d[0], #loop name
+                "id":d[1], #loop id. Should be 0, 1, 2, ...
+                "points":d[2], # a list of points from dict
+                "orientation":d[3],
+                "summary_location":d[4] #dictionary
+            } 
+        )
+    json_object = json.dumps(json_file, indent=4)
+    path = f"{intersection.name}/loops/{video.video_file.name}{video.id}/loop.json"
+    with open(path, "w") as outfile:
+        outfile.write(json_object)
+        outfile.close()
+    Hitbox.objects.create
