@@ -142,7 +142,6 @@ def process_video(request, name):
     video = Video.objects.get(id=request.session['video'])
     print(video.get_path())
     return render(request, "edit.html", {"video": video.get_path()})
-        
     
     
 def search_intersection(request):
