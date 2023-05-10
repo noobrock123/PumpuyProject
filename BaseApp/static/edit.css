@@ -189,7 +189,7 @@ input[type='radio']{
     height: 25px;
 }
 
-input#1 {
+/* input#1 {
     border-color: #c3c3c3;
     border-radius: 5px;
 }
@@ -210,7 +210,7 @@ input#y1 {
     font-size: 20px;
     width: 150px;
     color: #565656;
-}
+} */
 
 video {
     width: 70%;
