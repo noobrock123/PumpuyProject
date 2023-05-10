@@ -273,7 +273,7 @@ img {
   } */
   
   /* Style the tab content */
-  /* .tabcontent {
+  /* .loop_field {
     float: left;
     padding: 0px 12px;
     border: 1px solid #ccc;
@@ -286,7 +286,7 @@ img {
 /*This is style of tab new assign Allumilie done by KayKon */
 
 #regForm {
-    background-color: #ffffff;
+    background-color: #f1f1f1;
     margin: 100px auto;
     padding: 40px;
     width: 70%;
@@ -353,3 +353,7 @@ button:hover {
 .step.finish {
     background-color: #04AA6D;
 }
+
+.loop_field {
+    background-color: #f1f1f1;
+  }
