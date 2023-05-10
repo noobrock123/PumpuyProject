@@ -29,10 +29,10 @@ class video_manager:
         video_file.save()
         video_path = video_file.get_path()
         # result =  p.yolo_v7(video_file)
-        # result = schedule.create_job.delay(video_file.id, video_file.video_name, video_path)
+        result = schedule.create_job.delay(video_file.id, video_file.video_name, video_path)
         # print(result)
-        # if result:
-        #     print("Job Received")
+        if result:
+            print("Job Received")
     
     def download(request):
         if request.method != 'POST':

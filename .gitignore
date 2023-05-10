@@ -3,7 +3,7 @@
 BaseApp/intersecPic
 .coverage
 db.sqlite3
-trace_model.pt
+traced_model.pt
 yolov7.pt
 
 # Visual Studio Code # 
