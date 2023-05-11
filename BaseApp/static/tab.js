@@ -19,12 +19,16 @@ function add_loop() {
   text += '</br>';
   text += `<table>`;
 
-  for (let init = 1; init < 5; init++) { 
+  for (let init = 1; init < 5; init++) {
     text += `<tr>`;
-    text += `<td><input name="x${init}" id="x${init}" placeholder="x${init}"></input></td>`;
-    text += `<td><input name="y${init}" id="y${init}" placeholder="y${init}"></input></td>`;
+    text += `<td><input name="x${init}" id="loop${num}x${init}" placeholder="x${init}"></input></td>`;
+    text += `<td><input name="y${init}" id="loop${num}y${init}" placeholder="y${init}"></input></td>`;
     text += `</tr>`;
   }
+  text += `<select id='orientation'>`;
+  text += `<option value='clockwise'>Clockwise</option>`
+  text += `<option value='counterclockwise'>Counterclockwise</option>`
+  text += `</select>`
 
   text += `</table>`;
   text += `</div>`;
@@ -62,16 +66,39 @@ video.addEventListener('play', function() {
   (function loop() {
     if (!$this.paused && !$this.ended) {
       ctx.lineWidth = 8;
-      ctx.strokeStyle = '#00FF00';
       
       ctx.drawImage($this, 0, 0);
-      ctx.beginPath(); // Start a new path
-      ctx.moveTo(900, 600); // x1, y1
-      ctx.lineTo(900, 300); // x2, y2
-      ctx.lineTo(400, 300); // x3, y3
-      ctx.lineTo(400, 600); // x4, y4
-      ctx.lineTo(900, 600); // x1, y1 to close the loop
-      ctx.stroke(); // Render the path  
+
+      var num = document.getElementsByClassName('loop_field').length + 1;
+
+      console.log(num);      
+
+      for (var i = 1; i < num; i++) {
+        var x1 = document.getElementById(`loop${i}x1`);
+        var y1 = document.getElementById(`loop${i}y1`);
+        var x2 = document.getElementById(`loop${i}x2`);
+        var y2 = document.getElementById(`loop${i}y2`);
+        var x3 = document.getElementById(`loop${i}x3`);
+        var y3 = document.getElementById(`loop${i}y3`);
+        var x4 = document.getElementById(`loop${i}x4`);
+        var y4 = document.getElementById(`loop${i}y4`);
+
+        console.log(x1.value);
+
+
+        ctx.beginPath(); // Start a new path
+        ctx.strokeStyle = '#0000FF';
+        ctx.moveTo(x1.value, y1.value); // x1, y1
+        ctx.lineTo(x2.value, y2.value); // x2, y2
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.strokeStyle = '#00FF00';
+        ctx.lineTo(x2.value, y2.value); // x2, y2
+        ctx.lineTo(x3.value, y3.value); // x3, y3
+        ctx.lineTo(x4.value, y4.value); // x4, y4
+        ctx.lineTo(x1.value, y1.value); // x1, y1 to close the loop
+        ctx.stroke(); // Render the path  
+      }
 
       setTimeout(loop, 1000 / 30); // drawing at 30fps
     }
