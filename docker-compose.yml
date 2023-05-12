@@ -4,6 +4,7 @@ services:
   redis:
     image: redis:alpine
     container_name: redis
+    # command: redis-server
 
   app:
     build: .
@@ -19,7 +20,7 @@ services:
     restart: always
     build:
       context: .
-    command: celery -A PumpuyProject worker -l INFO
+    command: celery -A PumpuyProject worker --loglevel=info -P eventlet
     volumes:
       - .:/PumpuySkyline
     container_name: celery

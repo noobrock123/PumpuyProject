@@ -216,6 +216,11 @@ video {
     width: 70%;
     margin-top: 3%;
   }
+
+canvas {
+    width: 70%;
+    margin-top: 3%;
+  }
   
 img {
     width: 100%;
@@ -355,5 +360,6 @@ button:hover {
 }
 
 .loop_field {
+    text-align: center;
     background-color: #f1f1f1;
   }
