@@ -19,6 +19,7 @@ urlpatterns = [
     path('add_intersection', views.add_intersection, name='insert_intersection'),
     path(__intersection_link, views.intersection, name='intersection'),
     path(__intersection_link + "/edit", views.edit, name='edit'),
+    path(__intersection_link + "/create_loops", views.create_loops, name='create_loops'),
 #    path('intersection/<str:name>/insert', views.insert, name='insert'),
     path(__intersection_link + "/upload", views.upload_video, name='upload'),
     path(__intersection_link + "/process", views.process_video, name='process'),

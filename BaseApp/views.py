@@ -9,7 +9,7 @@ from django.core.files.storage import FileSystemStorage
 from .modules import video_manager
 from . import views
 
-import os
+import os, json
 
 # Create your views here.
 def index(request):
@@ -140,8 +140,11 @@ def process_video(request, name):
     if "video" not in request.session:
         return redirect("BaseApp:home")
     video = Video.objects.get(id=request.session['video'])
-    print(video.get_path())
-    return render(request, "edit.html", {"video": video.get_path()})
+    print(video.id)
+    return render(request, "edit.html", {
+        "video": video.get_path(), 
+        "video_id": video.id
+    })
     
     
 def search_intersection(request):
@@ -214,21 +217,39 @@ def get_auth_level(user: SimpleLazyObject) -> int:
     finally:
         return auth_level
 
-def create_loops(data, intersection: Intersection, video: Video):
+# def create_loops(request, intersection: Intersection, video: Video):
+def create_loops(request, name):
     json_file = {"loops":[]}
-    for d in data:
-        json_file['loops'].append(
-            {
-                "name":d[0], #loop name
-                "id":d[1], #loop id. Should be 0, 1, 2, ...
-                "points":d[2], # a list of points from dict
-                "orientation":d[3],
-                "summary_location":d[4] #dictionary
-            } 
-        )
-    json_object = json.dumps(json_file, indent=4)
-    path = f"{intersection.name}/loops/{video.video_file.name}{video.id}/loop.json"
-    with open(path, "w") as outfile:
-        outfile.write(json_object)
-        outfile.close()
-    Hitbox.objects.create
+
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            video_id = request.POST.get("video_id")
+            # x1 = request.POST.get('x1')
+            # y1 = request.POST.get('y1')
+            # x2 = request.POST.get('x2')
+            # y2 = request.POST.get('y2')
+            # x3 = request.POST.get('x3')
+            # y3 = request.POST.get('y3')
+            # x4 = request.POST.get('x4')
+            # y4 = request.POST.get('y4')
+
+            data = request.POST.get('loops')
+            # print(data)
+            print(data)
+
+            loop_json = json.loads(data)
+
+            print(loop_json["loops"])
+
+            # loopPath = os.path(f"intersectionData/{name}/loops/{video_id}/loop_test.json")
+            if not os.path.exists(f"BaseApp/intersectionData/{name}/loops/{video_id}"):
+                os.makedirs(f"BaseApp/intersectionData/{name}/loops/{video_id}")
+
+            out_file = open(f"BaseApp/intersectionData/{name}/loops/{video_id}/loop_test.json", 'w')
+
+            json.dump(loop_json, out_file, indent=4)
+
+            out_file.close()
+
+    return redirect("BaseApp:intersection", name=name)
+    

@@ -61,17 +61,19 @@ video.addEventListener('loadedmetadata', function() {
   canvas.height = video.videoHeight;
 });
 
+
 video.addEventListener('play', function() {  
   var $this = this; //cache
   (function loop() {
     if (!$this.paused && !$this.ended) {
       ctx.lineWidth = 8;
       
-      ctx.drawImage($this, 0, 0);
-
       var num = document.getElementsByClassName('loop_field').length + 1;
 
-      console.log(num);      
+      ctx.drawImage($this, 0, 0);
+      
+      
+      // console.log(num);      
 
       for (var i = 1; i < num; i++) {
         var x1 = document.getElementById(`loop${i}x1`);
@@ -83,16 +85,16 @@ video.addEventListener('play', function() {
         var x4 = document.getElementById(`loop${i}x4`);
         var y4 = document.getElementById(`loop${i}y4`);
 
-        console.log(x1.value);
+        // console.log(x1.value);
 
 
-        ctx.beginPath(); // Start a new path
+        ctx.beginPath(); // Start a enter line
         ctx.strokeStyle = '#0000FF';
         ctx.moveTo(x1.value, y1.value); // x1, y1
         ctx.lineTo(x2.value, y2.value); // x2, y2
         ctx.stroke();
         ctx.beginPath();
-        ctx.strokeStyle = '#00FF00';
+        ctx.strokeStyle = '#00FF00'; // Start a box line
         ctx.lineTo(x2.value, y2.value); // x2, y2
         ctx.lineTo(x3.value, y3.value); // x3, y3
         ctx.lineTo(x4.value, y4.value); // x4, y4
@@ -104,6 +106,55 @@ video.addEventListener('play', function() {
     }
   })();
 }, 0);
+
+
+
+function collect_loops() {  
+
+  var num = document.getElementsByClassName('loop_field').length + 1;
+  
+  let json_loops = {
+    "loops": []
+  }
+
+  for (var i = 1; i < num; i++) {
+    var x1 = document.getElementById(`loop${i}x1`);
+    var y1 = document.getElementById(`loop${i}y1`);
+    var x2 = document.getElementById(`loop${i}x2`);
+    var y2 = document.getElementById(`loop${i}y2`);
+    var x3 = document.getElementById(`loop${i}x3`);
+    var y3 = document.getElementById(`loop${i}y3`);
+    var x4 = document.getElementById(`loop${i}x4`);
+    var y4 = document.getElementById(`loop${i}y4`);    
+
+    var loop = {
+      "name": `loop${i}`,
+      "id": `${i-1}`,
+      "points":[
+        {"x":`${x1.value}`,"y":`${y1.value}`},
+        {"x":`${x2.value}`,"y":`${y2.value}`},
+        {"x":`${x3.value}`,"y":`${y3.value}`},
+        {"x":`${x4.value}`,"y":`${y4.value}`},
+      ]
+    };
+
+    // console.log(loop["points"][0]);
+  
+    json_loops["loops"].push(loop);
+  }
+
+  var text_json = JSON.stringify(json_loops)
+  
+  document.getElementById("loops").value = text_json;
+
+  // console.log(text_json);
+    
+  // $('loops').submit();
+}
+
+
+
+
 
 // function showTab(n) {
 //   // This function will display the specified tab of the form
