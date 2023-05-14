@@ -2,10 +2,36 @@
 // var currentTab = 0; // Current tab is set to be the first tab (0)
 // showTab(currentTab); // Display the current tab
 
-window.onload = function() {
+function select_loop() {
+  var hitboxs = document.getElementById('hitboxs');
+  for ()
+  console.log(hitboxs.value);
+}
+  // document.getElementById(`choice`).remove();
+
+
+function create_loop() {
+  document.getElementById(`choice`).remove();
+  
+  var file_name = document.createElement('input');
+  file_name.type = "text";
+  file_name.required;
+  file_name.name = "file_name";
+  file_name.placeholder = "File Name";
+  file_name.pattern = "[^\\/:\x22*?<>|]+";
+  var container = document.getElementById("regForm");
+  container.appendChild(file_name);
+  
+  // document.getElementById("select_loop").remove();
+  // document.getElementById("create_loop").remove();
+
+  
   add_loop();
   add_loop();
   add_loop();
+
+  
+  // var elem = document.getElementsById("create");  
 }
 
 var loopField = document.getElementById("LoopField");
@@ -126,16 +152,19 @@ function collect_loops() {
     var y3 = document.getElementById(`loop${i}y3`);
     var x4 = document.getElementById(`loop${i}x4`);
     var y4 = document.getElementById(`loop${i}y4`);    
+    var orientation = document.getElementById(`orientation`)
 
     var loop = {
       "name": `loop${i}`,
       "id": `${i-1}`,
       "points":[
-        {"x":`${x1.value}`,"y":`${y1.value}`},
-        {"x":`${x2.value}`,"y":`${y2.value}`},
-        {"x":`${x3.value}`,"y":`${y3.value}`},
-        {"x":`${x4.value}`,"y":`${y4.value}`},
-      ]
+        {"x":parseInt(`${x1.value}`),"y":parseInt(`${y1.value}`)},
+        {"x":parseInt(`${x2.value}`),"y":parseInt(`${y2.value}`)},
+        {"x":parseInt(`${x3.value}`),"y":parseInt(`${y3.value}`)},
+        {"x":parseInt(`${x4.value}`),"y":parseInt(`${y4.value}`)},
+      ],
+      "orientation":`${orientation.value}`,
+      "summary_location":{"x":9999,"y":"9999"}
     };
 
     // console.log(loop["points"][0]);

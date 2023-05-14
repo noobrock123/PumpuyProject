@@ -101,8 +101,9 @@ class Summmary(models.Model):
         return
 
 class Hitbox(models.Model):
-    hitbox_id  =models.AutoField(primary_key=True, default=0)
+    hitbox_id  =models.AutoField(primary_key=True)
     hitbox_name = models.CharField(max_length=64, default="loop")
+    intersection = models.ForeignKey(Intersection, on_delete=models.CASCADE, null=True, blank=True)
     video = models.ForeignKey(Video, on_delete=models.CASCADE, null=True, blank=True)
     loops_file = models.FileField(upload_to=get_loop_path, null=True, blank=True)
     result_file = models.FileField(upload_to=get_loop_path, null=True, blank=True)
