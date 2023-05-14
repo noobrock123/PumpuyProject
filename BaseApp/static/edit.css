@@ -372,4 +372,10 @@ button:hover {
 .loop_field {
     text-align: center;
     background-color: #f1f1f1;
+    align-items : center;
   }
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
