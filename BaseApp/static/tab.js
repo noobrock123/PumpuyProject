@@ -3,15 +3,14 @@
 // showTab(currentTab); // Display the current tab
 
 function select_loop() {
-  var hitboxs = document.getElementById('hitboxs');
-  for ()
-  console.log(hitboxs.value);
+  var hitboxs = document.getElementById('select_hitboxs');
+  hitboxs.hidden = false;
 }
-  // document.getElementById(`choice`).remove();
-
 
 function create_loop() {
   document.getElementById(`choice`).remove();
+  var hitboxs = document.getElementById('select_hitboxs');
+  hitboxs.hidden = true;
   
   var file_name = document.createElement('input');
   file_name.type = "text";
@@ -21,15 +20,19 @@ function create_loop() {
   file_name.pattern = "[^\\/:\x22*?<>|]+";
   var container = document.getElementById("regForm");
   container.appendChild(file_name);
+
+  var remove = document.getElementById("remove");
+  var add = document.getElementById("add");
+
+  remove.hidden = false;
+  add.hidden = false;
   
   // document.getElementById("select_loop").remove();
   // document.getElementById("create_loop").remove();
-
   
   add_loop();
   add_loop();
   add_loop();
-
   
   // var elem = document.getElementsById("create");  
 }

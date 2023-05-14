@@ -108,7 +108,7 @@ class Hitbox(models.Model):
     loops_file = models.FileField(upload_to=get_loop_path, null=True, blank=True)
     result_file = models.FileField(upload_to=get_loop_path, null=True, blank=True)
     def __str__(self) -> str:
-        return ": " + str(self.hitbox_name)
+        return str(self.hitbox_name)
 
     
 class Follow(models.Model):
