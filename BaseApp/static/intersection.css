@@ -6,12 +6,17 @@
 }
 
 body {
-	
 	background: #f6f5f7;
 	align-items: center;
     flex-direction: column;
 	font-family: 'Montserrat', sans-serif;
-    margin: 20px 35px 20px 35px;
+    /* margin: 20px 35px 20px 35px; */
+	margin-bottom: 35px;
+	margin-right: 35px;
+}
+
+.body-padding{
+	padding-left: 10vh;
 }
 
 h1{
@@ -23,12 +28,9 @@ h1{
     font-weight: bold;
 	margin: 20px; */
 	text-align: center;
-	margin-top: 0px;
-	margin-bottom: 40px;
 }
 
 h2 {
-	margin-top: 5px;
 	margin-left: 25px;
     color:#5357a6 ;
 }
