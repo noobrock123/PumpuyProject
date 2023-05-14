@@ -25,6 +25,7 @@ urlpatterns = [
     path(__intersection_link + "/process/<int:video_id>", views.process_video, name='process'),
     path(__intersection_link + "/search", views.search_video, name='searchVideo'),
     path(__intersection_link + "/delete", views.delete_video, name="deleteVideo"),
+    path(__intersection_link + "/summary/<int:video_id>", views.summary, name="summary"),
 ]
 
 

@@ -66,9 +66,6 @@ def intersection(request, name: str):
 def edit(request, name):
     return render(request, 'edit.html')
 
-def summary(request) :
-    return render(request, 'summary.html')
-
 def profile_view(request, id):
     if request.user.is_authenticated:
         organization = Authority.objects.get(user=request.user).organization   # get organization //Allumilie & noobrock123 (Mar 30. 2023)
@@ -141,7 +138,9 @@ def process_video(request, name, video_id):
         "video": video.get_path(), 
         "video_id": video.id
     })
-    
+
+def summary(request, name, video_id):
+    return render(request, 'summary_page.html')
     
 def search_intersection(request):
     query = request.POST.get("query")    
