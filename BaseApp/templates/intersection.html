@@ -67,10 +67,32 @@
                 {% for video in videos %}
                     <tr class="c-table__row">
                         <td id = "name" class="c-table__data">
-                            <a href=""><p>{{ video.video_name }}</p></a>
+                                {% if video.status == 2 %}
+                                    <a href="{% url 'BaseApp:process' intersection.name video.id%}">
+                                    {{ video.video_name }}
+                                    </a>
+                                {% elif video.status == 0 %}
+                                    <a href="{% url 'BaseApp:summary' intersection.name video.id%}">
+                                    {{ video.video_name }}
+                                    </a>
+                                {% else %}
+                                <p>{{ video.video_name }}</p>
+                                {% endif %}
                         </td>
                         <!-- There's no status in models.Video //Allumilie-->
-                        <td class="c-table__data" id="status{{ video.status }}"><p>{{ video.status }}</p></td>
+                        <td class="c-table__data" id="status{{ video.status }}">
+                            <p>
+                                {% if video.status == 2%}
+                                Pending
+                                {% elif video.status == 1%}
+                                Processing
+                                {% elif video.status == 0%}
+                                Downloadable
+                                {% else %}
+                                Error
+                                {% endif %}
+                            </p>
+                        </td>
                         <td class="c-table__data"><p>{{ video.uploader }}</p></td>
                         <td class="c-table__data"><p>{{ video.date_record }}</p></td>
                         {% if auth_level < 4%}
