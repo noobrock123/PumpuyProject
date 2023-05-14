@@ -13,6 +13,7 @@ class process_chooser():
             loopfile = f'./BaseApp/modules/yolo_v7/loop.json'
         vdofile = f'./BaseApp/intersectionData/{video_path}'
         project_path = f'./BaseApp/intersectionData/{intersection_name[0]}/detect/{video_id}'
+        
         os.system(f"python {detect_func} --source {vdofile} --loop {loopfile} --project {project_path} --name video{video_id}")
         # celery -A PumpuyProject worker --loglevel=info -P eventlet
         return "finish"

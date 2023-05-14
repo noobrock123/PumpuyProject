@@ -30,7 +30,10 @@ class Celery(scheduler):
         result = p.yolo_v7(video_id, video_path)
         if result == "finish":
             video_file.status = 0
+            localfile = open(f'./BaseApp/intersectionData/{video_file.intersection.name}/detect/{video_id}/{video_file.video_name}')
+            video_file.result_video = File(localfile)
             video_file.save()
+            localfile.close()
     
 class save_to_database:
     pass

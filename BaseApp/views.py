@@ -172,7 +172,13 @@ def process_video(request, name, video_id):
     })
 
 def summary(request, name, video_id):
-    return render(request, 'summary_page.html')
+    video = Video.objects.get(id=video_id)
+
+    return render(request, 'summary_page.html', {
+        "name": name,
+        "video_id": video.id,
+        "video_name": video.video_name,
+    })
     
 def search_intersection(request):
     query = request.POST.get("query")    
