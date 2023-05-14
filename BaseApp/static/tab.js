@@ -185,6 +185,14 @@ function collect_loops() {
 }
 
 
+// Video Pixel
+
+var vid = document.getElementById("video"); 
+var HeightHolder = document.getElementById('cont_h');
+var WidthHolder = document.getElementById('cont_w');
+WidthHolder.innerHTML = vid.videoHeight; // returns the intrinsic height of the video
+HeightHolder.innerHTML = vid.videoWidth; // returns the intrinsic width of the video
+
 
 
 
