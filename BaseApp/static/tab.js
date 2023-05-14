@@ -190,8 +190,12 @@ function collect_loops() {
 var vid = document.getElementById("video"); 
 var HeightHolder = document.getElementById('cont_h');
 var WidthHolder = document.getElementById('cont_w');
-WidthHolder.innerHTML = vid.videoHeight; // returns the intrinsic height of the video
-HeightHolder.innerHTML = vid.videoWidth; // returns the intrinsic width of the video
+video.addEventListener('loadedmetadata', function() {
+  WidthHolder.innerHTML = vid.videoHeight; // returns the intrinsic height of the video
+  HeightHolder.innerHTML = vid.videoWidth;
+});
+// WidthHolder.innerHTML = vid.videoHeight; // returns the intrinsic height of the video
+// HeightHolder.innerHTML = vid.videoWidth; // returns the intrinsic width of the video
 
 
 
