@@ -132,6 +132,30 @@ def process_video(request, name):
         if "video" in request.session:
             video = Video.objects.get(id=request.session['video'])
             del request.session['video']
+        print("Hello")
+
+        ##################
+        video_id = request.POST.get("video_id")
+
+        data = request.POST.get('loops')
+        # print(data)
+        print(data)
+
+        loop_json = json.loads(data)
+
+        print(loop_json["loops"])
+
+        # loopPath = os.path(f"intersectionData/{name}/loops/{video_id}/loop_test.json")
+        if not os.path.exists(f"BaseApp/intersectionData/{name}/loops/{video_id}"):
+            os.makedirs(f"BaseApp/intersectionData/{name}/loops/{video_id}")
+
+        out_file = open(f"BaseApp/intersectionData/{name}/loops/{video_id}/loop_test.json", 'w')
+
+        json.dump(loop_json, out_file, indent=4)
+
+        out_file.close()
+        ##################
+
         manager = video_manager.video_manager()
         manager.upload(request, name, video)
         return redirect("BaseApp:intersection", name=name)
@@ -200,6 +224,9 @@ def delete_video(request, name):
             video_id = video.id
             video.delete()
             os.rmdir(f"./BaseApp/intersectionData/{video.intersection.name}/videos/{video_id}")
+            if os.path.isfile(f"./BaseApp/intersectionData/{video.intersection.name}/loops/{video_id}/loop_test.json"):
+                os.remove(f"./BaseApp/intersectionData/{video.intersection.name}/loops/{video_id}/loop_test.json")
+                os.rmdir(f"./BaseApp/intersectionData/{video.intersection.name}/loops/{video_id}")
             #os.chdir('..')
 
             print('delete video successfully')
@@ -218,38 +245,30 @@ def get_auth_level(user: SimpleLazyObject) -> int:
         return auth_level
 
 # def create_loops(request, intersection: Intersection, video: Video):
-def create_loops(request, name):
-    json_file = {"loops":[]}
+# def create_loops(request, name):
+#     json_file = {"loops":[]}
 
-    if request.user.is_authenticated:
-        if request.method == 'POST':
-            video_id = request.POST.get("video_id")
-            # x1 = request.POST.get('x1')
-            # y1 = request.POST.get('y1')
-            # x2 = request.POST.get('x2')
-            # y2 = request.POST.get('y2')
-            # x3 = request.POST.get('x3')
-            # y3 = request.POST.get('y3')
-            # x4 = request.POST.get('x4')
-            # y4 = request.POST.get('y4')
+#     if request.user.is_authenticated:
+#         if request.method == 'POST':
+#             video_id = request.POST.get("video_id")
 
-            data = request.POST.get('loops')
-            # print(data)
-            print(data)
+#             data = request.POST.get('loops')
+#             # print(data)
+#             print(data)
 
-            loop_json = json.loads(data)
+#             loop_json = json.loads(data)
 
-            print(loop_json["loops"])
+#             print(loop_json["loops"])
 
-            # loopPath = os.path(f"intersectionData/{name}/loops/{video_id}/loop_test.json")
-            if not os.path.exists(f"BaseApp/intersectionData/{name}/loops/{video_id}"):
-                os.makedirs(f"BaseApp/intersectionData/{name}/loops/{video_id}")
+#             # loopPath = os.path(f"intersectionData/{name}/loops/{video_id}/loop_test.json")
+#             if not os.path.exists(f"BaseApp/intersectionData/{name}/loops/{video_id}"):
+#                 os.makedirs(f"BaseApp/intersectionData/{name}/loops/{video_id}")
 
-            out_file = open(f"BaseApp/intersectionData/{name}/loops/{video_id}/loop_test.json", 'w')
+#             out_file = open(f"BaseApp/intersectionData/{name}/loops/{video_id}/loop_test.json", 'w')
 
-            json.dump(loop_json, out_file, indent=4)
+#             json.dump(loop_json, out_file, indent=4)
 
-            out_file.close()
+#             out_file.close()
 
-    return redirect("BaseApp:intersection", name=name)
+#     return True
     
