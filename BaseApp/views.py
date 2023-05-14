@@ -108,6 +108,7 @@ def upload_video(request, name):
                 video_name=file_name,
                 uploader=request.user,
                 length=1,
+                auth_level=3,
                 intersection=Intersection.objects.get(name=name),
                 video_file=None
             )
@@ -158,10 +159,16 @@ def process_video(request, name, video_id):
     if request.user.is_authenticated == False:
         return redirect("BaseApp:login")
     video = Video.objects.get(id=video_id)
-    print(video.id)
+    intersection = Intersection.objects.get(name = name)
+    print(intersection.location)
+    hitbox = Hitbox.objects.filter(intersection__name=intersection.name)
+    print(hitbox)
     return render(request, "edit.html", {
-        "video": video.get_path(), 
-        "video_id": video.id
+        "name": name,
+        "video_path": video.get_path(), 
+        "video_id": video.id,
+        "video_name": video.video_name,
+        "hitboxs": hitbox,
     })
 
 def summary(request, name, video_id):
@@ -250,24 +257,32 @@ def get_auth_level(user: SimpleLazyObject) -> int:
 #     if request.user.is_authenticated:
 #         if request.method == 'POST':
 #             video_id = request.POST.get("video_id")
+#             file_name = request.POST.get("file_name")
+
+#             print(file_name)
 
 #             data = request.POST.get('loops')
-#             # print(data)
-#             print(data)
 
 #             loop_json = json.loads(data)
 
 #             print(loop_json["loops"])
 
-#             # loopPath = os.path(f"intersectionData/{name}/loops/{video_id}/loop_test.json")
+#             loopPath = os.path(f"intersectionData/{name}/loops/{video_id}/loop_test.json")
 #             if not os.path.exists(f"BaseApp/intersectionData/{name}/loops/{video_id}"):
 #                 os.makedirs(f"BaseApp/intersectionData/{name}/loops/{video_id}")
 
-#             out_file = open(f"BaseApp/intersectionData/{name}/loops/{video_id}/loop_test.json", 'w')
-
+#             out_file = open(f"BaseApp/intersectionData/{name}/loops/{video_id}/{file_name}.json", 'w')
+            
 #             json.dump(loop_json, out_file, indent=4)
 
 #             out_file.close()
 
-#     return True
+#             hitbox = Hitbox.objects.create(
+#                 hitbox_name = file_name,
+#                 intersection = Intersection.objects.get(name = name),
+#                 video = Video.objects.get(id=video_id),
+#                 loops_file = f"BaseApp/intersectionData/{name}/loops/{video_id}/{file_name}.json",
+#             )
 
+#     return redirect("BaseApp:intersection", name=name)
+    

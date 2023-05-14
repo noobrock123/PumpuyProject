@@ -19,18 +19,25 @@
 
             <div class="flex-container">
                 <div class="box">
-                    <video id="video" src="../../BaseApp/intersectionData/{{ video }}" autoplay controls loop></video>
+                    <video id="video" src="../../../BaseApp/intersectionData/{{ name }}/videos/{{ video_id }}/{{ video_name }}.mp4" autoplay controls loop></video>
                     <canvas id="canvas"></canvas>
-                    <!-- <canvas id="cv1" style="border:1px solid #000000;"></canvas>
-                        <video id="vd1" controls autoplay muted loop muted hidden src="../../BaseApp/intersectionData/{{ video }}">
-                            <source src="../../BaseApp/intersectionData/{{ video }}">
-                        </video> -->
                 </div>
                     <div class="box">
                         
                         {% comment %} This is loop box {% endcomment %}
+                        <div id="choice">
+                            <input type="button" name="select" value="Select existing loop" onclick="select_loop()">
+                            <input type="button" id="create" value="Create New loop" onclick="create_loop()">
+                        </div>
+                        
+                        <div id="hitboxs">
+                            {% for hitbox in hitboxs %}
+                            <input type="hidden" id="hitbox{{ forloop.counter0 }}" value="{{ hitbox }}">
+                            {% endfor %}
+                        </div>
                         
                         <div id="regForm" action="">
+                            
                             
                             <!-- One "looptab" for each step in the form: -->
                             <div class="looptab" id="LoopField" name="Loop">
@@ -67,11 +74,11 @@
             </div>
 
             <input type="hidden" name="loops" id="loops" value="">
-            <input type="hidden" name="video_id" id="video_id" value="{{ video_id }}"
+            <input type="hidden" name="video_id" id="video_id" value="{{ video_id }}">
             
             <div class = "button">
                 <button onclick="collect_loops()">Upload</button>
-        </div>    
+        </div>
         
     </div>
 </form>
