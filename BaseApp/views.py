@@ -66,9 +66,6 @@ def intersection(request, name: str):
 def edit(request, name):
     return render(request, 'edit.html')
 
-def summary(request) :
-    return render(request, 'summary.html')
-
 def profile_view(request, id):
     if request.user.is_authenticated:
         organization = Authority.objects.get(user=request.user).organization   # get organization //Allumilie & noobrock123 (Mar 30. 2023)
@@ -131,8 +128,32 @@ def process_video(request, name, video_id):
         if "video" in request.session:
             video = Video.objects.get(id=video_id)
             del request.session['video']
-        # manager = video_manager.video_manager()
-        # manager.upload(request, name, video)
+        print("Hello")
+
+        ##################
+        video_id = request.POST.get("video_id")
+
+        data = request.POST.get('loops')
+        # print(data)
+        print(data)
+
+        loop_json = json.loads(data)
+
+        print(loop_json["loops"])
+
+        # loopPath = os.path(f"intersectionData/{name}/loops/{video_id}/loop_test.json")
+        if not os.path.exists(f"BaseApp/intersectionData/{name}/loops/{video_id}"):
+            os.makedirs(f"BaseApp/intersectionData/{name}/loops/{video_id}")
+
+        out_file = open(f"BaseApp/intersectionData/{name}/loops/{video_id}/loop_test.json", 'w')
+
+        json.dump(loop_json, out_file, indent=4)
+
+        out_file.close()
+        ##################
+
+        manager = video_manager.video_manager()
+        manager.upload(request, name, video)
         return redirect("BaseApp:intersection", name=name)
     if request.user.is_authenticated == False:
         return redirect("BaseApp:login")
@@ -148,7 +169,9 @@ def process_video(request, name, video_id):
         "video_name": video.video_name,
         "hitboxs": hitbox,
     })
-    
+
+def summary(request, name, video_id):
+    return render(request, 'summary_page.html')
     
 def search_intersection(request):
     query = request.POST.get("query")    
@@ -203,6 +226,9 @@ def delete_video(request, name):
             video_id = video.id
             video.delete()
             os.rmdir(f"./BaseApp/intersectionData/{video.intersection.name}/videos/{video_id}")
+            if os.path.isfile(f"./BaseApp/intersectionData/{video.intersection.name}/loops/{video_id}/loop_test.json"):
+                os.remove(f"./BaseApp/intersectionData/{video.intersection.name}/loops/{video_id}/loop_test.json")
+                os.rmdir(f"./BaseApp/intersectionData/{video.intersection.name}/loops/{video_id}")
             #os.chdir('..')
 
             print('delete video successfully')
@@ -235,9 +261,9 @@ def create_loops(request, name):
 
             loop_json = json.loads(data)
 
-            # print(loop_json["loops"])
+            print(loop_json["loops"])
 
-            # loopPath = os.path(f"intersectionData/{name}/loops/{video_id}/loop_test.json")
+            loopPath = os.path(f"intersectionData/{name}/loops/{video_id}/loop_test.json")
             if not os.path.exists(f"BaseApp/intersectionData/{name}/loops/{video_id}"):
                 os.makedirs(f"BaseApp/intersectionData/{name}/loops/{video_id}")
 

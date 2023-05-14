@@ -19,12 +19,13 @@ urlpatterns = [
     path('add_intersection', views.add_intersection, name='insert_intersection'),
     path(__intersection_link, views.intersection, name='intersection'),
     path(__intersection_link + "/edit", views.edit, name='edit'),
-    path(__intersection_link + "/create_loops", views.create_loops, name='create_loops'),
+    # path(__intersection_link + "/create_loops", views.create_loops, name='create_loops'),
 #    path('intersection/<str:name>/insert', views.insert, name='insert'),
     path(__intersection_link + "/upload", views.upload_video, name='upload'),
     path(__intersection_link + "/process/<int:video_id>", views.process_video, name='process'),
     path(__intersection_link + "/search", views.search_video, name='searchVideo'),
     path(__intersection_link + "/delete", views.delete_video, name="deleteVideo"),
+    path(__intersection_link + "/summary/<int:video_id>", views.summary, name="summary"),
 ]
 
 
