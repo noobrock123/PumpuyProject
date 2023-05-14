@@ -66,9 +66,6 @@ def intersection(request, name: str):
 def edit(request, name):
     return render(request, 'edit.html')
 
-def summary(request) :
-    return render(request, 'summary.html')
-
 def profile_view(request, id):
     if request.user.is_authenticated:
         organization = Authority.objects.get(user=request.user).organization   # get organization //Allumilie & noobrock123 (Mar 30. 2023)
@@ -110,7 +107,6 @@ def upload_video(request, name):
                 video_name=file_name,
                 uploader=request.user,
                 length=1,
-                auth_level=3,
                 intersection=Intersection.objects.get(name=name),
                 video_file=None
             )
@@ -118,19 +114,18 @@ def upload_video(request, name):
             video.video_file = file
             video.save()
             
-            request.session['video'] = video.id
-            return redirect("BaseApp:process", name = name)
+            return redirect("BaseApp:process", name = name, video_id = video.id)
         #return HttpResponse('This page is work in progess') # just a placeholder for frontend to make page for it and if you make the page just change HttpResonse to render //Allumlie
         return render(request, "upload.html")
     else:
         return render(request, 'login.html')
     
-def process_video(request, name):
+def process_video(request, name, video_id):
     if request.method == "POST":
         if get_auth_level(request.user) == 7:
             return redirect("BaseApp:intersection", name=name)
         if "video" in request.session:
-            video = Video.objects.get(id=request.session['video'])
+            video = Video.objects.get(id=video.id)
             del request.session['video']
         print("Hello")
 
@@ -161,15 +156,15 @@ def process_video(request, name):
         return redirect("BaseApp:intersection", name=name)
     if request.user.is_authenticated == False:
         return redirect("BaseApp:login")
-    if "video" not in request.session:
-        return redirect("BaseApp:home")
-    video = Video.objects.get(id=request.session['video'])
+    video = Video.objects.get(id=video_id)
     print(video.id)
     return render(request, "edit.html", {
         "video": video.get_path(), 
         "video_id": video.id
     })
-    
+
+def summary(request, name, video_id):
+    return render(request, 'summary_page.html')
     
 def search_intersection(request):
     query = request.POST.get("query")    

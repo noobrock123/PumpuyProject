@@ -13,95 +13,118 @@
   <link rel="stylesheet" href="{% static 'intersection.css' %}">
 </head>
 <body>
-    
-    <div class="intersection">
-        <nav class="left">
-            <h2>{{ intersection.name }}</h2>
-            <!-- 
-                need to click on botton to work so i change a bit but its make css doesn't work so pls fix
-                also why is follow here but there's no follow in user models pls add //Allumilie
-            -->
-            <a href="{{intersection.name}}/follow"><button>ติดตาม</button></a> 
-        </nav>
-            <nav class="right">
-                <a href="{{intersection.name}}/edit"><button class="edit">แก้ไข</button></a>
+    <div class = "body-padding">
+        <div class="intersection">
+            <nav class="left">
+                <h2>{{ intersection.name }}</h2>
+                <!-- 
+                    need to click on botton to work so i change a bit but its make css doesn't work so pls fix
+                    also why is follow here but there's no follow in user models pls add //Allumilie
+                -->
+                <a href="{{intersection.name}}/follow"><button>ติดตาม</button></a> 
             </nav>
-    </div>
-    
-    <img width="60%"  src="{{ intersection.picture.url }}">
-    <!-- <img src="https://i.ytimg.com/vi/5yCf_S737f8/maxres2.jpg?sqp=-oaymwEoCIAKENAF8quKqQMcGADwAQH4AbYIgAKAD4oCDAgAEAEYPiBlKDcwDw==&rs=AOn4CLCZIy-q0dNRJhPse1JdWysg--4Sug"> -->
-    
-    <h2>Description</h2>
+                <nav class="right">
+                    <a href="{{intersection.name}}/edit"><button class="edit">แก้ไข</button></a>
+                </nav>
+        </div>
 
-    <div class="detail">
-        <p> สถานที่ตั้ง: {{ intersection.location }}</p>
-    </div>
+        <img width="60%"  src="{{ intersection.picture.url }}">
+        <!-- <img src="https://i.ytimg.com/vi/5yCf_S737f8/maxres2.jpg?sqp=-oaymwEoCIAKENAF8quKqQMcGADwAQH4AbYIgAKAD4oCDAgAEAEYPiBlKDcwDw==&rs=AOn4CLCZIy-q0dNRJhPse1JdWysg--4Sug"> -->
 
-    <div class = "searchbar">
-        <form action="{% url 'BaseApp:searchVideo' intersection.name %}" method="post" class="dropdown">          
-            <select name="options" id="options" class="dropdown-select" placeholder="Search Bar right here">
-                <div class="dropdown-list">
-                    <option value="video_name" class="dropdown-list__item">Video</option>
-                    <!-- There is no status in models.Video //Allumilie-->
-                    <!-- <option value="status">Status</option> -->
-                    <option value="uploader" class="dropdown-list__item">Uploader</option>
-                </div>
-            </select>
-            <input name="query" type="text" placeholder="Search Bar right here">
-        </form>
-            <nav class="button"><a href="{{intersection.name}}/upload"><button>ลงคลิป</button></a></nav>
+        <h2>Description</h2>
 
-    </div>
-    
-    <div class = "Intersection_Table">
+        <div class="detail">
+            <p> สถานที่ตั้ง: {{ intersection.location }}</p>
+        </div>
 
-        {% if videos %}
-            <table class="c-table">
-                <tr class="c-table__row">
-                    <th class="c-table__head">Video</th>
-                    <th class="c-table__head">Status</th>
-                    <th class="c-table__head">Uploader</th>
-                    <th class="c-table__head">Date</th>
-                </tr>
-        
-                {% for video in videos %}
+        <div class = "searchbar">
+            <form action="{% url 'BaseApp:searchVideo' intersection.name %}" method="post" class="dropdown">          
+                <select name="options" id="options" class="dropdown-select" placeholder="Search Bar right here">
+                    <div class="dropdown-list">
+                        <option value="video_name" class="dropdown-list__item">Video</option>
+                        <!-- There is no status in models.Video //Allumilie-->
+                        <!-- <option value="status">Status</option> -->
+                        <option value="uploader" class="dropdown-list__item">Uploader</option>
+                    </div>
+                </select>
+                <input name="query" type="text" placeholder="Search Bar right here">
+            </form>
+                <nav class="button"><a href="{{intersection.name}}/upload"><button>ลงคลิป</button></a></nav>
+
+        </div>
+
+        <div class = "Intersection_Table">
+
+            {% if videos %}
+                <table class="c-table">
                     <tr class="c-table__row">
-                        <td id = "name" class="c-table__data">
-                            <a href=""><p>{{ video.video_name }}</p></a>
-                        </td>
-                        <!-- There's no status in models.Video //Allumilie-->
-                        <td class="c-table__data" id="status{{ video.status }}"><p>{{ video.status }}</p></td>
-                        <td class="c-table__data"><p>{{ video.uploader }}</p></td>
-                        <td class="c-table__data"><p>{{ video.date_record }}</p></td>
-                        {% if auth_level < 4%}
-                            <td id="delete">
-                                <form action="{% url 'BaseApp:deleteVideo' intersection.name %}" method="post" class="dropdown">
-                                    {% csrf_token %}
-                                    <button type="submit" name="query" value="{{video.id}}">ลบ</button>
-                                <form>
-                            </td>
-                        {% endif %}
+                        <th class="c-table__head">Video</th>
+                        <th class="c-table__head">Status</th>
+                        <th class="c-table__head">Uploader</th>
+                        <th class="c-table__head">Date</th>
                     </tr>
-                {% endfor %}
-            </table>
-        {% else %}
-            <center><h2>No Video</h2></center>
-        {% endif %}
-    
-            <!-- <tr class="c-table__row">
-                <td id = "name" class="c-table__data"><a href="">G</a></td>
-                <td class="c-table__data">B</td>
-                <td class="c-table__data">C</td>
-                <td class="c-table__data">D</td>
-                <td id="delete"><a href="delete">ลบ</a></td>
-            </tr>
-            <tr class="c-table__row">
-                <td id = "name" class="c-table__data"><a href="">G</a></td>
-                <td class="c-table__data">B</td>
-                <td class="c-table__data">C</td>
-                <td class="c-table__data">D</td>
-                <td id="delete"><a href="delete">ลบ</a></td>
-            </tr> -->
+                
+                    {% for video in videos %}
+                        <tr class="c-table__row">
+                            <td id = "name" class="c-table__data">
+                                    {% if video.status == 2 %}
+                                        <a href="{% url 'BaseApp:process' intersection.name video.id%}">
+                                        {{ video.video_name }}
+                                        </a>
+                                    {% elif video.status == 0 %}
+                                        <a href="{% url 'BaseApp:summary' intersection.name video.id%}">
+                                        {{ video.video_name }}
+                                        </a>
+                                    {% else %}
+                                    <p>{{ video.video_name }}</p>
+                                    {% endif %}
+                            </td>
+                            <!-- There's no status in models.Video //Allumilie-->
+                            <td class="c-table__data" id="status{{ video.status }}">
+                                <p>
+                                    {% if video.status == 2%}
+                                    Pending
+                                    {% elif video.status == 1%}
+                                    Processing
+                                    {% elif video.status == 0%}
+                                    Downloadable
+                                    {% else %}
+                                    Error
+                                    {% endif %}
+                                </p>
+                            </td>
+                            <td class="c-table__data"><p>{{ video.uploader }}</p></td>
+                            <td class="c-table__data"><p>{{ video.date_record }}</p></td>
+                            {% if auth_level < 4%}
+                                <td id="delete">
+                                    <form action="{% url 'BaseApp:deleteVideo' intersection.name %}" method="post" class="dropdown">
+                                        {% csrf_token %}
+                                        <button type="submit" name="query" value="{{video.id}}">ลบ</button>
+                                    <form>
+                                </td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <center><h2>No Video</h2></center>
+            {% endif %}
+            
+                <!-- <tr class="c-table__row">
+                    <td id = "name" class="c-table__data"><a href="">G</a></td>
+                    <td class="c-table__data">B</td>
+                    <td class="c-table__data">C</td>
+                    <td class="c-table__data">D</td>
+                    <td id="delete"><a href="delete">ลบ</a></td>
+                </tr>
+                <tr class="c-table__row">
+                    <td id = "name" class="c-table__data"><a href="">G</a></td>
+                    <td class="c-table__data">B</td>
+                    <td class="c-table__data">C</td>
+                    <td class="c-table__data">D</td>
+                    <td id="delete"><a href="delete">ลบ</a></td>
+                </tr> -->
+        </div>
     </div>
 </body>
 {% endblock %}

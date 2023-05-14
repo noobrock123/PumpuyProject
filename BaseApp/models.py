@@ -79,7 +79,7 @@ class Video(models.Model):
     '''
     status = models.IntegerField(default=2, max_length=3) 
     date_record = models.DateTimeField(default=datetime.datetime.now())
-    auth_level = models.IntegerField()
+    auth_level = models.IntegerField(default=2)
     intersection = models.ForeignKey(Intersection, on_delete=models.CASCADE, null=True,blank=True)
     video_file = models.FileField(upload_to=get_video_path, blank=True, null=True)
 
