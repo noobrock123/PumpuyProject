@@ -4,7 +4,6 @@
 
 function select_loop() {
   var hitboxs = document.getElementById('hitboxs');
-  for ()
   console.log(hitboxs.value);
 }
   // document.getElementById(`choice`).remove();
@@ -181,6 +180,14 @@ function collect_loops() {
   // $('loops').submit();
 }
 
+
+// Video Pixel
+
+var vid = document.getElementById("video"); 
+var HeightHolder = document.getElementById('cont_h');
+var WidthHolder = document.getElementById('cont_w');
+WidthHolder.innerHTML = vid.videoHeight; // returns the intrinsic height of the video
+HeightHolder.innerHTML = vid.videoWidth; // returns the intrinsic width of the video
 
 
 

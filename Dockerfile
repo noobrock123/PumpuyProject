@@ -14,7 +14,7 @@ RUN pip3 install -r requirements.txt
 # For Windows
 # replace with container ID
 # Copy command run in terminal
-# docker exec -it container_id python manage.py makemigrations
-# docker exec -it container_id python manage.py migrate
+# docker exec -it container id python manage.py makemigrations
+# docker exec -it container id python manage.py migrate
 
 COPY . .
