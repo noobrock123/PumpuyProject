@@ -10,6 +10,7 @@ from .modules import video_manager
 from . import views
 
 import os, json
+import shutil
 
 # Create your views here.
 def index(request):
@@ -124,9 +125,9 @@ def process_video(request, name, video_id):
     if request.method == "POST":
         if get_auth_level(request.user) == 7:
             return redirect("BaseApp:intersection", name=name)
-        if "video" in request.session:
-            video = Video.objects.get(id=video.id)
-            del request.session['video']
+        # if "video" in request.session:
+        video = Video.objects.get(id=video_id)
+            # del request.session['video']
         print("Hello")
 
         ##################
@@ -219,11 +220,14 @@ def delete_video(request, name):
             video_id = video.id
             video.delete()
             os.rmdir(f"./BaseApp/intersectionData/{video.intersection.name}/videos/{video_id}")
-            if os.path.isfile(f"./BaseApp/intersectionData/{video.intersection.name}/loops/{video_id}/loop_test.json"):
-                os.remove(f"./BaseApp/intersectionData/{video.intersection.name}/loops/{video_id}/loop_test.json")
-                os.rmdir(f"./BaseApp/intersectionData/{video.intersection.name}/loops/{video_id}")
+            if os.path.isdir(f"./BaseApp/intersectionData/{video.intersection.name}/loops/{video_id}"):
+                shutil.rmtree(f"./BaseApp/intersectionData/{video.intersection.name}/loops/{video_id}")
+            if os.path.isdir(f"./BaseApp/intersectionData/{video.intersection.name}/detect/{video_id}"):
+                shutil.rmtree(f"./BaseApp/intersectionData/{video.intersection.name}/detect/{video_id}")
+
             #os.chdir('..')
 
+            
             print('delete video successfully')
             
         return redirect("BaseApp:intersection", name=name)
@@ -266,4 +270,4 @@ def get_auth_level(user: SimpleLazyObject) -> int:
 #             out_file.close()
 
 #     return True
-    
+

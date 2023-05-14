@@ -7,8 +7,8 @@ class process_chooser():
     def yolo_v7(self, video_id, video_path):
         intersection_name = video_path.split("/")
         detect_func = './BaseApp/modules/yolo_v7/detect_and_track.py'
-        if os.path.isfile(f'./BaseApp/intersectionData/{intersection_name[0]}/loop/{video_id}/loop_test.json'):
-            loopfile = f'./BaseApp/intersectionData/{intersection_name[0]}/loop/{video_id}/loop_test.json'
+        if os.path.isfile(f'./BaseApp/intersectionData/{intersection_name[0]}/loops/{video_id}/loop_test.json'):
+            loopfile = f'./BaseApp/intersectionData/{intersection_name[0]}/loops/{video_id}/loop_test.json'
         else:
             loopfile = f'./BaseApp/modules/yolo_v7/loop.json'
         vdofile = f'./BaseApp/intersectionData/{video_path}'
