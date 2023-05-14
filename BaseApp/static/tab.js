@@ -19,7 +19,7 @@ function create_loop() {
   file_name.placeholder = "File Name";
   file_name.pattern = "[^\\/:\x22*?<>|]+";
   var container = document.getElementById("regForm");
-  container.appendChild(file_name);
+  container.prepend(file_name);
 
   var remove = document.getElementById("remove");
   var add = document.getElementById("add");
@@ -191,8 +191,8 @@ var vid = document.getElementById("video");
 var HeightHolder = document.getElementById('cont_h');
 var WidthHolder = document.getElementById('cont_w');
 video.addEventListener('loadedmetadata', function() {
-  WidthHolder.innerHTML = vid.videoHeight; // returns the intrinsic height of the video
-  HeightHolder.innerHTML = vid.videoWidth;
+HeightHolder.innerHTML = vid.videoHeight; // returns the intrinsic height of the video
+WidthHolder.innerHTML = vid.videoWidth;
 });
 // WidthHolder.innerHTML = vid.videoHeight; // returns the intrinsic height of the video
 // HeightHolder.innerHTML = vid.videoWidth; // returns the intrinsic width of the video

@@ -20,17 +20,22 @@
             <div class="flex-container">
                 <div class="box">
                     <video id="video" src="../../../BaseApp/intersectionData/{{ name }}/videos/{{ video_id }}/{{ video_name }}.mp4" autoplay controls loop></video>
+                    <div >
+                        <p style = "padding-left : 72% ;" >Width: </p>
+                        <p style = "display: inline-block; "> 0 </p>
+                        <p style = "padding-left : 70% ;display: inline-block; " id="cont_w"></p>
+                    </div>
                     <canvas id="canvas"></canvas>
-                    <p>Height: </p>
-                    <p id="cont_h"></p>
-                    <p>Width: </p>
-                    <p id="cont_w"></p>
+                    <div style = "padding-right : 75vh">
+                        <p style = "padding-bottom : 20px">Height: </p>
+                        <p id="cont_h"></p>
+                    </div>
                 </div>
                     <div class="box">
                         
                         {% comment %} This is loop box {% endcomment %}
                         <div id="choice">
-                            <input type="button" name="select" value="Select existing loop" onclick="select_loop()">
+                            <input type="button" id="create" name="select" value="Select existing loop" onclick="select_loop()">
                             <input type="button" id="create" value="Create New loop" onclick="create_loop()">
                         </div>
                         
@@ -82,9 +87,9 @@
             <input type="hidden" name="loops" id="loops" value="">
             <input type="hidden" name="video_id" id="video_id" value="{{ video_id }}">
             
-            <div class = "button">
+            <div class = "button ">
                 <button onclick="collect_loops()">Upload</button>
-        </div>
+            </div>
         
     </div>
 </form>
