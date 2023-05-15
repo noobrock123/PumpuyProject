@@ -205,11 +205,69 @@ def process_video(request, name, video_id):
 
 def summary(request, name, video_id):
     video = Video.objects.get(id=video_id)
+    '''
+    index for vehicle direction
+    0: car
+    1: motorcycle
+    2: truck
+    last index are sum
+    '''
+
+    results = {
+        'loop1':{
+            'LEFT': [0, 0, 0, 0],
+            'RIGHT': [0, 0, 0, 0],
+            'STRAIGHT': [0, 0, 0, 0],
+            'SUM':0
+        },
+        'loop2':{
+            'LEFT': [0, 0, 0, 0],
+            'RIGHT': [0, 0, 0, 0],
+            'STRAIGHT': [0, 0, 0, 0],
+            'SUM':0
+        },
+        'loop3':{
+            'LEFT': [0, 0, 0, 0],
+            'RIGHT': [0, 0, 0, 0],
+            'STRAIGHT': [0, 0, 0, 0],
+            'SUM':0
+        },
+    }
+
+    #To be replaced
+    result_file = open("BaseApp/loop.txt", "r")
+    spl: str = []
+    direction = ""
+    vehicle = ""
+    for line in result_file:
+        spl = line.split(",")
+        if spl[-1].startswith("ENTERED"):
+            continue
+        if spl[-1].startswith(" LEFT"):
+            direction = "LEFT"
+        elif spl[-1].startswith(" RIGHT"):
+            direction = "RIGHT"
+        else:
+            direction = "STRAIGHT"
+
+        if spl[2] == "car":
+            results[f"loop{spl[0]}"][f"{direction}"][0] += 1
+        elif spl[2] == "truck":
+            results[f"loop{spl[0]}"][f"{direction}"][1] += 1
+        else:
+            results[f"loop{spl[0]}"][f"{direction}"][2] += 1
+        results[f"loop{spl[0]}"][f"{direction}"][-1] += 1
+        results[f"loop{spl[0]}"]["SUM"] += 1
+    print(results)
+        
+
+    result_file.close()
 
     return render(request, 'summary_page.html', {
         "name": name,
         "video_id": video.id,
         "video_name": video.video_name,
+        "loops": results
     })
     
 def search_intersection(request):
