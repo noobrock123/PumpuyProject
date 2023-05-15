@@ -35,10 +35,14 @@ video {
     width: 70%;
   }
 
+.download {
+    display: contents;
+}
+
 button {
     border-radius: 20px;
-	border: 1px solid #801ad9;
-	background-color: #9627db;
+	border: 1px solid #1ad96d;
+	background-color: #27dba8;
 	color: #FFFFFF;
 	font-size: 12px;
 	font-weight: bold;

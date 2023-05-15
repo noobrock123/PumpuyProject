@@ -13,7 +13,9 @@
 
 
     <h1>{{ video.video_name }}</h1>
-    <a href="../../../BaseApp/intersectionData/{{ name }}/detect/{{ video_id }}/{{ video_name }}.mp4" download="">Download</a>
+    <a href="../../../BaseApp/intersectionData/{{ name }}/detect/{{ video_id }}/{{ video_name }}.mp4" download="" class="download">
+        <button>Download</button>
+    </a>
     <div class="box">
         <video id="video" src="../../../BaseApp/intersectionData/{{ name }}/detect/{{ video_id }}/{{ video_name }}.mp4" autoplay controls loop>
             <source type="video/mp4" >
