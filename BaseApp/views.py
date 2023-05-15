@@ -52,14 +52,21 @@ def intersection(request, name: str):
     if request.user.is_authenticated:
         # try:
         intersection = Intersection.objects.get(name=name)
+        is_personel = False
+        if len(Intersection.objects.filter(personel=request.user)) > 0:
+            is_personel = True
+
+        print(is_personel)
         videos = Video.objects.filter(intersection=intersection)
         # except Intersection.DoesNotExist:
         #     return HttpResponseRedirect(reverse('BaseApp:home'))
         # print(intersection.picture)
+        print(get_auth_level(request.user))
         return render(request, 'intersection.html', {
             'auth_level': get_auth_level(request.user),
             'intersection' : intersection,
             'videos': videos,
+            'is_personel': is_personel,
         })
     else:
         return render(request, 'login.html')
@@ -91,6 +98,7 @@ def add_intersection(request):
             intersec_type=4,
             status=0,
             owner=Authority.objects.get(user=request.user).organization,
+            personel=request.user,
             picture=request.FILES.get('picture'),
         )
         return redirect('/home')
