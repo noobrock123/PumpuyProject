@@ -3,15 +3,14 @@
 // showTab(currentTab); // Display the current tab
 
 function select_loop() {
-  var hitboxs = document.getElementById('hitboxs');
-  // for ()
-  console.log(hitboxs.value);
+  var hitboxs = document.getElementById('select_hitboxs');
+  hitboxs.hidden = false;
 }
-  // document.getElementById(`choice`).remove();
-
 
 function create_loop() {
   document.getElementById(`choice`).remove();
+  var hitboxs = document.getElementById('select_hitboxs');
+  hitboxs.hidden = true;
   
   var file_name = document.createElement('input');
   file_name.type = "text";
@@ -20,16 +19,20 @@ function create_loop() {
   file_name.placeholder = "File Name";
   file_name.pattern = "[^\\/:\x22*?<>|]+";
   var container = document.getElementById("regForm");
-  container.appendChild(file_name);
+  container.prepend(file_name);
+
+  var remove = document.getElementById("remove");
+  var add = document.getElementById("add");
+
+  remove.hidden = false;
+  add.hidden = false;
   
   // document.getElementById("select_loop").remove();
   // document.getElementById("create_loop").remove();
-
   
   add_loop();
   add_loop();
   add_loop();
-
   
   // var elem = document.getElementsById("create");  
 }
@@ -181,6 +184,18 @@ function collect_loops() {
   // $('loops').submit();
 }
 
+
+// Video Pixel
+
+var vid = document.getElementById("video"); 
+var HeightHolder = document.getElementById('cont_h');
+var WidthHolder = document.getElementById('cont_w');
+video.addEventListener('loadedmetadata', function() {
+HeightHolder.innerHTML = vid.videoHeight; // returns the intrinsic height of the video
+WidthHolder.innerHTML = vid.videoWidth;
+});
+// WidthHolder.innerHTML = vid.videoHeight; // returns the intrinsic height of the video
+// HeightHolder.innerHTML = vid.videoWidth; // returns the intrinsic width of the video
 
 
 

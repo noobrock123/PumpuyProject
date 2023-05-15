@@ -292,7 +292,7 @@ img {
 
 #regForm {
     background-color: #f1f1f1;
-    margin: 100px auto;
+    margin: auto;
     padding: 40px;
     width: 70%;
     min-width: 300px;
@@ -321,11 +321,21 @@ input.invalid {
 } */
 
 button {
-    background-color: #04AA6D;
+    background-color: #9627db;
     color: #ffffff;
     border: none;
     padding: 10px 20px;
-    font-size: 10px;
+    font-size: 15px;
+    font-family: Raleway;
+    cursor: pointer;
+}
+
+#create{
+    background-color: #9627db;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 30px;
     font-family: Raleway;
     cursor: pointer;
 }
@@ -362,4 +372,10 @@ button:hover {
 .loop_field {
     text-align: center;
     background-color: #f1f1f1;
+    align-items : center;
   }
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+}

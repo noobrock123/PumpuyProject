@@ -28,10 +28,6 @@ def get_video_path(instance, file):
     intersec_name = instance.intersection.name
     return f"{intersec_name}/videos/{instance.id}/{file}"
 
-def get_result_path(instance, file):
-    intersec_name = instance.intersection.name
-    return f"{intersec_name}/detect/{instance.id}/{file}"
-
 def get_loop_path(instance, file):
     file_name = instance.video.video_file.name.split(".")[0]
     return f"{instance.video.intersection.name}/{instance.video.id}{file_name}/{file}"
@@ -86,16 +82,12 @@ class Video(models.Model):
     auth_level = models.IntegerField(default=2)
     intersection = models.ForeignKey(Intersection, on_delete=models.CASCADE, null=True,blank=True)
     video_file = models.FileField(upload_to=get_video_path, blank=True, null=True)
-    result_video = models.FileField(upload_to=get_result_path, blank=True, null=True)
 
     def __str__(self) -> str:
         return self.video_name
 
     def get_path(self):
         return self.video_file.name
-
-    def get_result_path(self):
-        return self.result_video.name
 
     def delete(self, *args, **kwargs):
         self.video_file.delete()
@@ -116,7 +108,7 @@ class Hitbox(models.Model):
     loops_file = models.FileField(upload_to=get_loop_path, null=True, blank=True)
     result_file = models.FileField(upload_to=get_loop_path, null=True, blank=True)
     def __str__(self) -> str:
-        return ": " + str(self.hitbox_name)
+        return str(self.hitbox_name)
 
     
 class Follow(models.Model):

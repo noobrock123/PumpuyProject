@@ -7,7 +7,7 @@ from . import scheduler
 
 class video_manager:
     
-    def upload(self, request, name, video_file: Video):
+    def upload(self, request, name, hitbox, video_file: Video):
         if request.method != 'POST':
             raise PermissionDenied
         
@@ -28,8 +28,10 @@ class video_manager:
         video_file.status = 2
         video_file.save()
         video_path = video_file.get_path()
+        if hitbox is not None:
+            hitbox = hitbox.hitbox_id
         # result =  p.yolo_v7(video_file)
-        result = schedule.create_job.delay(video_file.id, video_file.video_name, video_path)
+        result = schedule.create_job.delay(video_file.id, video_file.video_name, hitbox, video_path)
         # print(result)
         if result:
             print("Job Received")
