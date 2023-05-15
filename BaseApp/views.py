@@ -52,10 +52,11 @@ def intersection(request, name: str):
     if request.user.is_authenticated:
         # try:
         intersection = Intersection.objects.get(name=name)
+        organization: Organization = intersection.owner
+        auth_user = Authority.objects.get(user=request.user)
         is_personel = False
-        if len(Intersection.objects.filter(personel=request.user)) > 0:
+        if (auth_user.organization == organization):
             is_personel = True
-
         print(is_personel)
         videos = Video.objects.filter(intersection=intersection)
         # except Intersection.DoesNotExist:
@@ -98,7 +99,6 @@ def add_intersection(request):
             intersec_type=4,
             status=0,
             owner=Authority.objects.get(user=request.user).organization,
-            personel=request.user,
             picture=request.FILES.get('picture'),
         )
         return redirect('/home')
