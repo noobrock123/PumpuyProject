@@ -13,9 +13,11 @@
 
 
     <h1>{{ video.video_name }}</h1>
-    <a href="../../../BaseApp/intersectionData/{{ name }}/detect/{{ video_id }}/{{ video_name }}.mp4" download="">Download</a>
+    <a href="../../../BaseApp/intersectionData/{{ name }}/detect/{{ video_id }}/{{ video_name }}.mp4" download="" class="download">
+        <button>Download</button>
+    </a>
     <div class="box">
-        <video id="video" src="../../../BaseApp/intersectionData/{{ name }}/detect/{{ video_id }}/{{ video_name }}.mp4" autoplay controls>
+        <video id="video" src="../../../BaseApp/intersectionData/{{ name }}/detect/{{ video_id }}/{{ video_name }}.mp4" autoplay controls loop>
             <source type="video/mp4" >
         </video>
 {% comment %} 
@@ -35,13 +37,22 @@
                     <td class="table__head">รถบรรทุก</td>
                     <td class="table__head">จำนวน</td>
                 </tr>
+                {% for direction, vehicles in loops.loop1.items %}
                 <tr class="table__row">
-                    <td class="table__data"></td>
-                    <td class="table__data"></td>
-                    <td class="table__data"></td>
-                    <td class="table__data"></td>
-                    <td class="table__data"></td>
+                    {% if direction != "SUM" %}
+                        <td class="table__data">{{ direction }}</td>
+                    {% for vehicle in vehicles %}
+                        <td class="table__data">{{ vehicle }}</td>
+                    {% endfor %}
+                    {% else %}
+                        <td class="table__data">{{ direction }}</td>
+                        <td class="table__data"></td>
+                        <td class="table__data"></td>
+                        <td class="table__data"></td>
+                        <td class="table__data">{{ vehicles }}</td>
+                    {% endif%}
                 </tr>
+                {% endfor %}
             </table>
 
             <h2>loop3</h2>
@@ -53,13 +64,22 @@
                     <td class="table__head">รถบรรทุก</td>
                     <td class="table__head">จำนวน</td>
                 </tr>
+                {% for direction, vehicles in loops.loop2.items %}
                 <tr class="table__row">
-                    <td class="table__data"></td>
-                    <td class="table__data"></td>
-                    <td class="table__data"></td>
-                    <td class="table__data"></td>
-                    <td class="table__data"></td>
+                    {% if direction != "SUM" %}
+                        <td class="table__data">{{ direction }}</td>
+                    {% for vehicle in vehicles %}
+                        <td class="table__data">{{ vehicle }}</td>
+                    {% endfor %}
+                    {% else %}
+                        <td class="table__data">{{ direction }}</td>
+                        <td class="table__data"></td>
+                        <td class="table__data"></td>
+                        <td class="table__data"></td>
+                        <td class="table__data">{{ vehicles }}</td>
+                    {% endif%}
                 </tr>
+                {% endfor %}
             </table>
         </div>
 
@@ -73,13 +93,22 @@
                     <td class="table__head">รถบรรทุก</td>
                     <td class="table__head">จำนวน</td>
                 </tr>
+                {% for direction, vehicles in loops.loop2.items %}
                 <tr class="table__row">
-                    <td class="table__data"></td>
-                    <td class="table__data"></td>
-                    <td class="table__data"></td>
-                    <td class="table__data"></td>
-                    <td class="table__data"></td>
+                    {% if direction != "SUM" %}
+                        <td class="table__data">{{ direction }}</td>
+                    {% for vehicle in vehicles %}
+                        <td class="table__data">{{ vehicle }}</td>
+                    {% endfor %}
+                    {% else %}
+                        <td class="table__data">{{ direction }}</td>
+                        <td class="table__data"></td>
+                        <td class="table__data"></td>
+                        <td class="table__data"></td>
+                        <td class="table__data">{{ vehicles }}</td>
+                    {% endif%}
                 </tr>
+                {% endfor %}
             </table>
         </div>
         

@@ -49,7 +49,7 @@
                 </select>
                 <input name="query" type="text" placeholder="Search Bar right here">
             </form>
-                {% if is_personel or auth_level < 4%}
+                {% if is_personel and auth_level < 4%}
                 <nav class="button"><a href="{{intersection.name}}/upload"><button>ลงคลิป</button></a></nav>
                 {% endif %}
 
@@ -69,7 +69,7 @@
                     {% for video in videos %}
                         <tr class="c-table__row">
                             <td id = "name" class="c-table__data">
-                                    {% if video.status == 2 and is_personel or auth_level < 4 %}
+                                    {% if video.status == 2 and is_personel and auth_level < 4 %}
                                         <a href="{% url 'BaseApp:process' intersection.name video.id%}">
                                         {{ video.video_name }}
                                         </a>
@@ -97,7 +97,7 @@
                             </td>
                             <td class="c-table__data"><p>{{ video.uploader }}</p></td>
                             <td class="c-table__data"><p>{{ video.date_record }}</p></td>
-                            {% if is_personel or auth_level < 4%}
+                            {% if is_personel and auth_level < 4%}
                                 <td id="delete">
                                     <form action="{% url 'BaseApp:deleteVideo' intersection.name %}" method="post" class="dropdown">
                                         {% csrf_token %}
