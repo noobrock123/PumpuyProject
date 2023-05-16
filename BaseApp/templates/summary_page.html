@@ -15,9 +15,13 @@
     <h1>{{ video.video_name }}</h1>
     <a href="../../../BaseApp/intersectionData/{{ name }}/detect/{{ video_id }}/{{ video_name }}.mp4" download="">Download</a>
     <div class="box">
-        <video id="video" autoplay controls loop>
-            <source src="../../../BaseApp/intersectionData/{{ name }}/detect/{{ video_id }}/{{ video_name }}.mp4" type="video/mp4">
+        <video id="video" src="../../../BaseApp/intersectionData/{{ name }}/detect/{{ video_id }}/{{ video_name }}.mp4" autoplay controls>
+            <source type="video/mp4" >
         </video>
+{% comment %} 
+        <video id="video">
+            <source src="../../../BaseApp/intersectionData/{{ name }}/detect/{{ video_id }}/{{ video_name }}.mp4" type="video/mp4">
+        </video> {% endcomment %}
     </div>
     
     <div class="loop">
