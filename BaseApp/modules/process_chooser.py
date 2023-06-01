@@ -14,6 +14,6 @@ class process_chooser():
         vdofile = f'./BaseApp/intersectionData/{video_path}'
         project_path = f'./BaseApp/intersectionData/{intersection_name[0]}/detect'
         
-        os.system(f"python {detect_func} --source {vdofile} --loop {loopfile} --project {project_path} --name {video_id}")
+        os.system(f"python {detect_func} --source {vdofile} --loop '{loopfile}' --project {project_path} --name {video_id}")
         # celery -A PumpuyProject worker --loglevel=info -P eventlet
         return "finish"
